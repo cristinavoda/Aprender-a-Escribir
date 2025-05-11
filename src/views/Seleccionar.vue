@@ -2,7 +2,7 @@
   <div class="select-view">
     <h2>Selecciona una imagen y escribe la palabra</h2>
 
-    <!-- Subir imagen -->
+   
     <input type="file" accept="image/*" @change="onImageChange" />
     <div v-if="imageUrl" class="image-preview">
       <img :src="imageUrl" alt="Imagen seleccionada" />
@@ -29,7 +29,7 @@
     </div>
     </div>
      
-    <!-- Escribir palabra -->
+    
     <input
       v-model="word"
       type="text"
@@ -37,7 +37,7 @@
       class="word-input"
     />
  <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
-    <!-- Botón para ir a la siguiente vista -->
+   
     <button
       :disabled="!word || !imageUrl"
       @click="irAVistaEscribir"
@@ -124,13 +124,12 @@ const irAVistaEscribir = () => {
 }
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
-  gap: 1rem;                              /* espacio entre cards */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 1rem;                              
   margin-top: 1.5rem;
   padding: 0 0.5rem;
 }
 
-/* Estilo de cada “card” */
 .result-card {
   background: #ffffff;
   border: 2px solid var(--color-text);
@@ -143,16 +142,15 @@ const irAVistaEscribir = () => {
   align-items: center;
 }
 
-/* Hover para dar feedback */
+
 .result-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Imagen dentro de la card */
+
 .result-card img {
   width: 100%;
-  height: 120px;
   object-fit: cover;
 }
 

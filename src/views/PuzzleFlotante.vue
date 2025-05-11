@@ -2,7 +2,7 @@
   <div class="flotante-view">
     <h2>¡Atrapa las letras!</h2>
 
-    <!-- Letras flotantes -->
+    
     <div class="flotantes">
       <button
         v-for="(letter, index) in floatingLetters"
@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <!-- Zona de orden -->
+   
     <div class="zona-orden">
       <div
         v-for="(slot, i) in currentWord.length"
@@ -45,7 +45,7 @@
 import { ref } from 'vue'
 import confetti from 'canvas-confetti'
 
-// Lista de palabras para jugar
+
 const palabras = ['ROBERT','MAMA','AGUA','ESCUELA','CASA','PARQUE','COMER','DORMIR','PLAYA','AVIÓN', 'TREN', 'PERRO', 'CASA', 'AGUA',]
 const currentIndex = ref(0)
 
@@ -71,7 +71,7 @@ function shuffle(array) {
     .map(obj => obj.val)
 }
 function generarPosiciones() {
-  const minDist = 160 // separación mínima entre letras
+  const minDist = 160 
   const posicionesGeneradas = []
 
   currentWord.value.split('').forEach(() => {
@@ -119,7 +119,7 @@ function checkAnswer() {
     resultMessage.value = '¡Correcto! 🎉'
     isCorrect.value = true
 
-    // Esperar y cargar la siguiente palabra
+   
     setTimeout(() => {
       nextWord()
     }, 2000)
@@ -128,11 +128,11 @@ function checkAnswer() {
     resultMessage.value = 'Incorrecto, inténtalo de nuevo.'
     isCorrect.value = false
 
-    // Reiniciar letras y selección
+    
     userWord.value = Array(targetWord.value.length).fill('')
     selectedIndices.value = []
 
-    // Ocultar mensaje tras un tiempo
+   
     setTimeout(() => {
       resultMessage.value = ''
     }, 2000)
@@ -156,7 +156,7 @@ function triggerConfetti() {
     particleCount: 600,
     spread: 70,
     origin: { y: 0.6 },
-    colors: ['#ff0000', '#00ff00', '#0000ff', '#ff9900'],  // Colores del confeti
+    colors: ['#ff0000', '#00ff00', '#0000ff', '#ff9900'],  
     ticks: 600
   })}
 

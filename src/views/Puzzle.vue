@@ -32,17 +32,17 @@ import confetti from 'canvas-confetti'
 
 
 const words = ref(['TREN','CASA','AGUA','COMER','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO']); // Lista de palabras
-let currentIndex = ref(0) // Índice de la palabra actual
+let currentIndex = ref(0) 
 
-const targetWord = ref(words.value[currentIndex.value])  // Palabra actual
+const targetWord = ref(words.value[currentIndex.value]) 
 const scrambled = ref([])
 
 const userSelection = ref([])
 const resultMessage = ref('')
 const isCorrect = ref(false)
-const selected = ref([])  // Para llevar el seguimiento de las letras seleccionadas
+const selected = ref([])  
 
-// Función para desordenar las letras
+
 function shuffle(array) {
   return array
     .map(value => ({ value, sort: Math.random() }))
@@ -56,37 +56,37 @@ onMounted(() => {
   userSelection.value = Array(letters.length).fill('')
 })
 
-// Función para seleccionar una letra
+
 function selectLetter(index) {
   const letter = scrambled.value[index]
 
-  // Verificar si la letra ya está seleccionada
+  
   if (!selected.value.includes(index)) {
     const pos = userSelection.value.indexOf('')
     if (pos !== -1) {
       userSelection.value[pos] = letter
-      selected.value.push(index) // Agregar el índice de la letra seleccionada
+      selected.value.push(index) 
     }
   }
 }
 
-// Función para comprobar la respuesta
+
 function checkAnswer() {
   const attempt = userSelection.value.join('')
   if (attempt === targetWord.value) {
     resultMessage.value = '¡Correcto! 🎉'
     isCorrect.value = true
-    triggerConfetti()  // Llamar a la función para el confeti
+    triggerConfetti() 
   } else {
     resultMessage.value = 'Incorrecto, inténtalo de nuevo.'
     isCorrect.value = false
-    selected.value = [] // Resetear las letras seleccionadas
-    userSelection.value = Array(targetWord.value.length).fill('') // Resetear la selección
+    selected.value = [] 
+    userSelection.value = Array(targetWord.value.length).fill('') 
   }
 }
 
 function nextWord() {
-  // Seleccionamos una palabra aleatoria
+  
   currentIndex.value = Math.floor(Math.random() * words.value.length)
   targetWord.value = words.value[currentIndex.value]
   
@@ -101,7 +101,7 @@ function triggerConfetti() {
     particleCount: 600,
     spread: 70,
     origin: { y: 0.6 },
-    colors: ['#ff0000', '#00ff00', '#0000ff', '#ff9900'],  // Colores del confeti
+    colors: ['#ff0000', '#00ff00', '#0000ff', '#ff9900'],  
     ticks: 600
   })
 }

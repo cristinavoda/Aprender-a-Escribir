@@ -75,7 +75,7 @@ const deleteLetter = () => {
 }
 
 const checkInput = () => {
-  // Aquí se puede añadir validación o reacción al finalizar
+  
 }
 </script>
 
