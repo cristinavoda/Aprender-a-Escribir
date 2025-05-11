@@ -44,8 +44,19 @@
           @correct="onCorrect"
         />
 
-        
+
       </div>
+    </div>
+     <div class="keyboard">
+      <button
+        v-for="key in letters"
+        :key="key"
+        @click="addLetter(key)"
+        class="key"
+      >
+        {{ key }}
+      </button>
+      <button @click="deleteLetter" class="key delete">⌫</button>
     </div>
   </div>
 </template>
@@ -123,6 +134,29 @@ function onCorrect(correctSelection) {
 }
 .practice-area {
   margin-top: 2rem;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.key {
+  font-size: 1.2rem;
+  padding: 0.6rem;
+  width: 45px;
+  height: 45px;
+  border: none;
+  background-color: #dcdcdc;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.delete {
+  background-color: #ff7f7f;
 }
 @media (max-width: 600px) {
   .practicar {

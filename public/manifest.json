@@ -4,13 +4,13 @@
     "description": "Aplicación para ayudar a aprender a escribir de una manera divertida.",
     "icons": [
       {
-        "src": "/app-icon.ico",
+        "src": "./app-icon.ico",
         "type": "image/png",
         "sizes": "512x512"
       },
       
       {
-        "src": "/favicon.ico",
+        "src": "./favicon.ico",
         "type": "image/png",
         "sizes": "32x32"
       }
