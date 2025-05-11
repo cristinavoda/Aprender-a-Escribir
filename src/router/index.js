@@ -24,7 +24,15 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes:[ { path: '/', name: 'Seleccionar', component: Seleccionar },
+  { path: '/escribir', name: 'Escribir', component: Escribir},
+  { path: '/puzzle', name: 'Puzzle', component: Puzzle },
+   { path: '/puzzleFlotante', name: 'PuzzleFlotante', component: PuzzleFlotante },
+  { path: '/practicar', name: 'Practicar', component: Practicar },
+  { path: '/galeria', name: 'Galeria', component: Galeria },
+   { path: '/referencia', name: 'Referencia', component: Referencia },
+
+]
 })
 
 export default router
