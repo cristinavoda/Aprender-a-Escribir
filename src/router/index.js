@@ -9,30 +9,17 @@ import Galeria from '../views/Galeria.vue'
 
 const routes = [
   { path: '/', name: 'Seleccionar', component: Seleccionar },
-  { path: '/escribir', name: 'Escribir', component: Escribir},
+  { path: '/escribir', name: 'Escribir', component: Escribir },
   { path: '/puzzle', name: 'Puzzle', component: Puzzle },
-   { path: '/puzzleFlotante', name: 'PuzzleFlotante', component: PuzzleFlotante },
+  { path: '/puzzleFlotante', name: 'PuzzleFlotante', component: PuzzleFlotante },
   { path: '/practicar', name: 'Practicar', component: Practicar },
   { path: '/galeria', name: 'Galeria', component: Galeria },
-   { path: '/referencia', name: 'Referencia', component: Referencia },
-
-
-
-
-
+  { path: '/referencia', name: 'Referencia', component: Referencia },
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes:[ { path: '/', name: 'Seleccionar', component: Seleccionar },
-  { path: '/escribir', name: 'Escribir', component: Escribir},
-  { path: '/puzzle', name: 'Puzzle', component: Puzzle },
-   { path: '/puzzleFlotante', name: 'PuzzleFlotante', component: PuzzleFlotante },
-  { path: '/practicar', name: 'Practicar', component: Practicar },
-  { path: '/galeria', name: 'Galeria', component: Galeria },
-   { path: '/referencia', name: 'Referencia', component: Referencia },
-
-]
+  routes,
 })
 
 export default router

@@ -1,20 +1,20 @@
-/* src/assets/styles.css */
+
 
 :root {
-  /* Tipografía y legibilidad */
+  
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
 
-  /* Paleta de color */
-  --color-text: #003366;       /* Azul intenso */
-  --color-bg: #ffffff;         /* Blanco puro */
+  
+  --color-text: #003366;       
+  --color-bg: #ffffff;         
 
-  /* Para que IE/Edge en modo claro/oscuro no invierta */
+  
   color-scheme: light;
 }
 
-/* Aplico las variables globalmente */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -24,7 +24,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Enlaces */
+
 a {
   color: var(--color-text);
   text-decoration: none;

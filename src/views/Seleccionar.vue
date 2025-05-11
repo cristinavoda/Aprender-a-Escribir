@@ -154,7 +154,7 @@ const irAVistaEscribir = () => {
   object-fit: cover;
 }
 
-/* Texto descriptivo */
+
 .result-card p {
   margin: 0.5rem 0;
   font-size: 1rem;

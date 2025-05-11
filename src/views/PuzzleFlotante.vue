@@ -170,7 +170,7 @@ function cargarNuevaPalabra() {
   isCorrect.value = false
 }
 
-// Inicializar
+
 cargarNuevaPalabra()
 </script>
 
