@@ -1,0 +1,138 @@
+<template>
+  <div class="practicar">
+    <!-- Panel de historial y recompensas -->
+    <div class="sidebar">
+      <h3>Historial de aciertos</h3>
+      <ul>
+        <li v-for="(item, idx) in history" :key="idx">
+          {{ item.word }} ✅
+        </li>
+      </ul>
+      <div class="rewards">
+        <h4>⭐ Estrellas ganadas: {{ history.length }}</h4>
+      </div>
+    </div>
+
+    <!-- Contenedor principal: Galería y práctica -->
+    <div class="main">
+      <Galeria @select="onSelect" />
+      <div v-if="selection.imageUrl" class="practice-area">
+        <Referencia
+          :image-url="selection.imageUrl"
+          :word="selection.word"
+          @updateWord="onUpdateWord"
+        />
+
+         <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
+
+        <div class="keyboard">
+      <button
+        v-for="key in letters"
+        :key="key"
+        @click="addLetter(key)"
+        class="key"
+      >
+        {{ key }}
+      </button>
+      <button @click="deleteLetter" class="key delete">⌫</button>
+    </div>
+
+
+        <Escribir
+          :image-url="selection.imageUrl"
+          :word="selection.word"
+          @correct="onCorrect"
+        />
+
+        
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted, watch } from 'vue'
+import Galeria from './Galeria.vue'
+import Referencia from './Referencia.vue'
+import Escribir from './Escribir.vue'
+
+const props = defineProps(['word', 'imageUrl'])
+
+const userInput = ref('')
+const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
+
+
+const selection = ref({ imageUrl: '', word: '' })
+
+
+const history = ref([])
+
+const speakWord = () => {
+  const utterance = new SpeechSynthesisUtterance(props.word)
+  utterance.lang = 'es-ES'
+  speechSynthesis.speak(utterance)
+}
+
+
+onMounted(() => {
+  const saved = localStorage.getItem('history')
+  if (saved) history.value = JSON.parse(saved)
+})
+
+
+ watch(history, (newVal) => {
+  localStorage.setItem('history', JSON.stringify(newVal))
+}, { deep: true })
+
+function onSelect(payload) {
+  selection.value = payload
+}
+
+function onUpdateWord(newWord) {
+  selection.value.word = newWord.toUpperCase()
+}
+
+function onCorrect(correctSelection) {
+  
+  if (!history.value.some(item => item.word === correctSelection.word)) {
+    history.value.push({ ...correctSelection })
+  }
+}
+</script>
+
+<style scoped>
+.practicar {
+  display: flex;
+  gap: 2rem;
+}
+.sidebar {
+  width: 200px;
+  border-right: 2px solid var(--color-text);
+  padding-right: 1rem;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.rewards {
+  margin-top: 1rem;
+  text-align: center;
+}
+.main {
+  flex: 1;
+}
+.practice-area {
+  margin-top: 2rem;
+}
+@media (max-width: 600px) {
+  .practicar {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: auto;
+    border-right: none;
+    border-bottom: 2px solid var(--color-text);
+    padding-bottom: 1rem;
+  }
+}
+</style>
