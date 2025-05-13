@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <h1>Aprendo a Escribir ✍️</h1>
+    
     <AppNavbar />
     <router-view />
   </div>
 </template>
 
 <script setup>
-import AppNavbar from './components/AppNavbar.vue'
+import AppNavbar from './components/AppNavbar.vue';
+import Teclado from './components/Teclado.vue';
+
+
 </script>
 
 <style>

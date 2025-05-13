@@ -71,7 +71,7 @@ function shuffle(array) {
     .map(obj => obj.val)
 }
 function generarPosiciones() {
-  const minDist = 160 
+  const minDist = 16 
   const posicionesGeneradas = []
 
   currentWord.value.split('').forEach(() => {

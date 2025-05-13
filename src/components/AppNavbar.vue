@@ -1,13 +1,13 @@
 <template>
   <nav class="navbar">
-    <router-link to="/">🏠 Seleccionar</router-link>
+    <router-link to="/">⌨️ Seleccionar</router-link>
     <router-link to="/referencia">🏠Referencia</router-link>
     <router-link to="/escribir">✍️ Escribir</router-link>
     <router-link to="/puzzle">🧩 Puzzle</router-link>
      <router-link to="/practicar">✍️ Practicar</router-link>
-     <router-link to="/galeria">🏠Galeria</router-link>
-    <router-link to="/PuzzleFlotante">🧩PuzzleFlotante</router-link>
-     
+     <router-link to="/galeria">🎞️Galeria</router-link>
+    <router-link to="/LetrasFlotantes">🧩LetrasFlotantes</router-link>
+    
      
   </nav>
   
@@ -19,12 +19,14 @@
 
 <style scoped>
 .navbar {
+  top: 10px;
   display: flex;
-  margin-left: -250px;
+  margin-top: 0,2vh;
+  margin-left: -120px;
   width: fit-content;
   justify-content:left;
-  gap: 2rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 01rem;
   background: #0c64bd;
 }
 .navbar a {

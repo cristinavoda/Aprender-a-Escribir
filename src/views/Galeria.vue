@@ -27,7 +27,7 @@ const selectionStore = useSelectionStore()
 
 async function fetchPixabay() {
   const response = await fetch(
-    `https://pixabay.com/api/?key=43441518-85d5d394329fe4bdef820c138&q=naturaleza&image_type=photo&per_page=6`
+    `https://pixabay.com/api/?key=43441518-85d5d394329fe4bdef820c138&q=food&image_type=photo&per_page=11`
   )
   const data = await response.json()
   imagenes.value = data.hits

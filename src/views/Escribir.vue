@@ -80,12 +80,14 @@ const checkInput = () => {
 </script>
 
 <style scoped>
+
 .writing-view {
     color:blue ;
   text-align: center;
   max-width: 600px;
   margin: auto;
   padding: 2rem;
+  border: blue;
 }
 
 .image {
@@ -99,6 +101,8 @@ const checkInput = () => {
   margin-bottom: 1rem;
   font-size: 1rem;
   padding: 0.5rem 1rem;
+  
+  
 }
 
 .input-container {
@@ -137,11 +141,13 @@ const checkInput = () => {
 
 .key {
   font-size: 1.2rem;
+  font-weight: bold;
   padding: 0.6rem;
   width: 45px;
   height: 45px;
   border: none;
   background-color: #dcdcdc;
+  color: blue;
   border-radius: 8px;
   cursor: pointer;
 }

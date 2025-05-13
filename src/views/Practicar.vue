@@ -26,6 +26,12 @@
          <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
 
         <div class="keyboard">
+          <h2>Copia la palabra: <span>{{ palabra }}</span></h2>
+    <input v-model="texto" readonly />
+
+    <Teclado @input="agregarLetra" />
+
+
       <button
         v-for="key in letters"
         :key="key"
@@ -35,6 +41,8 @@
         {{ key }}
       </button>
       <button @click="deleteLetter" class="key delete">⌫</button>
+
+
     </div>
 
 
@@ -66,7 +74,19 @@ import { ref, onMounted, watch } from 'vue'
 import Galeria from './Galeria.vue'
 import Referencia from './Referencia.vue'
 import Escribir from './Escribir.vue'
+import { defineEmits } from 'vue'
 
+const emit = defineEmits(['input'])
+
+const letras = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
+
+function escribir(letra) {
+  emit('input', letra)
+}
+
+function borrar() {
+  emit('input', 'BORRAR')
+}
 const props = defineProps(['word', 'imageUrl'])
 
 const userInput = ref('')
@@ -157,6 +177,18 @@ function onCorrect(correctSelection) {
 
 .delete {
   background-color: #ff7f7f;
+}
+.teclado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.teclado button {
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 8px;
 }
 @media (max-width: 600px) {
   .practicar {

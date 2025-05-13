@@ -2,20 +2,28 @@
   <div class="select-view">
     <h2>Selecciona una imagen y escribe la palabra</h2>
 
-   
-    <input type="file" accept="image/*" @change="onImageChange" />
+  
+    <input type="file" accept="image/*" @change="onImageChange" class="file-visible-input"  />
+<p v-if="fileName" class="file-name">{{ fileName }}</p>
     <div v-if="imageUrl" class="image-preview">
       <img :src="imageUrl" alt="Imagen seleccionada" />
     </div>
+
 <form @submit.prevent="searchImages">
+
       <input
         v-model="searchQuery"
         type="text"
         placeholder="Introduce palabra clave"
-        class="search-input"
+        class="file-visible-input"
+         @focus="inputActivo = 'searchQuery'"
       />
-      <button type="submit" class="search-btn">Buscar</button>
+      <button type="submit" class="search-btn">🔎Buscar</button>
     </form>
+
+    <div class="teclado">
+    <Teclado @input="agregarLetra" />
+</div>
 
     <div class="results-grid">
       <div
@@ -27,20 +35,24 @@
         <p>{{ hit.tags.split(',')[0].toUpperCase() }}</p>
       </div>
     </div>
-    </div>
-     
     
+    </div>
+    
+
     <input
       v-model="word"
       type="text"
       placeholder="Escribe la palabra"
       class="word-input"
+       @focus="inputActivo = 'word'"
     />
- <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
+
+
+ <button @click="speakWord" class="speak-button">📢 Escuchar palabra</button>
    
     <button
       :disabled="!word || !imageUrl"
-      @click="irAVistaEscribir"
+      @click="irAVistaSeleccionar"
       class="next-button"
     >
       Siguiente ➡️
@@ -49,12 +61,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useSelectionStore } from '../stores/useSelectionStore'
+import Teclado from '../components/Teclado.vue'
+import { watch } from 'vue'
+
+ function agregarLetra(letra) {
+  if (letra === 'BORRAR') {
+    word.value = word.value.slice(0, -1)
+  } else {
+    word.value += letra
+  }
+}
 
 const selectionStore = useSelectionStore()
-
 function seleccionarImagen(imagen) {
   selectionStore.setSelection(imagen.largeImageURL, 'palabra personalizada')
 }
@@ -63,8 +84,21 @@ const API_KEY = '43441518-85d5d394329fe4bdef820c138'
 const searchQuery = ref('')
 const images = ref([])
 const imageUrl = ref(null)
+
+
 const word = ref('')
+const shiftOn = ref(false) 
+const texto = ref('')
+const fileName = ref('')
+
+watch(word, (nuevoValor) => {
+  if (nuevoValor.length >= 3) {
+    searchImages()
+  }
+})
 const router = useRouter()
+ 
+
 async function searchImages() {
   if (!searchQuery.value.trim()) return
   const url = `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(
@@ -78,11 +112,10 @@ async function searchImages() {
     console.error('Error fetching images:', err)
   }
 }
-
-function selectImage(hit) {
-  const word = hit.tags.split(',')[0].toUpperCase()
-  const imageUrl = hit.webformatURL
-  router.push({ name: 'Escribir', query: { word, imageUrl } })
+ function selectImage(hit) {
+  word.value = hit.tags.split(',')[0].toUpperCase()
+  imageUrl.value = hit.webformatURL
+  images.value = [] 
 }
 const onImageUpload = (event) => {
   const file = event.target.files[0]
@@ -90,6 +123,7 @@ const onImageUpload = (event) => {
     imageUrl.value = URL.createObjectURL(file)
   }
 }
+
 const speakWord = () => {
   if (word.value.trim() !== '') {
     const utterance = new SpeechSynthesisUtterance(word.value)
@@ -97,16 +131,21 @@ const speakWord = () => {
     speechSynthesis.speak(utterance)
   }
 }
+onMounted(() => {
+  speakWord()
+})
+
 const onImageChange = (event) => {
   const file = event.target.files[0]
   if (file) {
     imageUrl.value = URL.createObjectURL(file)
+     fileName.value = file.name
   }
 }
 
-const irAVistaEscribir = () => {
+const irAVistaSeleccionar = () => {
   router.push({
-    name: 'Escribir',
+    name: 'Seleccionar',
     query: {
       word: word.value.toUpperCase(),
       imageUrl: imageUrl.value
@@ -116,11 +155,36 @@ const irAVistaEscribir = () => {
 </script>
 
 <style scoped>
+
+.file-visible-input {
+  font-size: 1.5rem;
+  padding: 1rem;
+  width: 100%;
+  border: 2px solid #333;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.file-name {
+  margin-top: 0.5rem;
+  font-size: 6xl;
+  
+  color: #290ad6ad;
+  font-weight: bolder;
+  word-break: break-word;
+  text-align: center;
+}
+
 .select-view {
   text-align: center;
   padding: 2rem;
   max-width: 600px;
   margin: auto;
+}
+.file-visible-input {
+  font-size: xx-large;
+  font-weight: bolder;
+  color: rgb(23, 19, 226);
 }
 .results-grid {
   display: grid;
@@ -141,7 +205,7 @@ const irAVistaEscribir = () => {
   flex-direction: column;
   align-items: center;
 }
-
+ 
 
 .result-card:hover {
   transform: translateY(-4px);
@@ -168,10 +232,21 @@ const irAVistaEscribir = () => {
   margin-top: 1rem;
   border-radius: 12px;
 }
+.limpiar-btn {
+  margin-top: 10px;
+  background-color: #ff6666;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
 
 .word-input {
   display: block;
-  font-size: 1.5rem;
+  color: blue;
+  font-size: 2rem;
+  font-weight: bold;
   margin: 1.5rem auto;
   padding: 0.5rem;
   width: 80%;
@@ -186,5 +261,17 @@ const irAVistaEscribir = () => {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+}
+.teclado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.teclado button {
+  font-size: 1.5rem;
+  padding: 10px;
+  border-radius: 8px;
 }
 </style>
