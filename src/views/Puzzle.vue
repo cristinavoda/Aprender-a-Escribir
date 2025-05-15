@@ -23,7 +23,11 @@
     </div>
     <button @click="checkAnswer" class="check-btn" :disabled="userSelection.includes('')">Comprobar</button>
     <p v-if="resultMessage" :class="{'correct': isCorrect, 'wrong': !isCorrect}">{{ resultMessage }}</p>
-  </div>
+ 
+  <button v-if="isCorrect" class="next-btn" @click="cargarNuevaPalabra">
+      👉 Siguiente
+    </button>
+    </div>
 </template>
 
 <script setup>
@@ -42,12 +46,26 @@ const resultMessage = ref('')
 const isCorrect = ref(false)
 const selected = ref([])  
 
-
+let positions = []
 function shuffle(array) {
   return array
     .map(value => ({ value, sort: Math.random() }))
     .sort((a, b) => a.sort - b.sort)
     .map(({ value }) => value)
+}
+
+function generarPosiciones() {
+  positions = currentWord.value.split('').map(() => ({
+    top: Math.random() * 200 + 'px',
+    left: Math.random() * 80 + '%'
+  }))
+}
+
+function getRandomStyle(index) {
+  return {
+    top: positions[index].top,
+    left: positions[index].left
+  }
 }
 
 onMounted(() => {

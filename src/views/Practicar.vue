@@ -30,9 +30,7 @@
     <input v-model="texto" readonly />
 
     <Teclado @input="agregarLetra" />
-
-
-      <button
+     <button
         v-for="key in letters"
         :key="key"
         @click="addLetter(key)"
@@ -75,6 +73,7 @@ import Galeria from './Galeria.vue'
 import Referencia from './Referencia.vue'
 import Escribir from './Escribir.vue'
 import { defineEmits } from 'vue'
+import Teclado from '../components/Teclado.vue'
 
 const emit = defineEmits(['input'])
 

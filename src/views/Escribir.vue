@@ -1,14 +1,18 @@
 <template>
   <div class="writing-view">
+    
+  <label class="label-text">PALABRA SUGERIDA:</label>
+
+  <input
+    v-model="suggestedWord"
+    type="text"
+    class="input-box"
+    placeholder="Palabra sugerida"
+   
+  />
     <h2>Escribe la palabra</h2>
 
-    <!-- Imagen -->
-    <img :src="imageUrl" class="image" />
-
-    <!-- Botón para escuchar la palabra -->
-    <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
-
-    <!-- Input para escribir -->
+   
     <div class="input-container">
       <input
         v-model="userInput"
@@ -19,7 +23,7 @@
       />
     </div>
 
-    <!-- Feedback letra por letra -->
+  
     <div class="letter-feedback">
       <span
         v-for="(letter, index) in word"
@@ -45,18 +49,23 @@
       </button>
       <button @click="deleteLetter" class="key delete">⌫</button>
     </div>
+    
+
   </div>
+ <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 
-const props = defineProps(['word', 'imageUrl'])
+const props = defineProps(['word'])
 
 const userInput = ref('')
 const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
+const word = ref('')
 
 const speakWord = () => {
+  
   const utterance = new SpeechSynthesisUtterance(props.word)
   utterance.lang = 'es-ES'
   speechSynthesis.speak(utterance)
@@ -75,20 +84,38 @@ const deleteLetter = () => {
 }
 
 const checkInput = () => {
-  
+  // Aquí se puede añadir validación o reacción al finalizar
 }
 </script>
 
 <style scoped>
-
 .writing-view {
-    color:blue ;
+  display: flex;
+  flex-direction: column;
+  gap: 0,5rem; 
+
   text-align: center;
   max-width: 600px;
   margin: auto;
-  padding: 2rem;
-  border: blue;
+  padding: 1,5rem;
 }
+
+.label-text {
+  margin-top: 50px;
+  font-size: 2.125rem;
+  font-weight: 600;
+}
+.input-box {
+  border: 1px solid #ccc;
+  color: blue;
+  padding: 0.5rem;
+  font-size: 2.5rem; /* text-2xl */
+  border-radius: 0.9rem;
+  box-shadow: #13a9e4;
+  width: 100%;
+  text-transform: uppercase;
+}
+
 
 .image {
   max-width: 100%;
@@ -98,11 +125,13 @@ const checkInput = () => {
 }
 
 .speak-button {
+  width: fit-content;
+  margin-left: 150px;
+  margin-top: 50px;
   margin-bottom: 1rem;
+  color: blue;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  
-  
+  padding: 1rem 2rem;
 }
 
 .input-container {
@@ -110,14 +139,16 @@ const checkInput = () => {
 }
 
 .word-input {
-  font-size: 3rem;
+   border: 1px solid #ccc;
   color: blue;
   padding: 0.5rem;
+  font-size: 2.5rem; 
+  border-radius: 0.9rem;
+  box-shadow: #13a9e4;
   width: 100%;
-  text-align: center;
-  border-radius: 10px;
+  text-transform: uppercase;
 }
-
+ 
 .letter-feedback {
   margin: 1rem 0;
   font-size: 2rem;
@@ -140,14 +171,13 @@ const checkInput = () => {
 }
 
 .key {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 2.2rem;
   padding: 0.6rem;
-  width: 45px;
-  height: 45px;
-  border: none;
-  background-color: #dcdcdc;
   color: blue;
+  width: 65px;
+  height: 65px;
+  border:#13a9e4;
+  background-color: #dcdcdc;
   border-radius: 8px;
   cursor: pointer;
 }

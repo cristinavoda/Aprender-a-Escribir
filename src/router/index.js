@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Seleccionar from '../views/Seleccionar.vue'
 import Escribir from '../views/Escribir.vue'
 import Puzzle from '../views/Puzzle.vue'
-import LetrasFlotantes from '../views/LetrasFlotantes.vue'
+import Letras from '../views/Letras.vue'
 import Referencia from '../views/Referencia.vue'
 import Practicar from '../views/Practicar.vue'
 import Galeria from '../views/Galeria.vue'
@@ -13,7 +13,7 @@ const routes = [
   { path: '/', name: 'Seleccionar', component: Seleccionar },
   { path: '/escribir', name: 'Escribir', component: Escribir },
   { path: '/puzzle', name: 'Puzzle', component: Puzzle },
-  { path: '/letrasFlotantes', name: 'LetrasFlotantes', component: LetrasFlotantes },
+  { path: '/letras', name: 'Letras', component: Letras },
   { path: '/practicar', name: 'Practicar', component: Practicar },
   { path: '/galeria', name: 'Galeria', component: Galeria },
   { path: '/referencia', name: 'Referencia', component: Referencia },

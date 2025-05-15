@@ -1,8 +1,5 @@
 <template>
   <div class="select-view">
-    <h2>Selecciona una imagen y escribe la palabra</h2>
-
-  
     <input type="file" accept="image/*" @change="onImageChange" class="file-visible-input"  />
 <p v-if="fileName" class="file-name">{{ fileName }}</p>
     <div v-if="imageUrl" class="image-preview">
@@ -10,21 +7,16 @@
     </div>
 
 <form @submit.prevent="searchImages">
-
-      <input
+<input
         v-model="searchQuery"
         type="text"
-        placeholder="Introduce palabra clave"
+        placeholder="🔎"
         class="file-visible-input"
          @focus="inputActivo = 'searchQuery'"
       />
-      <button type="submit" class="search-btn">🔎Buscar</button>
+      
     </form>
-
-    <div class="teclado">
-    <Teclado @input="agregarLetra" />
-</div>
-
+    
     <div class="results-grid">
       <div
         v-for="(hit, index) in images"
@@ -35,7 +27,18 @@
         <p>{{ hit.tags.split(',')[0].toUpperCase() }}</p>
       </div>
     </div>
+
+<div v-if="selectedImageLabel">
+  <p>Palabra sugerida: <strong>{{ selectedImageLabel }}</strong></p>
+  <button @click="word = selectedImageLabel">Usar esta palabra</button>
+</div>
+
     
+    <div class="teclado">
+    <Teclado @input="agregarLetra" />
+</div>
+
+  
     </div>
     
 
@@ -52,7 +55,7 @@
    
     <button
       :disabled="!word || !imageUrl"
-      @click="irAVistaSeleccionar"
+      @click="irAVistaEscribir"
       class="next-button"
     >
       Siguiente ➡️
@@ -113,9 +116,10 @@ async function searchImages() {
   }
 }
  function selectImage(hit) {
-  word.value = hit.tags.split(',')[0].toUpperCase()
+ 
   imageUrl.value = hit.webformatURL
   images.value = [] 
+   searchQuery.value = ''   
 }
 const onImageUpload = (event) => {
   const file = event.target.files[0]
@@ -143,9 +147,9 @@ const onImageChange = (event) => {
   }
 }
 
-const irAVistaSeleccionar = () => {
+const irAVistaEscribir = () => {
   router.push({
-    name: 'Seleccionar',
+    name: 'Escribir',
     query: {
       word: word.value.toUpperCase(),
       imageUrl: imageUrl.value
@@ -257,7 +261,7 @@ const irAVistaSeleccionar = () => {
 .next-button {
   font-size: 1.2rem;
   padding: 0.6rem 1.2rem;
-  background-color: #90ee90;
+  background-color: #edeff0;
   border: none;
   border-radius: 10px;
   cursor: pointer;
