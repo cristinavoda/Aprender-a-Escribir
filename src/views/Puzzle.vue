@@ -24,7 +24,7 @@
     <button @click="checkAnswer" class="check-btn" :disabled="userSelection.includes('')">Comprobar</button>
     <p v-if="resultMessage" :class="{'correct': isCorrect, 'wrong': !isCorrect}">{{ resultMessage }}</p>
  
-  <button v-if="isCorrect" class="next-btn" @click="cargarNuevaPalabra">
+  <button v-if="isCorrect" class="next-btn" @click="nextWord">
       👉 Siguiente
     </button>
     </div>
@@ -35,7 +35,7 @@ import { ref,computed, onMounted } from 'vue'
 import confetti from 'canvas-confetti'
 
 
-const words = ref(['TREN','CASA','AGUA','COMER','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO']); // Lista de palabras
+const words = ref(['TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO']); // Lista de palabras
 let currentIndex = ref(0) 
 
 const targetWord = ref(words.value[currentIndex.value]) 
@@ -47,6 +47,7 @@ const isCorrect = ref(false)
 const selected = ref([])  
 
 let positions = []
+
 function shuffle(array) {
   return array
     .map(value => ({ value, sort: Math.random() }))
@@ -57,7 +58,7 @@ function shuffle(array) {
 function generarPosiciones() {
   positions = currentWord.value.split('').map(() => ({
     top: Math.random() * 200 + 'px',
-    left: Math.random() * 80 + '%'
+    left: Math.random() * 2000 + '%'
   }))
 }
 
@@ -98,8 +99,9 @@ function checkAnswer() {
   } else {
     resultMessage.value = 'Incorrecto, inténtalo de nuevo.'
     isCorrect.value = false
+
+    userSelection.value = Array(targetWord.value.length).fill('')
     selected.value = [] 
-    userSelection.value = Array(targetWord.value.length).fill('') 
   }
 }
 
@@ -110,8 +112,11 @@ function nextWord() {
   
   scrambled.value = shuffle(targetWord.value.split(''))
   userSelection.value = Array(targetWord.value.length).fill('')
+  selected.value = []
   resultMessage.value = ''
   isCorrect.value = false
+  
+
 }
 // Función para el confeti
 function triggerConfetti() {

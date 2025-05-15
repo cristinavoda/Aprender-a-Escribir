@@ -2,7 +2,7 @@
   <div class="flotante-view">
     <h2>¡Atrapa las letras!</h2>
 
-    <!-- Letras flotantes -->
+    
     <div class="flotantes">
       <button
         v-for="(letter, index) in floatingLetters"
@@ -16,7 +16,7 @@
       </button>
     </div>
 
-    <!-- Zona de orden -->
+    
     <div class="zona-orden">
       <div
         v-for="(slot, i) in currentWord.length"
@@ -44,10 +44,10 @@
 <script setup>
 import { ref } from 'vue'
 
-// Lista de palabras para jugar
-const palabras = ['AVIÓN', 'TREN', 'PERRO', 'CASA', 'AGUA']
-const currentIndex = ref(0)
 
+const palabras = ['AVIÓN', 'TREN', 'PERRO','SOL', 'COMER','ROBERT', 'CASA', 'AGUA']
+const currentIndex = ref(0)
+const userSelection = ref([])
 const currentWord = ref(palabras[currentIndex.value])
 const floatingLetters = ref([])
 const userWord = ref([])
@@ -67,7 +67,7 @@ function shuffle(array) {
 function generarPosiciones() {
   positions = currentWord.value.split('').map(() => ({
     top: Math.random() * 200 + 'px',
-    left: Math.random() * 80 + '%'
+    left: Math.random() * 200 + '2%'
   }))
 }
 
@@ -94,6 +94,9 @@ function checkWord() {
   } else {
     resultMessage.value = 'No es correcto. Inténtalo de nuevo.'
     isCorrect.value = false
+
+   
+    userWord.value = []   
   }
 }
 
@@ -126,7 +129,7 @@ cargarNuevaPalabra()
 }
 
 .letra-flotante {
-  position: absolute;
+  position:absolute;
   padding: 1rem;
   font-size: 2rem;
   cursor: pointer;
@@ -134,13 +137,13 @@ cargarNuevaPalabra()
   color: white;
   border: none;
   border-radius: 8px;
-  animation: flotar 3s infinite ease-in-out;
+  animation: flotar 2s infinite ease-in-out;
 }
 
 @keyframes flotar {
-  0% { transform: translateY(0px); }
+  0% { transform: translateY(13px); }
   50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
+  100% { transform: translateY(15px); }
 }
 
 .zona-orden {
@@ -151,10 +154,10 @@ cargarNuevaPalabra()
 }
 
 .slot {
-  width: 3rem;
-  height: 3rem;
+  width: 4rem;
+  height: 4rem;
   font-size: 2rem;
-  border: 2px dashed #ccc;
+  border: 2px dashed #0b0eb3;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,18 +1,15 @@
 <template>
   <div class="writing-view">
     
-  <label class="label-text">PALABRA SUGERIDA:</label>
-
-  <input
+<input
     v-model="suggestedWord"
     type="text"
     class="input-box"
     placeholder="Palabra sugerida"
    
   />
-    <h2>Escribe la palabra</h2>
-
    
+
     <div class="input-container">
       <input
         v-model="userInput"
@@ -35,9 +32,10 @@
       >
         {{ userInput[index] || '_' }}
       </span>
+      
     </div>
 
-    <!-- Teclado en pantalla -->
+   
     <div class="keyboard">
       <button
         v-for="key in letters"
@@ -56,20 +54,24 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted ,watch} from 'vue'
 
 const props = defineProps(['word'])
 
 const userInput = ref('')
 const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
-const word = ref('')
+const word = ref(props.word ||'')
 
-const speakWord = () => {
-  
-  const utterance = new SpeechSynthesisUtterance(props.word)
-  utterance.lang = 'es-ES'
-  speechSynthesis.speak(utterance)
+function speakWord(word) {
+  if (word && word.trim() !== '') {
+    const utterance = new SpeechSynthesisUtterance(word)
+    utterance.lang = 'es-ES'
+    speechSynthesis.speak(utterance)
+  }
 }
+
+
+
 
 onMounted(() => {
   speakWord()
@@ -84,7 +86,7 @@ const deleteLetter = () => {
 }
 
 const checkInput = () => {
-  // Aquí se puede añadir validación o reacción al finalizar
+  
 }
 </script>
 
@@ -97,19 +99,19 @@ const checkInput = () => {
   text-align: center;
   max-width: 600px;
   margin: auto;
-  padding: 1,5rem;
+  padding: 0,5rem;
 }
 
-.label-text {
-  margin-top: 50px;
-  font-size: 2.125rem;
-  font-weight: 600;
-}
+
+
 .input-box {
-  border: 1px solid #ccc;
+  width: fit-content;
+  margin-top: 15px;
+  background-color: #d9d8f065;
+  border: 1px solid #e2e5ec;
   color: blue;
   padding: 0.5rem;
-  font-size: 2.5rem; /* text-2xl */
+  font-size: 2.5rem; 
   border-radius: 0.9rem;
   box-shadow: #13a9e4;
   width: 100%;
@@ -126,7 +128,10 @@ const checkInput = () => {
 
 .speak-button {
   width: fit-content;
-  margin-left: 150px;
+  border: #e2e5ec;
+  border-radius: 8px;
+  background-color: #d9d8f065;
+  margin-left: 10px;
   margin-top: 50px;
   margin-bottom: 1rem;
   color: blue;
@@ -139,10 +144,11 @@ const checkInput = () => {
 }
 
 .word-input {
-   border: 1px solid #ccc;
+  border: 1px solid #ecedf1;
+  background-color: #d9d8f065;
   color: blue;
   padding: 0.5rem;
-  font-size: 2.5rem; 
+  font-size: 3.5rem; 
   border-radius: 0.9rem;
   box-shadow: #13a9e4;
   width: 100%;
@@ -163,11 +169,12 @@ const checkInput = () => {
 }
 
 .keyboard {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  gap: 8px; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 10px;
 }
 
 .key {
@@ -176,8 +183,9 @@ const checkInput = () => {
   color: blue;
   width: 65px;
   height: 65px;
-  border:#13a9e4;
-  background-color: #dcdcdc;
+  border:#e3e6e7;
+  background-color: #d9d8f065;
+  
   border-radius: 8px;
   cursor: pointer;
 }

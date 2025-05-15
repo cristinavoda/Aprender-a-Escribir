@@ -1,7 +1,7 @@
 <template>
   <div class="select-view">
     <input type="file" accept="image/*" @change="onImageChange" class="file-visible-input"  />
-<p v-if="fileName" class="file-name">{{ fileName }}</p>
+
     <div v-if="imageUrl" class="image-preview">
       <img :src="imageUrl" alt="Imagen seleccionada" />
     </div>
@@ -267,11 +267,12 @@ const irAVistaEscribir = () => {
   cursor: pointer;
 }
 .teclado {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
+display: grid;
+  grid-template-columns: repeat(8, 1fr); 
+  gap: 8px; 
+  max-width: 600px; 
+  margin: 0 auto; 
+  padding: 10px; 
 }
 .teclado button {
   font-size: 1.5rem;

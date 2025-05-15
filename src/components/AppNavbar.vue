@@ -1,12 +1,14 @@
 <template>
   <nav class="navbar">
+     <router-link to="/Alfabeto">📌Alfabeto</router-link>
+     <router-link to="/escribir">✍️ Escribir</router-link>
+     <router-link to="/dibujar">✏️ Dibujar</router-link>
     <router-link to="/">⌨️ Seleccionar</router-link>
-    <router-link to="/referencia">🏠Referencia</router-link>
-    <router-link to="/escribir">✍️ Escribir</router-link>
     <router-link to="/puzzle">🧩 Puzzle</router-link>
-     <router-link to="/practicar">✍️ Practicar</router-link>
+    <router-link to="/practicar">✍️ Practicar</router-link>
      <router-link to="/galeria">🎞️Galeria</router-link>
     <router-link to="/Letras">📌Letras</router-link>
+    
     
      
   </nav>
