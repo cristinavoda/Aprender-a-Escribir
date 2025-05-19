@@ -12,12 +12,12 @@ const letraActual = ref('A')
 const canvasRef = ref(null)
 let ctx = null
 
-// Dibujo
+
 let isDrawing = false
 const dibujarLetraGuia = () => {
   clearCanvas()
   ctx.font = '160px Arial'
-  ctx.fillStyle = 'rgba(200, 200, 200, 0.3)' // gris claro translúcido
+  ctx.fillStyle = 'rgba(200, 200, 200, 0.9)' 
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle'
   const letraCompuesta = letraActual.value.toUpperCase() + letraActual.value.toLowerCase()
@@ -109,21 +109,26 @@ onMounted(() => {
 .trazar-container {
   text-align: center;
   padding: 1rem;
+  margin-top: -10px;
 }
 
 .letra-guia {
-    margin-left: -100px;
+  margin-left: -100px;
   font-size: 6rem;
   color: #0097A7;
-  margin-bottom: 1rem;
+  margin-bottom: rem;
   font-weight: bold;
+   text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 canvas {
   border: 2px solid  #0097A7;
+  color: aqua;
   border-radius: 10px;
   touch-action: none;
   margin-bottom: 1rem;
+  border: transparent;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
 }
 
 button {
@@ -137,10 +142,24 @@ button {
 }
 
 .teclado-letras {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 400px;
-  margin: 1rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 8px; 
+  max-width: 600px; 
+  margin: 0 auto; 
 }
+.tecla-letras {
+  font-size: 3rem;
+  padding: 0.6rem;
+  color: rgb(235, 243, 242);
+  width: 75px;
+  height: 75px;
+  border-color:#081d24;
+  background-color: #0a456165;
+  
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 </style>

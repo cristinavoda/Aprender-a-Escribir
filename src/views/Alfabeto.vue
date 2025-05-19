@@ -21,7 +21,7 @@ const speakLetter = (ltr) => {
 }
 
 onMounted(() => {
-  inputRef.value?.focus()  // pone el foco automáticamente al cargar
+  inputRef.value?.focus()  
 })
 </script>
 
@@ -29,7 +29,7 @@ onMounted(() => {
   <div class="alfabeto-container">
     <h2>Aprender el Alfabeto</h2>
 
-    <!-- Input para que aparezca la letra pulsada -->
+   
     <input
       ref="inputRef"
       v-model="letter"
@@ -52,37 +52,53 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+h2 {
+  background: linear-gradient(45deg, #310ff1, #c2cde9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
+}
+
 .input-letra {
   color:blue;
-  font-size: 3rem;
+  font-size: 4rem;
   width: 150px;
   height: 150px;
   text-align: center;
   margin-bottom: 1rem;
   pointer-events: none; 
   background-color: #d9d8f065;
-  border: 2px solid #e9edee;
+  border: transparent;
   border-radius: 0.5rem;
   user-select: none; 
+   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+
 }
 .teclado {
   display: grid;
-  grid-template-columns: repeat(8, 1fr); /* 8 columnas iguales */
-  gap: 8px; /* espacio entre botones */
-  max-width: 600px; /* ancho máximo opcional */
-  margin: 0 auto; /* centrar horizontalmente */
-  padding: 10px;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 8px; 
+  max-width: 600px; 
+  margin: 4px 4px; 
+  padding: 1px;
 }
 
 .tecla {
   font-size: 3.2rem;
-  padding: 0.6rem;
+  padding: 0.4rem;
   color: blue;
   width: 65px;
   height: 65px;
-  border:#e3e6e7;
+  border-color:#87cbe2;
   background-color: #d9d8f065;
-  
+    box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+
   border-radius: 8px;
   cursor: pointer;
 }

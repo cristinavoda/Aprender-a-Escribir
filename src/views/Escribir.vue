@@ -50,7 +50,7 @@
     
 
   </div>
- <button @click="speakWord" class="speak-button">🔊 Escuchar palabra</button>
+ <button @click="speakWord" class="speak-button">📢</button>
 </template>
 
 <script setup>
@@ -62,12 +62,11 @@ const userInput = ref('')
 const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
 const word = ref(props.word ||'')
 
+
 function speakWord(word) {
-  if (word && word.trim() !== '') {
-    const utterance = new SpeechSynthesisUtterance(word)
-    utterance.lang = 'es-ES'
-    speechSynthesis.speak(utterance)
-  }
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'es-ES'; 
+  speechSynthesis.speak(utterance);
 }
 
 
@@ -95,7 +94,6 @@ const checkInput = () => {
   display: flex;
   flex-direction: column;
   gap: 0,5rem; 
-
   text-align: center;
   max-width: 600px;
   margin: auto;
@@ -108,51 +106,35 @@ const checkInput = () => {
   width: fit-content;
   margin-top: 15px;
   background-color: #d9d8f065;
-  border: 1px solid #e2e5ec;
+  border: transparent;
   color: blue;
   padding: 0.5rem;
   font-size: 2.5rem; 
   border-radius: 0.9rem;
-  box-shadow: #13a9e4;
   width: 100%;
   text-transform: uppercase;
+   box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
 }
 
 
-.image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-}
 
-.speak-button {
-  width: fit-content;
-  border: #e2e5ec;
-  border-radius: 8px;
-  background-color: #d9d8f065;
-  margin-left: 10px;
-  margin-top: 50px;
-  margin-bottom: 1rem;
-  color: blue;
-  font-size: 1rem;
-  padding: 1rem 2rem;
-}
 
 .input-container {
   margin: 1rem 0;
 }
 
 .word-input {
-  border: 1px solid #ecedf1;
+  border-color: 1px solid #d5edf3;
   background-color: #d9d8f065;
   color: blue;
   padding: 0.5rem;
   font-size: 3.5rem; 
+  border: transparent;
   border-radius: 0.9rem;
   box-shadow: #13a9e4;
   width: 100%;
   text-transform: uppercase;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
 }
  
 .letter-feedback {
@@ -170,7 +152,8 @@ const checkInput = () => {
 
 .keyboard {
   display: grid;
-  grid-template-columns: repeat(8, 1fr); 
+  
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px; 
   max-width: 600px; 
   margin: 0 auto; 
@@ -183,14 +166,29 @@ const checkInput = () => {
   color: blue;
   width: 65px;
   height: 65px;
-  border:#e3e6e7;
-  background-color: #d9d8f065;
   
+  border-color: rgb(202, 230, 230);
+  background-color: #eaeaf3cb;
+   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
 }
 
 .delete {
-  background-color: #ff7f7f;
+  background-color: #f0d8d8;
 }
+.speak-button {
+  width: fit-content;
+  font-size: 2x-large;
+  border: #e2e5ec;
+  border-radius: 8px;
+  background-color: #d9d8f065;
+  margin-left: 10px;
+  margin-top: 50px;
+  margin-bottom: 1rem;
+  color: blue;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
 </style>

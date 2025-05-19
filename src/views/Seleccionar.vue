@@ -1,6 +1,6 @@
 <template>
   <div class="select-view">
-    <input type="file" accept="image/*" @change="onImageChange" class="file-visible-input"  />
+    <input type="file" accept="image/*" @change="onImageChanvisible-input"  />
 
     <div v-if="imageUrl" class="image-preview">
       <img :src="imageUrl" alt="Imagen seleccionada" />
@@ -163,7 +163,7 @@ const irAVistaEscribir = () => {
 .file-visible-input {
   font-size: 1.5rem;
   padding: 1rem;
-  width: 100%;
+  width: fit-content;
   border: 2px solid #333;
   border-radius: 10px;
   margin-top: 1rem;
@@ -253,7 +253,7 @@ const irAVistaEscribir = () => {
   font-weight: bold;
   margin: 1.5rem auto;
   padding: 0.5rem;
-  width: 80%;
+  width: fit-content;
   text-align: center;
   border-radius: 10px;
 }
@@ -268,14 +268,14 @@ const irAVistaEscribir = () => {
 }
 .teclado {
 display: grid;
-  grid-template-columns: repeat(8, 1fr); 
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px; 
   max-width: 600px; 
   margin: 0 auto; 
   padding: 10px; 
 }
 .teclado button {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   padding: 10px;
   border-radius: 8px;
 }

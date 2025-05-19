@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,watch } from 'vue'
 
 
 const palabras = ['AVIÓN', 'TREN', 'PERRO','SOL', 'COMER','ROBERT', 'CASA', 'AGUA']
@@ -66,8 +66,8 @@ function shuffle(array) {
 
 function generarPosiciones() {
   positions = currentWord.value.split('').map(() => ({
-    top: Math.random() * 200 + 'px',
-    left: Math.random() * 200 + '2%'
+    top: Math.random() * 280 + 'px',
+    left: Math.random() * 20 + '10%'
   }))
 }
 
@@ -141,7 +141,7 @@ cargarNuevaPalabra()
 }
 
 @keyframes flotar {
-  0% { transform: translateY(13px); }
+  0% { transform: translateY(3px); }
   50% { transform: translateY(-15px); }
   100% { transform: translateY(15px); }
 }

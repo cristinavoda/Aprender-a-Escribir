@@ -23,7 +23,7 @@
     </div>
     <button @click="checkAnswer" class="check-btn" :disabled="userSelection.includes('')">Comprobar</button>
     <p v-if="resultMessage" :class="{'correct': isCorrect, 'wrong': !isCorrect}">{{ resultMessage }}</p>
- 
+  
   <button v-if="isCorrect" class="next-btn" @click="nextWord">
       👉 Siguiente
     </button>
@@ -35,7 +35,7 @@ import { ref,computed, onMounted } from 'vue'
 import confetti from 'canvas-confetti'
 
 
-const words = ref(['TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO']); // Lista de palabras
+const words = ref(['TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']); 
 let currentIndex = ref(0) 
 
 const targetWord = ref(words.value[currentIndex.value]) 
@@ -96,6 +96,7 @@ function checkAnswer() {
     resultMessage.value = '¡Correcto! 🎉'
     isCorrect.value = true
     triggerConfetti() 
+     speakWord(targetWord.value);
   } else {
     resultMessage.value = 'Incorrecto, inténtalo de nuevo.'
     isCorrect.value = false
@@ -104,6 +105,17 @@ function checkAnswer() {
     selected.value = [] 
   }
 }
+
+function speakWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'es-ES';
+  utterance.rate = 0.9;
+  utterance.pitch = 1.2;
+  utterance.volume = 1;
+  speechSynthesis.speak(utterance);
+}
+
+
 
 function nextWord() {
   
@@ -131,22 +143,48 @@ function triggerConfetti() {
 </script>
 
 <style scoped>
+
+.h2 {
+  background: linear-gradient(45deg, #4426f0, #c2cde9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 2x-large;
+  text-align:start;
+  margin-top:-30px ;
+  margin-left:0%;
+  margin-right: auto;
+  padding: 10px; 
+}
+
 .puzzle-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  text-align: center;
+  max-width: 600px;
+  margin:auto;
+  padding: 1.5rem;
   text-align: center;
 }
 
 .scrambled-letters {
   margin: 1rem 0;
+   font-size: 3.5rem;
+   color: #2609ac69;
+  
 }
 
 .scramble-key {
-  font-size: 1.5rem;
+  font-size: 3.5rem;
   padding: 0.5rem;
   margin: 0.5rem;
   cursor: pointer;
+  color: #2f0b92;
   background-color: #f0f0f0;
   border: none;
   border-radius: 8px;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+
 }
 
 .selected-letters {
@@ -154,21 +192,28 @@ function triggerConfetti() {
 }
 
 .selected-key {
-  font-size: 2rem;
+  font-size: 4rem;
   padding: 0.5rem;
   margin: 0.5rem;
+  color: #160d96cb;
   background-color: #ddd;
   border-radius: 8px;
+  box-shadow: 4px 4px 5px rgba(19, 16, 202, 0.644);
+
 }
 
 .check-btn {
   font-size: 1.2rem;
+  width :150px;
   padding: 0.6rem 1.5rem;
   background-color: #008b8b;
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+   transform: scale(1.05);
+   margin-left: 180px;
+   
 }
 
 .check-btn:disabled {
@@ -182,4 +227,19 @@ function triggerConfetti() {
 .wrong {
   color: red;
 }
+.next-btn {
+   font-size: 1.2rem;
+  width: 150px;
+  padding: 0.6rem 1.5rem;
+  background-color: #008b8b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  transform: scale(1.05);
+   margin-left: 180px;
+
+}
+
 </style>
