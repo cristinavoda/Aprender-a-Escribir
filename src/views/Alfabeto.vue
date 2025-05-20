@@ -52,14 +52,24 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.alfabeto-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  text-align: center;
+  max-width: 600px;
+  margin: 0;           
+  padding: 1px;       
+  text-align: left;    
+}
 
 h2 {
-  background: linear-gradient(45deg, #310ff1, #c2cde9);
+  background: linear-gradient(45deg, #2808dfe5, #5452cc);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-size: xx-large;
+  font-size: 4rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
@@ -77,28 +87,32 @@ h2 {
   border: transparent;
   border-radius: 0.5rem;
   user-select: none; 
-   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
 
 }
 .teclado {
   display: grid;
   grid-template-columns: repeat(5, 1fr); 
-  gap: 8px; 
+  grid-row-gap: 10px;
+  grid-column-gap: 4px;
   max-width: 600px; 
-  margin: 4px 4px; 
   padding: 1px;
+  margin: -20px;
 }
-
+ @media (min-width: 768px) {
+  .teclado {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
 .tecla {
   font-size: 3.2rem;
   padding: 0.4rem;
   color: blue;
-  width: 65px;
+  width: 95px;
   height: 65px;
   border-color:#87cbe2;
   background-color: #d9d8f065;
-    box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
-
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
 }
