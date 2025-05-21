@@ -135,31 +135,40 @@ button {
   margin: 0.25rem;
   background-color: #0097A7;
   color: white;
+  font-size: 3rem;
+  height: 75px;
   padding: 0.5rem 0.75rem;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
+  
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
 }
 
 .teclado-letras {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(7, 1fr); 
   gap: 8px; 
-  max-width: 600px; 
+  width: fit-content; 
   margin: 0 auto; 
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+
 }
-.tecla-letras {
-  font-size: 3rem;
-  padding: 0.6rem;
+@media (min-width: 768px) {
+  .teclado {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+.teclado-letra {
+  font-size: 4rem;
+ box-sizing: border-box;
   color: rgb(235, 243, 242);
   width: 75px;
   height: 75px;
   border-color:#081d24;
-  background-color: #0a456165;
-  
+  background-color: #0a78ace1;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 4px 8px rgba(40, 14, 184, 0.842);
 }
 
 </style>

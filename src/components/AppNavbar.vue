@@ -5,10 +5,10 @@
      <router-link to="/dibujar">✏️ Dibujar</router-link>
     <router-link to="/">⌨️ Seleccionar</router-link>
     <router-link to="/puzzle">🧩 Puzzle</router-link>
-    <router-link to="/practicar">✍️ Practicar</router-link>
+    <router-link to="/practicar">✍️ Practicar</router-link> 
+    <router-link to="/galeria">🎞️ Galeria</router-link>
     
-    <router-link to="/Letras">📌Letras</router-link>
-    
+   
     
      
   </nav>

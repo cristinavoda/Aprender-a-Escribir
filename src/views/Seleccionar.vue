@@ -1,10 +1,15 @@
 <template>
   <div class="select-view">
-    <input type="file" accept="image/*" @change="onImageChanvisible-input"  />
+    <input
+      type="file"
+      accept="image/*"
+      class="file-type-input"
+      @change="onImageChange" />
 
     <div v-if="imageUrl" class="image-preview">
       <img :src="imageUrl" alt="Imagen seleccionada" />
     </div>
+  </div> 
 
 <form @submit.prevent="searchImages">
 <input
@@ -32,24 +37,49 @@
   <p>Palabra sugerida: <strong>{{ selectedImageLabel }}</strong></p>
   <button @click="word = selectedImageLabel">Usar esta palabra</button>
 </div>
-
+<div class="writing-view">
     
-    <div class="teclado">
-    <Teclado @input="agregarLetra" />
+    
+<input
+    v-model="suggestedWord"
+    type="text"
+    class="input-box"
+    placeholder="Palabra sugerida"
+   
+  />
 </div>
-
-  
-    </div>
-    
-
-    <input
+  <input
       v-model="word"
       type="text"
       placeholder="Escribe la palabra"
       class="word-input"
        @focus="inputActivo = 'word'"
     />
+   <div class="letter-feedback">
+  <span
+    v-for="(letter, index) in palabraSugerida"
+    :key="index"
+    :class="{
+      correct: userInput[index] === letter,
+      incorrect: userInput[index] && userInput[index] !== letter,
+    }"
+  >
+    {{ userInput[index] || '_' }}
+  </span>
+</div>
 
+   
+    <div class="teclado">
+    <Teclado  @input="agregarLetra" />
+</div>
+
+  
+   
+    <div class="acciones">
+      <button @click="deleteLetter">Borrar</button>
+      <button @click="checkInput">Comprobar</button>
+    </div>
+     <p class="mensaje">{{ mensaje }}</p>
 
  <button @click="speakWord" class="speak-button">📢 Escuchar palabra</button>
    
@@ -87,9 +117,9 @@ const API_KEY = '43441518-85d5d394329fe4bdef820c138'
 const searchQuery = ref('')
 const images = ref([])
 const imageUrl = ref(null)
-
-
-const word = ref('')
+const palabraSugerida = ref('AGUA') // por ejemplo
+const userInput = ref('') // el texto que va escribiendo el usuario
+const word = ref('gato')
 const shiftOn = ref(false) 
 const texto = ref('')
 const fileName = ref('')
@@ -121,11 +151,19 @@ async function searchImages() {
   images.value = [] 
    searchQuery.value = ''   
 }
+
+
 const onImageUpload = (event) => {
   const file = event.target.files[0]
-  if (file) {
-    imageUrl.value = URL.createObjectURL(file)
+  if (!file) return
+
+  // Si ya había una URL creada, la liberamos
+  if (imageUrl.value) {
+    URL.revokeObjectURL(imageUrl.value)
   }
+
+  // Creamos y guardamos la nueva URL
+  imageUrl.value = URL.createObjectURL(file)
 }
 
 const speakWord = () => {
@@ -146,6 +184,15 @@ const onImageChange = (event) => {
      fileName.value = file.name
   }
 }
+function checkInput() {
+  if (userInput.value === word.value) {
+    mensaje.value = '¡Correcto! 🎉'
+    speak('¡Correcto!')
+  } else {
+    mensaje.value = 'Intenta de nuevo.'
+    speak('Intenta de nuevo')
+  }
+}
 
 const irAVistaEscribir = () => {
   router.push({
@@ -160,13 +207,16 @@ const irAVistaEscribir = () => {
 
 <style scoped>
 
+
 .file-visible-input {
   font-size: 1.5rem;
+  background-color: rgb(251, 252, 252);
   padding: 1rem;
   width: fit-content;
-  border: 2px solid #333;
+  border: transparent;
   border-radius: 10px;
   margin-top: 1rem;
+   box-shadow: 4px 4px 12px rgba(54, 57, 58, 0.1);
 }
 
 .file-name {
@@ -229,6 +279,7 @@ const irAVistaEscribir = () => {
   color: var(--color-text);
   text-align: center;
   padding: 0 0.5rem;
+  text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
 }
 .image-preview img {
   max-width: 100%;
@@ -236,6 +287,21 @@ const irAVistaEscribir = () => {
   margin-top: 1rem;
   border-radius: 12px;
 }
+.input-box {
+  width: fit-content;
+  height:fit-content;
+  margin-top: 15px;
+  background-color: #d9d8f065;
+  border: transparent;
+  color: blue;
+  padding: 0.5rem;
+  font-size: 3.3rem; 
+  border-radius: 0.9rem;
+  width: 100%;
+  text-transform: uppercase;
+   box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
+}
+
 .limpiar-btn {
   margin-top: 10px;
   background-color: #ff6666;
@@ -247,15 +313,20 @@ const irAVistaEscribir = () => {
 }
 
 .word-input {
-  display: block;
+   width: fit-content;
+  height:fit-content;
+  margin-top: 15px;
+  background-color: #d9d8f065;
+  border: transparent;
   color: blue;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 1.5rem auto;
   padding: 0.5rem;
-  width: fit-content;
-  text-align: center;
-  border-radius: 10px;
+  font-size: 3.3rem; 
+  border-radius: 0.9rem;
+  width: 100%;
+  text-transform: uppercase;
+   box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
+
+  
 }
 
 .next-button {
@@ -274,9 +345,23 @@ display: grid;
   margin: 0 auto; 
   padding: 10px; 
 }
-.teclado button {
-  font-size: 2.5rem;
-  padding: 10px;
-  border-radius: 8px;
+ @media (min-width: 768px) {
+  .teclado {
+    grid-template-columns: repeat(7, 1fr);
+  }
 }
+.tecla {
+  font-size: 4.2rem;
+  padding: 0.4rem;
+  color: blue;
+  width: 95px;
+  height: 65px;
+  border: 2px solid #87cbe2;
+  background-color: #d9d8f065;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
 </style>

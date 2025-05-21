@@ -16,10 +16,14 @@ import Teclado from './components/Teclado.vue';
 <style>
 #app {
   max-width: 600px;
-  margin: auto;
+  margin: 0px;
   padding: 2rem;
   text-align: center;
   color: blue;
   font-size: x-large;
 }
+@media (min-width: 768px) {
+  .keyboard {
+    grid-template-columns: repeat(7, 1fr);
+  }}
 </style>

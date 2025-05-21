@@ -33,12 +33,16 @@ function borrar() {
   margin-top: 20px;
 }
 .teclado button {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  padding: 0.4rem;
   color: blue;
-  padding: 10px;
-  border-color: rgb(211, 226, 226);
-  
+  width: 95px;
+  height: 65px;
+  border-color:#87cbe2;
+  background-color: #d9d8f065;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
+  cursor: pointer;
   
 }
 </style>

@@ -66,8 +66,8 @@ function shuffle(array) {
 
 function generarPosiciones() {
   positions = currentWord.value.split('').map(() => ({
-    top: Math.random() * 280 + 'px',
-    left: Math.random() * 20 + '10%'
+    top: Math.random() * 180 + '60px',
+    left: Math.random() * 120 + '30%'
   }))
 }
 
@@ -124,7 +124,7 @@ cargarNuevaPalabra()
 }
 
 .flotantes {
-  position: relative;
+  position:relative;
   height: 250px;
 }
 

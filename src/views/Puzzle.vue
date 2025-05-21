@@ -144,16 +144,15 @@ function triggerConfetti() {
 
 <style scoped>
 
-.h2 {
-  background: linear-gradient(45deg, #4426f0, #c2cde9);
+h2 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-size: 2x-large;
-  text-align:start;
-  margin-top:-30px ;
-  margin-left:0%;
-  margin-right: auto;
-  padding: 10px; 
+  background-clip: text;
+  color: transparent;
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
 }
 
 .puzzle-view {
@@ -179,7 +178,7 @@ function triggerConfetti() {
   padding: 0.5rem;
   margin: 0.5rem;
   cursor: pointer;
-  color: #2f0b92;
+  color: #1026f0c7;
   background-color: #f0f0f0;
   border: none;
   border-radius: 8px;
@@ -195,10 +194,10 @@ function triggerConfetti() {
   font-size: 4rem;
   padding: 0.5rem;
   margin: 0.5rem;
-  color: #160d96cb;
+  color: #0713c2cc;
   background-color: #ddd;
   border-radius: 8px;
-  box-shadow: 4px 4px 5px rgba(19, 16, 202, 0.644);
+  box-shadow: 4px 4px 5px rgba(19, 16, 202, 0.842);
 
 }
 

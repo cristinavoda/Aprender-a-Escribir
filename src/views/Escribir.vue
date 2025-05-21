@@ -1,28 +1,21 @@
 <template>
-  <div class="writing-view">
-    <h2>Escribir la palabra</h2>
-    
-<input
-    v-model="suggestedWord"
-    type="text"
-    class="input-box"
-    placeholder="Palabra sugerida"
-   
-  />
-   
+  <div class="escribir-view">
+    <h2>Aprender a Escribir</h2>
 
-    <div class="input-container">
-      <input
-        v-model="userInput"
-        @input="checkInput"
-        type="text"
-        class="word-input"
-        placeholder="Escribe aquí..."
-      />
+    <!-- Palabras sugeridas -->
+    <div class="palabras-sugeridas">
+      <button
+        v-for="(p, i) in palabras"
+        :key="i"
+        @click="elegirPalabra(p)"
+      >
+        {{ p }}
+      </button>
     </div>
 
-  
-    <div class="letter-feedback">
+    <!-- Feedback -->
+   
+ <div class="letter-feedback">
       <span
         v-for="(letter, index) in word"
         :key="index"
@@ -33,215 +26,169 @@
       >
         {{ userInput[index] || '_' }}
       </span>
-       
-    <div class="buton">
-      
-     
-      <button @click="repeatWord">Repetir palabra</button>
+    </div>
+
+    <!-- Teclado -->
+    <div class="teclado">
+      <button v-for="(l, i) in letras" :key="i" @click="addLetter(l)">
+        {{ l }}
+      </button>
+    </div>
+
+    <!-- Acciones -->
+    <div class="acciones">
+      <button @click="deleteLetter">Borrar</button>
       <button @click="checkInput">Comprobar</button>
     </div>
-    </div>
 
-   
-    <div class="keyboard">
-      <button
-        v-for="key in letters"
-        :key="key"
-        @click="addLetter(key)"
-        class="key"
-      >
-        {{ key }}
-      </button>
-      <button @click="deleteLetter" class="key delete">⌫</button>
-    </div>
-    
-
+    <p class="mensaje">{{ mensaje }}</p>
   </div>
- <button @click="speakWord" class="speak-button">📢</button>
 </template>
 
 <script setup>
-import { ref, onMounted ,watch} from 'vue'
+import { ref, watch } from 'vue'
 
-const userInput = ref('')
-const letters = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
-const word = ref('SUPERFICIEDENADA')
+// Lista de palabras sugeridas
+const palabras = ['SI','NO','QUIERO','GATO', 'PERRO', 'CASA', 'NUBE','TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']
+
+// Palabra activa
+const word = ref('gato')
+
+const mensaje = ref('')
+const palabraSugerida = ref('AGUA') // por ejemplo
+const userInput = ref('') // el texto que va escribiendo el usuario
 
 
+// Letras para el teclado
+const letras = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
+
+// Función de voz
 function speak(text) {
-  speechSynthesis.cancel()
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = 'es-ES'
   utterance.rate = 0.9
-  utterance.pitch = 1.1
-  utterance.volume = 1
+  utterance.pitch = 1
   speechSynthesis.speak(utterance)
 }
 
-
-
-onMounted(() => {
-  speak(word)
-})
-
-watch(word, (newWord) => {
+// Elegir palabra sugerida
+function elegirPalabra(palabra) {
+  word.value = palabra
   userInput.value = ''
-  speak(newWord)
-})
+  mensaje.value = ''
+  speak(palabra)
+}
 
-const addLetter = (letter) => {
+// Añadir letra
+function addLetter(letter) {
   if (userInput.value.length < word.value.length) {
     userInput.value += letter
-    speak(letter)
   }
 }
 
-
-
-const deleteLetter = () => {
+// Borrar última letra
+function deleteLetter() {
   userInput.value = userInput.value.slice(0, -1)
-  speak('Borrado')
 }
 
-const repeatWord = () => {
-  speak(word.value)
-}
-
-
-const checkInput = () => {
+// Comprobar respuesta
+function checkInput() {
   if (userInput.value === word.value) {
+    mensaje.value = '¡Correcto! 🎉'
     speak('¡Correcto!')
-    alert('¡Correcto! 🎉')
   } else {
-    speak('Inténtalo otra vez')
-    alert('Inténtalo otra vez')
+    mensaje.value = 'Intenta de nuevo.'
+    speak('Intenta de nuevo')
   }
-  
 }
 </script>
 
 <style scoped>
-.writing-view {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0px;
-  gap: 0,5rem; 
-  text-align: center;
-  max-width: 600px;
-
-  padding: 0,5rem;
-}
-
 h2 {
-  background: linear-gradient(45deg, #2808dfe5, #5452cc);
+  background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
 }
 
-
-.input-box {
-  width: fit-content;
-  height:fit-content;
-  margin-top: 15px;
-  background-color: #d9d8f065;
-  border: transparent;
+.escribir-view {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  font-family: sans-serif;
+}
+.palabras-sugeridas button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #eaeaf3cb;
   color: blue;
-  padding: 0.5rem;
-  font-size: 3.3rem; 
-  border-radius: 0.9rem;
-  width: 100%;
-  text-transform: uppercase;
-   box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
+
 }
-
-
-
-
-.input-container {
-  margin: 1rem 0;
-}
-
-.word-input {
-  border-color: 1px solid #d5edf3;
-  background-color: #d9d8f065;
-  color: blue;
-  padding: 0.5rem;
-  font-size: 3.5rem; 
-  border: transparent;
-  border-radius: 0.9rem;
-  box-shadow: #13a9e4;
-  width: 100%;
-  text-transform: uppercase;
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
-}
- 
 .letter-feedback {
-  margin: 1rem 0;
-  font-size: 2rem;
+  margin: 2rem 0;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: #0e008b;
+  text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
 }
-
 .correct {
-  color: green;
+  color: rgb(8, 105, 100);
 }
-
 .incorrect {
   color: red;
 }
-.div-buton {
-  display: inline;
-  gap:10px;
-  padding: 10px;
-  color: #5452cc;
-  border: #13a9e4;
-}
-.keyboard {
+.teclado {
   display: grid;
-  
   grid-template-columns: repeat(5, 1fr); 
-  gap: 8px; 
+  gap: 3px 1px; 
   max-width: 600px; 
   margin: 0 auto; 
   padding: 10px;
 }
  @media (min-width: 768px) {
-  .keyboard {
+  .teclado {
     grid-template-columns: repeat(7, 1fr);
   }}
-.key {
-  font-size: 2.2rem;
-  padding: 0.6rem;
+.teclado button {
+  font-size: 3.2rem;
+  padding: 0.4rem;
   color: blue;
-  width: 65px;
+  width: 95px;
   height: 65px;
-  
-  border-color: rgb(202, 230, 230);
-  background-color: #eaeaf3cb;
-   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  border-color:#87cbe2;
+  background-color: #d9d8f065;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
+  
 }
 
 .delete {
   background-color: #f0d8d8;
 }
-.speak-button {
-  width: fit-content;
-  font-size: 2x-large;
-  border: #e2e5ec;
-  border-radius: 8px;
-  background-color: #d9d8f065;
-  margin-left: 10px;
-  margin-top: 50px;
-  margin-bottom: 1rem;
-  color: blue;
-  font-size: 1rem;
-  padding: 1rem 2rem;
-}
 
+
+.acciones button {
+  margin: 1rem 0.5rem;
+  padding: 0.6rem 1.5rem;
+  background: #008b8b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.mensaje {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 </style>
