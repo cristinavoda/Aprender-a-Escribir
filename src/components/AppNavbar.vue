@@ -29,7 +29,7 @@
 .navbar {
  
   display: flex;
-  margin-top: -50px;
+  margin-top: 0px;
   margin-left: -60px;
   width: fit-content;
   justify-content:left;
@@ -40,8 +40,8 @@
 .train-navbar {
   margin-top: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+ 
+  justify-content: left;
   flex-wrap: wrap;
   gap: 0.5rem;
   padding: 1rem;
@@ -57,7 +57,7 @@
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 5px 2px 5px rgba(88, 8, 153, 0.2);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;

@@ -1,119 +1,110 @@
 <template>
-  <div id="app">
-   
+  <div id="app" @mousemove="moverConRaton">
     <AppNavbar />
-    
-    <router-view />
-  </div>
-  <div class="train-container">
-    <div class="train" @animationend="onTrainStop">
-      🚂
+    <RouterView @accionUsuario="moverPersonaje" />
+
+    <!-- Personaje que sigue el ratón -->
+    <img
+      src="./assets/personaje.png"
+      alt="Personaje"
+      class="personaje"
+      :style="{ left: `${x}px`, top: `${y}px` }"
+    />
+<div class="personaje" :class="estadoPersonaje">
+  <img
+    v-if="estadoPersonaje === 'feliz'"
+    src="./assets/personaje-feliz.png"
+    alt="feliz"
+  />
+  <img
+    v-else-if="estadoPersonaje === 'triste'"
+    src="./assets/personaje-triste.png"
+    alt="triste"
+  />
+  <img
+    v-else
+    src="./assets/personaje-normal.png"
+    alt="normal"
+  />
+</div>
+
+    <!-- Tren -->
+    <div class="train-container">
+      <div class="train" @animationend="onTrainStop">
+        🚂
+      </div>
     </div>
   </div>
 </template>
 
-<script >
-import AppNavbar from './components/AppNavbar.vue';
-import Teclado from './components/Teclado.vue';
+<script setup>
+import { ref } from 'vue'
+import AppNavbar from './components/AppNavbar.vue'
 
-export default {
-   components: {
-    AppNavbar, 
-  },
-  methods: {
-    onTrainStop() {
-      const audio = new Audio('https://www.fesliyanstudios.com/play-mp3/387');
-      audio.play();
-    }
+const x = ref(100)
+const y = ref(100)
+
+function moverConRaton(event) {
+  x.value = event.clientX
+  y.value = event.clientY
+}
+const estadoPersonaje = ref("normal"); // otros valores: "feliz", "triste", "sorprendido"
+function reaccionar(segunResultado) {
+  if (segunResultado === "correcto") {
+    estadoPersonaje.value = "feliz";
+  } else if (segunResultado === "incorrecto") {
+    estadoPersonaje.value = "triste";
   }
+
+  // Volver a estado normal después de 2 segundos
+  setTimeout(() => {
+    estadoPersonaje.value = "normal";
+  }, 2000);
+}
+
+function moverPersonaje(accion) {
+  console.log("El niño ha tocado:", accion)
+  if (respuestaEsCorrecta) {
+  personaje.estado = 'feliz'; // Cambia la animación o imagen del personaje
+  mostrarMensaje("¡Muy bien!");
+}
+if (!respuestaEsCorrecta) {
+  personaje.estado = 'triste';
+  mostrarMensaje("¡Inténtalo otra vez!");
+}
+
+
+  // También podrías mover el personaje hacia un botón si quieres
 }
 </script>
 
-
-
-
 <style>
 #app {
-  max-width: 600px;
-  margin: 0px;
+  max-width: 100%;
+  margin: 0;
   padding: 2rem;
   text-align: center;
   color: blue;
   font-size: x-large;
-}
-.train-navbar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: linear-gradient(90deg, #099dd8, #e6e6e6);
-  border-bottom: 3px solid #ccc;
+  position: relative;
+  overflow: hidden;
 }
 
-.train-navbar button {
-  border: none;
-  padding: 0.75rem 1rem;
-  margin: 0;
-  background: linear-gradient(145deg, #78cbda, #d4d4d4);
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
+.personaje {
+  position: absolute;
+  width: 120px;
+  height: auto;
+  transition: left 0.1s ease, top 0.1s ease;
+  pointer-events: none;
+  z-index: 999;
 }
 
-.train-navbar button.locomotive {
-  margin-left: 150px;
-  font-weight: bold;
-  background: linear-gradient(145deg, #a7d7eb, #c0c0c0);
-}
-
-.train-navbar button:hover {
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-.train-navbar button:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 4px rgba(80, 45, 209, 0.2);
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 160px;
-  width: 100%;
-  background-color: #004c4c;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-}
-
-.nav-btn {
-  color: white;
-  text-decoration: none;
-  font-size: 20px;
-  padding: 10px;
-  transition: background 0.3s;
-}
-
-.nav-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-}
 .train-container {
   width: 100%;
   height: 190px;
   overflow: hidden;
   position: relative;
-  background-color: transparent; 
+  background-color: transparent;
   border-bottom: 1px solid #3d3fc0;
 }
 
@@ -125,21 +116,6 @@ export default {
   animation: moveTrain 5s ease-in-out forwards;
 }
 
-
-@keyframes moveTrain {
-  0% {
-    left: -29%;
-    transform: scaleX(1);
-  }
-  70% {
-    left: 40%;
-  }
-  100% {
-    left: 50%;
-    transform: scaleX(1.1);
-  }
-}
- 
 @keyframes moveTrain {
   0% {
     transform: translateX(-190px);
@@ -151,13 +127,24 @@ export default {
     transform: translateX(-10px);
   }
 }
-
-.train-navbar {
-  animation: moveTrain 6s ease-in-out infinite;
+.personaje.feliz img {
+  animation: saltar 1s ease-in-out;
+}
+.personaje.triste img {
+  filter: grayscale(1);
+  animation: encoger 1s ease-in-out;
 }
 
-@media (min-width: 768px) {
-  .keyboard {
-    grid-template-columns: repeat(7, 1fr);
-  }}
+@keyframes saltar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes encoger {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
 </style>

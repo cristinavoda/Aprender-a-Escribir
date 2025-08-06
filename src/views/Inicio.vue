@@ -45,6 +45,7 @@
         {{ n <= nivelActual + 1 ? '⭐' : '☆' }}
       </span>
     </div>
+     <button @click="$emit('accionUsuario', 'izquierda')">Mover a la izquierda</button>
   </div>
 </template>
 
