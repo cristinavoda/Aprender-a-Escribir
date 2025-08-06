@@ -110,6 +110,7 @@ onMounted(() => {
   text-align: center;
   padding: 1rem;
   margin-top: -10px;
+  margin: -70px;
 }
 
 .letra-guia {
@@ -155,7 +156,7 @@ button {
 }
 @media (min-width: 768px) {
   .teclado {
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 .teclado-letra {

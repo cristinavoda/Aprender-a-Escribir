@@ -58,7 +58,7 @@ onMounted(() => {
   gap: 1rem; 
   text-align: center;
   max-width: 600px;
-  margin: 0;           
+  margin: -40px;           
   padding: 1px;       
   text-align: left;    
 }
@@ -69,7 +69,7 @@ h2 {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);

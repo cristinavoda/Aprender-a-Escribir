@@ -118,7 +118,7 @@ h2 {
 
 .escribir-view {
   max-width: 500px;
-  margin: auto;
+  margin: -60px;
   text-align: center;
   font-family: sans-serif;
 }

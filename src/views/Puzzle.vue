@@ -130,7 +130,7 @@ function nextWord() {
   
 
 }
-// Función para el confeti
+
 function triggerConfetti() {
   confetti({
     particleCount: 600,

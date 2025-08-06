@@ -216,6 +216,7 @@ const irAVistaEscribir = () => {
   border: transparent;
   border-radius: 10px;
   margin-top: 1rem;
+  margin-left: -120px;
    box-shadow: 4px 4px 12px rgba(54, 57, 58, 0.1);
 }
 
