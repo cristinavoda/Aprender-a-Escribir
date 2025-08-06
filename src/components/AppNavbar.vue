@@ -29,7 +29,7 @@
 .navbar {
  
   display: flex;
-  margin-top: 0px;
+  margin-top: 15px;
   margin-left: -60px;
   width: fit-content;
   justify-content:left;

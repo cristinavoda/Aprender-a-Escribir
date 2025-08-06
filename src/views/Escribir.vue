@@ -47,22 +47,22 @@
 
 <script setup>
 import { ref, watch } from 'vue'
+import confetti from 'canvas-confetti'
 
-// Lista de palabras sugeridas
-const palabras = ['SI','NO','QUIERO','GATO', 'PERRO', 'CASA', 'NUBE','TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']
+const palabras = ['SI','NO','QUIERO','ALFABETO','MUSICA','COMER','ENFERMO','ENFADADO','GATO', 'PERRO', 'CASA', 'NUBE','TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']
 
-// Palabra activa
+
 const word = ref('gato')
 
 const mensaje = ref('')
-const palabraSugerida = ref('AGUA') // por ejemplo
-const userInput = ref('') // el texto que va escribiendo el usuario
+const palabraSugerida = ref('AGUA') 
+const userInput = ref('') 
 
 
-// Letras para el teclado
+
 const letras = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
 
-// Función de voz
+
 function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = 'es-ES'
@@ -71,7 +71,7 @@ function speak(text) {
   speechSynthesis.speak(utterance)
 }
 
-// Elegir palabra sugerida
+
 function elegirPalabra(palabra) {
   word.value = palabra
   userInput.value = ''
@@ -79,19 +79,19 @@ function elegirPalabra(palabra) {
   speak(palabra)
 }
 
-// Añadir letra
+
 function addLetter(letter) {
   if (userInput.value.length < word.value.length) {
     userInput.value += letter
   }
 }
 
-// Borrar última letra
+
 function deleteLetter() {
   userInput.value = userInput.value.slice(0, -1)
 }
 
-// Comprobar respuesta
+
 function checkInput() {
   if (userInput.value === word.value) {
     mensaje.value = '¡Correcto! 🎉'

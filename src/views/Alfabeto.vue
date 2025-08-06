@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,computed } from 'vue'
 
 const letter = ref('')
 const inputRef = ref(null)
@@ -19,6 +19,9 @@ const speakLetter = (ltr) => {
   speechSynthesis.cancel()
   speechSynthesis.speak(utterance)
 }
+const puntos1 = ref(0)
+const puntos2 = ref(0)
+const vagonesActivos = computed(() => Math.max(puntos1.value, puntos2.value))
 
 onMounted(() => {
   inputRef.value?.focus()  
@@ -48,6 +51,15 @@ onMounted(() => {
         {{ ltr }}
       </button>
     </div>
+    <div class="tren-progreso">
+  <span class="locomotora">🚂</span>
+  <span 
+    v-for="n in vagonesActivos" 
+    :key="n" 
+    class="vagon activo"
+  >🚃</span>
+</div>
+
   </div>
 </template>
 
@@ -116,5 +128,33 @@ h2 {
   border-radius: 8px;
   cursor: pointer;
 }
+.tren-progreso {
+  margin-top: 2rem;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.locomotora {
+  animation: chuff 1s ease infinite;
+}
+
+@keyframes chuff {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.vagon {
+  transform: scale(0.7);
+  transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.vagon.activo {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
 
 </style>

@@ -1,15 +1,17 @@
 <template>
+
   <div id="app" @mousemove="moverConRaton">
     <AppNavbar />
     <RouterView @accionUsuario="moverPersonaje" />
 
-    <!-- Personaje que sigue el ratón -->
+    
     <img
       src="./assets/personaje.png"
       alt="Personaje"
       class="personaje"
       :style="{ left: `${x}px`, top: `${y}px` }"
     />
+
 <div class="personaje" :class="estadoPersonaje">
   <img
     v-if="estadoPersonaje === 'feliz'"
@@ -28,7 +30,7 @@
   />
 </div>
 
-    <!-- Tren -->
+    
     <div class="train-container">
       <div class="train" @animationend="onTrainStop">
         🚂
@@ -56,7 +58,7 @@ function reaccionar(segunResultado) {
     estadoPersonaje.value = "triste";
   }
 
-  // Volver a estado normal después de 2 segundos
+  
   setTimeout(() => {
     estadoPersonaje.value = "normal";
   }, 2000);
@@ -65,7 +67,7 @@ function reaccionar(segunResultado) {
 function moverPersonaje(accion) {
   console.log("El niño ha tocado:", accion)
   if (respuestaEsCorrecta) {
-  personaje.estado = 'feliz'; // Cambia la animación o imagen del personaje
+  personaje.estado = 'feliz'; 
   mostrarMensaje("¡Muy bien!");
 }
 if (!respuestaEsCorrecta) {
@@ -74,7 +76,7 @@ if (!respuestaEsCorrecta) {
 }
 
 
-  // También podrías mover el personaje hacia un botón si quieres
+  
 }
 </script>
 
