@@ -39,7 +39,7 @@
 import { ref,onMounted, watch, onBeforeUnmount  } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 import Personaje from './components/Personaje.vue'
-import imagenFeliz from './assets/personaje.png'
+import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
 const estado = ref('feliz')
 const srcImagen = ref(imagenFeliz)
