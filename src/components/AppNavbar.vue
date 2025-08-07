@@ -29,15 +29,15 @@
 .navbar {
  
   display: flex;
- position: fixed;       /* Siempre visible arriba */
-  top: 0;                /* Pegado al borde superior */
+ position: fixed;      
+  top: 0;               
   left: 0;
   right: 0;
-  margin: 0;             /* Elimina margen exterior */
-  padding: 10px 20px;    /* Espaciado interior */
-  height: auto;          /* Se adapta al contenido */
-  background-color: #fff;  /* O el color que prefieras */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+  margin: 0;             
+  padding: 10px 20px;    
+  height: auto;        
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
   z-index: 1000;         
 }
 .train-navbar {

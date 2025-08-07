@@ -53,7 +53,7 @@ const reiniciarTemporizador = () => {
   estado.value = 'feliz'
   srcImagen.value = imagenFeliz
 
-  // Si no hay interacción en 7 segundos:
+ 
   timeout = setTimeout(() => {
     inactivo.value = true
     estado.value = 'triste'
@@ -73,7 +73,7 @@ const posX = ref(100)
 const posY = ref(100)
  "feliz", "triste", "sorprendido"
 onMounted(() => {
-  // Escuchar cualquier click o interacción en la ventana
+ 
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
   reiniciarTemporizador()
@@ -130,10 +130,10 @@ function respuestaIncorrecta() {
 
 .personaje {
   position: absolute;
-  width: 120px;
+  width: 80px;
   height: auto;
   transition: left 0.1s ease, top 0.1s ease;
-  pointer-events: none;
+  
   z-index: 999;
 }
 
