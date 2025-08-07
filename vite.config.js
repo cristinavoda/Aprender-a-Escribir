@@ -7,11 +7,11 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
+      includeAssets: ['favicon.ico','robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'Aprender a Escribir',
-        short_name: 'Escribir',
-        description: 'App para aprender a escribir y jugar',
+        short_name: 'Escribir con Robi',
+        description: 'Una app divertida para aprender a escribir con Robi, tu compañero digitalApp para aprender a escribir y jugar',
         theme_color: '#ffffff',
         icons: [
           {

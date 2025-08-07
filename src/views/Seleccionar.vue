@@ -117,13 +117,13 @@ const API_KEY = '43441518-85d5d394329fe4bdef820c138'
 const searchQuery = ref('')
 const images = ref([])
 const imageUrl = ref(null)
-const palabraSugerida = ref('AGUA') // por ejemplo
-const userInput = ref('') // el texto que va escribiendo el usuario
-const word = ref('gato')
+const palabraSugerida = ref('tren')
+const userInput = ref('') 
 const shiftOn = ref(false) 
 const texto = ref('')
 const fileName = ref('')
-
+const mensaje = ref('')  
+const word = ref('')
 watch(word, (nuevoValor) => {
   if (nuevoValor.length >= 3) {
     searchImages()
@@ -157,12 +157,12 @@ const onImageUpload = (event) => {
   const file = event.target.files[0]
   if (!file) return
 
-  // Si ya había una URL creada, la liberamos
+  
   if (imageUrl.value) {
     URL.revokeObjectURL(imageUrl.value)
   }
 
-  // Creamos y guardamos la nueva URL
+  
   imageUrl.value = URL.createObjectURL(file)
 }
 
@@ -206,7 +206,9 @@ const irAVistaEscribir = () => {
 </script>
 
 <style scoped>
-
+.select-view {
+  margin-top: 100px;
+}
 
 .file-visible-input {
   font-size: 1.5rem;
@@ -362,6 +364,15 @@ display: grid;
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
+}
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .contenido {
+    margin-top: 50px;
+  }
 }
 
 

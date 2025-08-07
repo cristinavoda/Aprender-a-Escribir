@@ -29,13 +29,16 @@
 .navbar {
  
   display: flex;
-  margin-top: 15px;
-  margin-left: -60px;
-  width: fit-content;
-  justify-content:left;
-  gap: 1rem;
-  padding: 01rem;
-  background: #ffffff;
+ position: fixed;       /* Siempre visible arriba */
+  top: 0;                /* Pegado al borde superior */
+  left: 0;
+  right: 0;
+  margin: 0;             /* Elimina margen exterior */
+  padding: 10px 20px;    /* Espaciado interior */
+  height: auto;          /* Se adapta al contenido */
+  background-color: #fff;  /* O el color que prefieras */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra suave */
+  z-index: 1000;         
 }
 .train-navbar {
   margin-top: 10px;

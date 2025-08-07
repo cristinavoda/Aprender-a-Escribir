@@ -27,6 +27,7 @@ onMounted(() => {
 
 <style scoped>
 .nivel-alfabeto {
+  display: flex-inline;
     margin-top: 100px;
   text-align: center;
   background-color: #e3f2fd;
@@ -34,8 +35,9 @@ onMounted(() => {
 }
 
 .tren-container {
-  position: relative;
+  position: left;
   display: inline-block;
+  margin-left: 100px;
   animation: moverTren 5s ease-in-out forwards;
 }
 

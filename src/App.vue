@@ -15,7 +15,7 @@
 <div class="personaje" :class="estadoPersonaje">
   <img
     v-if="estadoPersonaje === 'feliz'"
-    src="./assets/personaje-feliz.png"
+    src="./assets/personaje.png"
     alt="feliz"
   />
   <img
@@ -23,11 +23,7 @@
     src="./assets/personaje-triste.png"
     alt="triste"
   />
-  <img
-    v-else
-    src="./assets/personaje-normal.png"
-    alt="normal"
-  />
+ 
 </div>
 
     
@@ -40,8 +36,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref,onMounted, watch, onBeforeUnmount  } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
+import Personaje from './components/Personaje.vue'
+import imagenFeliz from './assets/personaje.png'
+import imagenTriste from './assets/personaje-triste.png'
+const estado = ref('feliz')
+const srcImagen = ref(imagenFeliz)
+const inactivo = ref(false)
+
+let timeout
+
+const reiniciarTemporizador = () => {
+  clearTimeout(timeout)
+  inactivo.value = false
+  estado.value = 'feliz'
+  srcImagen.value = imagenFeliz
+
+  // Si no hay interacción en 7 segundos:
+  timeout = setTimeout(() => {
+    inactivo.value = true
+    estado.value = 'triste'
+    srcImagen.value = imagenTriste
+  }, 7000)
+}
 
 const x = ref(100)
 const y = ref(100)
@@ -50,34 +68,52 @@ function moverConRaton(event) {
   x.value = event.clientX
   y.value = event.clientY
 }
-const estadoPersonaje = ref("normal"); // otros valores: "feliz", "triste", "sorprendido"
+const estadoPersonaje = ref("normal","feliz","triste");
+const posX = ref(100)
+const posY = ref(100)
+ "feliz", "triste", "sorprendido"
+onMounted(() => {
+  // Escuchar cualquier click o interacción en la ventana
+  window.addEventListener('click', reiniciarTemporizador)
+  window.addEventListener('touchstart', reiniciarTemporizador)
+  reiniciarTemporizador()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('click', reiniciarTemporizador)
+  window.removeEventListener('touchstart', reiniciarTemporizador)
+  clearTimeout(timeout)
+})
+function moverPersonaje(x, y) {
+  const personaje = document.querySelector('.personaje')
+  if (personaje) {
+    personaje.style.left = `${x}px`
+    personaje.style.top = `${y}px`
+  }
+}
 function reaccionar(segunResultado) {
   if (segunResultado === "correcto") {
     estadoPersonaje.value = "feliz";
   } else if (segunResultado === "incorrecto") {
     estadoPersonaje.value = "triste";
   }
+function respuestaCorrecta() {
+  estadoPersonaje.value = 'feliz'
+}
 
+function respuestaIncorrecta() {
+  estadoPersonaje.value = 'triste'
+}
   
   setTimeout(() => {
     estadoPersonaje.value = "normal";
   }, 2000);
 }
 
-function moverPersonaje(accion) {
-  console.log("El niño ha tocado:", accion)
-  if (respuestaEsCorrecta) {
-  personaje.estado = 'feliz'; 
-  mostrarMensaje("¡Muy bien!");
-}
-if (!respuestaEsCorrecta) {
-  personaje.estado = 'triste';
-  mostrarMensaje("¡Inténtalo otra vez!");
-}
 
 
   
-}
+
 </script>
 
 <style>
@@ -108,6 +144,7 @@ if (!respuestaEsCorrecta) {
   position: relative;
   background-color: transparent;
   border-bottom: 1px solid #3d3fc0;
+  margin-left: 550px;
 }
 
 .train {
@@ -147,6 +184,23 @@ if (!respuestaEsCorrecta) {
   0% { transform: scale(1); }
   50% { transform: scale(0.8); }
   100% { transform: scale(1); }
+}
+@keyframes moverSuave {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .contenido {
+    margin-top: 50px;
+  }
 }
 
 </style>

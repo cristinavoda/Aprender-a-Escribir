@@ -114,6 +114,7 @@ h2 {
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
+  margin-top: 100px;
 }
 
 .escribir-view {

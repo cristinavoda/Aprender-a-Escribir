@@ -52,7 +52,7 @@ onMounted(() => {
       </button>
     </div>
     <div class="tren-progreso">
-  <span class="locomotora">🚂</span>
+  <span class="locomotora">🚂🚃🚃🚃🚃🚃</span>
   <span 
     v-for="n in vagonesActivos" 
     :key="n" 
@@ -70,13 +70,18 @@ onMounted(() => {
   gap: 1rem; 
   text-align: center;
   max-width: 600px;
-  margin: -40px;           
+  margin-top: 60px;           
   padding: 1px;       
   text-align: left;    
 }
 
 h2 {
-  background: linear-gradient(45deg, #2808dfe5, #5452cc);
+  position: fixed;       
+  margin-top: 100px;                
+  left: 0;
+  right: 0;
+  
+  background: linear-gradient(45deg, #0f083ae5, #36b6af);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -154,6 +159,15 @@ h2 {
 .vagon.activo {
   transform: scale(1.1);
   opacity: 1;
+}
+@media (max-width: 600px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+
+  .contenido {
+    margin-top: 50px;
+  }
 }
 
 

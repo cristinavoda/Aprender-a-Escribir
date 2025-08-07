@@ -107,15 +107,18 @@ onMounted(() => {
 </template>
 
 <style scoped>
+
+
 .trazar-container {
   text-align: center;
   padding: 1rem;
-  margin-top: -10px;
+  margin-top: 30px;
   margin: -70px;
 }
 
 .letra-guia {
-  margin-left: -100px;
+  margin-top: 90px;
+  margin-right: 300px;
   font-size: 6rem;
   color: #0097A7;
   margin-bottom: rem;
@@ -124,6 +127,7 @@ onMounted(() => {
 }
 
 canvas {
+  margin-top: 0px;
   border: 2px solid  #0097A7;
   color: aqua;
   border-radius: 10px;

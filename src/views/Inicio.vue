@@ -91,10 +91,10 @@ function irAlNivelActual() {
 
 <style scoped>
 .home-container {
-  margin-top: 100px;
+  margin-top: 20px;
   text-align: center;
   background: linear-gradient(to bottom, #ccefff, #ffffff);
-  padding: 2rem;
+  padding: 1rem;
   font-family: 'Comic Sans MS', cursive, sans-serif;
   min-height: 100vh;
 }
@@ -124,7 +124,8 @@ function irAlNivelActual() {
   width: 100%;
   height: 120px;
   overflow: hidden;
-  margin-top: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .train-track {
@@ -141,7 +142,7 @@ function irAlNivelActual() {
 
 .train {
   position: absolute;
-  bottom: 30px;
+  bottom: 00px;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -227,10 +228,10 @@ function irAlNivelActual() {
 
 @keyframes moveTrain {
   0% {
-    left: -30%;
+    right: -90%;
   }
   100% {
-    left: 100%;
+    right: 100%;
   }
 }
 

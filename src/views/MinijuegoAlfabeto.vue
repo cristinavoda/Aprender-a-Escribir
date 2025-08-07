@@ -17,7 +17,14 @@
 
     <button @click="nextRound" v-if="showNext">Siguiente</button>
   </div>
+   
+  <div class="tren-progreso">
+  <span>🚂</span>
+ <span v-for="n in vagonesActivos" :key="n" class="vagon activo">🚃</span>
+
+</div>
 </template>
+
 
 <script setup>
 import confetti from 'canvas-confetti'
@@ -136,5 +143,39 @@ button {
   border: none;
   border-radius: 1rem;
   cursor: pointer;
+}
+.tren-progreso {
+  margin-top: 2rem;
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.locomotora {
+  animation: chuff 1s ease infinite;
+}
+
+@keyframes chuff {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.vagon {
+  transform: scale(0.7);
+  transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.vagon.activo {
+  transform: scale(1.1);
+  opacity: 1;
+  animation: rebote 0.3s ease;
+}
+
+@keyframes rebote {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1.1); }
 }
 </style>
