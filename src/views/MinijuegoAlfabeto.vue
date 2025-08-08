@@ -1,6 +1,6 @@
 <template>
   <div class="minijuego">
-    <h1>Nivel Alfabeto</h1>
+    <h1>Encuentra la letra</h1>
     <h2 class="letra">{{ currentLetter }}</h2>
 
     <div class="imagenes">
@@ -28,7 +28,7 @@
 
 <script setup>
 import confetti from 'canvas-confetti'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const letters = [
   {
@@ -69,7 +69,7 @@ const currentOptions = ref(shuffle([
 ]))
 
 const showNext = ref(false)
-
+const emit = defineEmits(['cambiarEstadoPersonaje'])
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5)
 }
@@ -82,9 +82,11 @@ function checkAnswer(img) {
     synth.speak(utter)
     confetti()
     showNext.value = true
+    emit('cambiarEstadoPersonaje', 'feliz')
   } else {
     const utter = new SpeechSynthesisUtterance('no, inténtalo de nuevo')
     window.speechSynthesis.speak(utter)
+     emit('cambiarEstadoPersonaje', 'triste')
   }
 }
 
@@ -105,12 +107,22 @@ function nextRound() {
 </script>
 
 <style scoped>
+.h1 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);}
 .minijuego {
-    margin-top: 100px;
+    margin-top: -60px;
   text-align: center;
   padding: 2rem;
 }
 .letra {
+  margin-top: -40px;
   font-size: 4rem;
   color: darkcyan;
 }
@@ -119,10 +131,11 @@ function nextRound() {
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 .imagen {
-  border: 2px solid #ccc;
+  border: 2px solid #c8bbf5;
+  box-shadow: #285175;
   padding: 1rem;
   border-radius: 1rem;
   cursor: pointer;
@@ -145,7 +158,7 @@ button {
   cursor: pointer;
 }
 .tren-progreso {
-  margin-top: 2rem;
+  margin-top: -1rem;
   font-size: 3rem;
   display: flex;
   justify-content: center;

@@ -38,16 +38,13 @@ const closeMenu = () => {
   isOpen.value = false
 }
 
-const handleClickOutside = (event) => {
+
+
+function handleClickOutside(event) {
   if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    isOpen.value = false
+    closeMenu()
   }
 }
-
-function toggleMenu() {
-  isOpen.value = !isOpen.value;
-}
-
 
 
 
@@ -65,6 +62,8 @@ onBeforeUnmount(() => {
 <style scoped>
 .toggle-btn {
   margin-top: 10px;
+  
+
 }
 nav {
   position: relative;

@@ -1,17 +1,6 @@
 <template>
 <div class="app-container">
   <div id="app" @mousemove="moverConRaton">
-     <header>
-        <nav ref="navbarRef">
-          <button class="hamburger" @click="toggleMenu">☰</button>
-          <ul v-show="isOpen">
-            <li><a href="#" @click="closeMenu">Inicio</a></li>
-            <li><a href="#" @click="closeMenu">Galería</a></li>
-            <li><a href="#" @click="closeMenu">Puzzle</a></li>
-            <li><a href="#" @click="closeMenu">Contacto</a></li>
-          </ul>
-        </nav>
-      </header>
     
     
     <AppNavbar />
@@ -61,24 +50,19 @@ import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
 
-const navbarRef = ref(null)
+
+
+
 const isOpen = ref(false)
-function toggleMenu() {
+const navbarRef = ref(null)
+
+const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 
-function closeMenu() {
+const closeMenu = () => {
   isOpen.value = false
 }
-
-function handleClickOutside(event) {
-  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    isOpen.value = false
-  }
-}
-
-
-
 
 const srcImagen = ref(imagenFeliz)
 const estado = ref('feliz') 
@@ -135,6 +119,13 @@ const moverPersonaje = () => {
   
   console.log("Moviendo personaje…")
 }
+function handleClickOutside(event) {
+  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
+    closeMenu()
+  }
+}
+
+
 onMounted(() => {
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
@@ -297,9 +288,12 @@ nav.open ul {
 }
 .personaje.feliz img {
   animation: saltar 1s ease-in-out;
+  margin-top: -500px;
+  margin-bottom: 1000px;
 }
 .personaje.triste img {
-  filter: grayscale(1);
+  margin-bottom: 100px;
+   margin-top: -500px;
   animation: encoger 1s ease-in-out;
 }
 

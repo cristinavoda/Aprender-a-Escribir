@@ -1,8 +1,8 @@
 <template>
   <div class="escribir-view">
-    <h2>Aprender a Escribir</h2>
+    
 
-    <!-- Palabras sugeridas -->
+    
     <div class="palabras-sugeridas">
       <button
         v-for="(p, i) in palabras"
@@ -13,7 +13,7 @@
       </button>
     </div>
 
-    <!-- Feedback -->
+    
    
  <div class="letter-feedback">
       <span
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import confetti from 'canvas-confetti'
 
 const palabras = ['SI','NO','QUIERO','ALFABETO','MUSICA','COMER','ENFERMO','ENFADADO','GATO', 'PERRO', 'CASA', 'NUBE','TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']
@@ -61,7 +61,7 @@ const userInput = ref('')
 
 
 const letras = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
-
+const emit = defineEmits(['cambiarEstadoPersonaje'])
 
 function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text)
@@ -96,9 +96,11 @@ function checkInput() {
   if (userInput.value === word.value) {
     mensaje.value = '¡Correcto! 🎉'
     speak('¡Correcto!')
+     emit('cambiarEstadoPersonaje', 'feliz')
   } else {
     mensaje.value = 'Intenta de nuevo.'
     speak('Intenta de nuevo')
+    emit('cambiarEstadoPersonaje', 'triste')
   }
 }
 </script>
@@ -119,7 +121,7 @@ h2 {
 
 .escribir-view {
   max-width: 500px;
-  margin: -60px;
+  margin-top: 60px;
   text-align: center;
   font-family: sans-serif;
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="puzzle-view">
-    <h2>Puzzle: Ordena las letras</h2>
+    <h2> Ordena las letras</h2>
     <div class="scrambled-letters">
       <button
         v-for="(letter, index) in scrambled"
@@ -154,7 +154,7 @@ h2 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
@@ -245,5 +245,7 @@ h2 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
    margin-left: 180px;
 
 }
-
+.personaje-feliz{
+  margin-top: 100px;
+}
 </style>

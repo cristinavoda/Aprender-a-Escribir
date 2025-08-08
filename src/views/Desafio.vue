@@ -261,6 +261,9 @@ input {
   opacity: 1;
   animation: rebote 0.3s ease;
 }
+.personaje-feliz{
+  margin-top: 00px;
+}
 
 @keyframes rebote {
   0% { transform: scale(1); }

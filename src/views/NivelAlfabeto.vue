@@ -26,9 +26,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+
 .nivel-alfabeto {
+  
   display: flex-inline;
-    margin-top: 100px;
+    margin-top: 40px;
   text-align: center;
   background-color: #e3f2fd;
   padding: 2rem;

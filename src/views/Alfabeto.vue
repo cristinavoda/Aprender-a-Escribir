@@ -30,8 +30,7 @@ onMounted(() => {
 
 <template>
   <div class="alfabeto-container">
-    <h2>Aprender el Alfabeto</h2>
-
+   
    
     <input
       ref="inputRef"

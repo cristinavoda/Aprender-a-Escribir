@@ -34,7 +34,7 @@
       👉 Entrar al Nivel Actual
     </button>
  <div>
-    <h1>🎮 Bienvenido a la app</h1>
+    
     <router-link to="/alfabeto">
       <button>🚂 Empezar Nivel Alfabeto</button>
     </router-link>
@@ -45,7 +45,7 @@
         {{ n <= nivelActual + 1 ? '⭐' : '☆' }}
       </span>
     </div>
-     <button @click="$emit('accionUsuario', 'izquierda')">Mover a la izquierda</button>
+    
   </div>
 </template>
 
@@ -96,7 +96,7 @@ function irAlNivelActual() {
   background: linear-gradient(to bottom, #ccefff, #ffffff);
   padding: 1rem;
   font-family: 'Comic Sans MS', cursive, sans-serif;
-  min-height: 100vh;
+  
 }
 
 .train {
@@ -142,7 +142,7 @@ function irAlNivelActual() {
 
 .train {
   position: absolute;
-  bottom: 00px;
+  bottom: -30px;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -250,7 +250,16 @@ function irAlNivelActual() {
 .start-button:hover {
   background-color: #fb8c00;
 }
-
+.home-container
+.buton {margin-top: 1.5rem;
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  background-color: #ffa726;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);}
 .progreso {
   margin-top: 1rem;
   font-size: 1.2rem;

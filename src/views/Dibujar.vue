@@ -74,9 +74,7 @@ onMounted(() => {
 <template>
   <div class="trazar-container">
    
-    <div class="letra-guia">
-      {{ letraActual }}
-    </div>
+    
 
     <canvas
       ref="canvasRef"
@@ -112,8 +110,8 @@ onMounted(() => {
 .trazar-container {
   text-align: center;
   padding: 1rem;
-  margin-top: 30px;
-  margin: -70px;
+  margin-top: 40px;
+  
 }
 
 .letra-guia {
