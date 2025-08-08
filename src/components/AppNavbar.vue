@@ -1,10 +1,11 @@
 <template>
   <nav class="navbar ref=navbarRef" >
     <nav class="train-navbar v-show=isOpen || isDesktop">
-       <button class="toggle-btn" @click="toggleNavbar">☰</button>
+       <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
       
+    <div v-if="isOpen" class="train-navbar">
     <button class="locomotive" @click="$router.push('/Inicio')">
-      🚂Inicio
+🚂Inicio
     </button>
     <button @click="$router.push('/alfabeto')">🔤Alfabeto</button>
     <button @click="$router.push('/dibujar')">✏️Dibujar</button>
@@ -14,6 +15,7 @@
     <button @click="$router.push('/desafio')">⭐Desafio</button>
     <button @click="$router.push('/seleccionar')">📚Seleccionar</button>
     <button @click="$router.push('/practicar')">🎁Practicar</button>
+    </div>  
   </nav>
    
     
@@ -28,20 +30,26 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isOpen = ref(false);
 const navbarRef = ref(null);
+const toggleNavbar = () => {
+  isOpen.value = !isOpen.value
+}
+
+const closeMenu = () => {
+  isOpen.value = false
+}
+
+const handleClickOutside = (event) => {
+  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
+    isOpen.value = false
+  }
+}
 
 function toggleMenu() {
   isOpen.value = !isOpen.value;
 }
 
-function closeMenu() {
-  isOpen.value = false;
-}
 
-function handleClickOutside(event) {
-  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    isOpen.value = false;
-  }
-}
+
 
 onMounted(() => {
   document.addEventListener("click", handleClickOutside);
@@ -55,6 +63,9 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.toggle-btn {
+  margin-top: 10px;
+}
 nav {
   position: relative;
 }
@@ -62,7 +73,7 @@ nav {
  
   display: flex;
  position: fixed;      
-  top: 0;               
+  top: -72px;               
   left: 0;
   right: 0;
   margin: 0;             

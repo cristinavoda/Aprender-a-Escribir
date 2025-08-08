@@ -1,17 +1,19 @@
 <template>
 <div class="app-container">
   <div id="app" @mousemove="moverConRaton">
+     <header>
+        <nav ref="navbarRef">
+          <button class="hamburger" @click="toggleMenu">☰</button>
+          <ul v-show="isOpen">
+            <li><a href="#" @click="closeMenu">Inicio</a></li>
+            <li><a href="#" @click="closeMenu">Galería</a></li>
+            <li><a href="#" @click="closeMenu">Puzzle</a></li>
+            <li><a href="#" @click="closeMenu">Contacto</a></li>
+          </ul>
+        </nav>
+      </header>
     
-
     
-    <div class="robi-container">
-      <img
-        :src="robiImagen"
-        alt="Robi"
-        class="robi"
-      />
-    </div>
-
     <AppNavbar />
 <RouterView 
   @accionUsuario="moverPersonaje"
@@ -58,20 +60,26 @@ import Personaje from './components/Personaje.vue'
 import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
-const navbarOpen = ref(false)
-const navbarRef = ref(null)
 
-function toggleNavbar() {
-  navbarOpen.value = !navbarOpen.value
-  
-  
+const navbarRef = ref(null)
+const isOpen = ref(false)
+function toggleMenu() {
+  isOpen.value = !isOpen.value
+}
+
+function closeMenu() {
+  isOpen.value = false
 }
 
 function handleClickOutside(event) {
   if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    navbarOpen.value = false
+    isOpen.value = false
   }
 }
+
+
+
+
 const srcImagen = ref(imagenFeliz)
 const estado = ref('feliz') 
 
@@ -121,7 +129,12 @@ function cambiarImagenPersonaje(nuevoEstado) {
     }, 9000)
   }
 }
+const robiImagen = ref('personaje.png')
 
+const moverPersonaje = () => {
+  
+  console.log("Moviendo personaje…")
+}
 onMounted(() => {
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
@@ -129,6 +142,7 @@ onMounted(() => {
    document.addEventListener('click', handleClickOutside)
    
 })
+console.log("App montada")
 
 onBeforeUnmount(() => {
   window.removeEventListener('click', reiniciarTemporizador)
@@ -145,6 +159,18 @@ onBeforeUnmount(() => {
 
 
 <style>
+.hamburger {
+  margin-top: -10px;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .app-container {
   display: flex;
   flex-direction: column;
@@ -153,6 +179,7 @@ onBeforeUnmount(() => {
 
 
 .toggle-btn {
+  margin-top: -10px;
   font-size: 2rem;
   background: none;
   border: none;
@@ -187,11 +214,7 @@ nav a:hover {
 nav.is-open {
   display: flex;
 }
-.hamburger {
-  font-size: 24px;
-  background: none;
-  border: none;
-}
+
 
 ul {
   list-style: none;
@@ -306,6 +329,13 @@ nav.open ul {
 
   .contenido {
     margin-top: 50px;
+  }
+  nav ul {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: white;
+    width: 100%;
   }
 }
 

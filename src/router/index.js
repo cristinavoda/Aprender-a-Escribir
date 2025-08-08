@@ -8,7 +8,6 @@ import Puzzle from '../views/Puzzle.vue'
 import Letras from '../views/Letras.vue'
 import Referencia from '../views/Referencia.vue'
 import Practicar from '../views/Practicar.vue'
-import Galeria from '../views/Galeria.vue'
 import Teclado from '../components/Teclado.vue'
 import NivelAlfabeto from '../views/NivelAlfabeto.vue'
 import MinijuegoAlfabeto from '../views/MinijuegoAlfabeto.vue'
@@ -22,10 +21,9 @@ const routes = [
   { path: '/puzzle', name: 'Puzzle', component: Puzzle },
   { path: '/letras', name: 'Letras', component: Letras },
   { path: '/practicar', name: 'Practicar', component: Practicar },
-  { path: '/galeria', name: 'Galeria', component: Galeria },
   { path: '/referencia', name: 'Referencia', component: Referencia },
-   { path: '/teclado', name: 'Teclado', component: Teclado },
-   {path: '/nivel-alfabeto',name: 'NivelAlfabeto', component: NivelAlfabeto},
+  { path: '/teclado', name: 'Teclado', component: Teclado },
+  {path: '/nivel-alfabeto',name: 'NivelAlfabeto', component: NivelAlfabeto},
   { path: '/minijuegoalfabeto', component: MinijuegoAlfabeto },
   { path: '/desafio',  name: 'Desafio',component: Desafio }
 

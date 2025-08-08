@@ -1,6 +1,6 @@
 <template>
   <div class="practicar">
-    <!-- Panel de historial y recompensas -->
+    
     <div class="sidebar">
       <h3>Historial de aciertos</h3>
       <ul>
@@ -13,9 +13,9 @@
       </div>
     </div>
 
-    <!-- Contenedor principal: Galería y práctica -->
+    
     <div class="main">
-      <Galeria @select="onSelect" />
+      
       <div v-if="selection.imageUrl" class="practice-area">
         <Referencia
           :image-url="selection.imageUrl"
@@ -69,7 +69,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import Galeria from './Galeria.vue'
 import Referencia from './Referencia.vue'
 import Escribir from './Escribir.vue'
 import { defineEmits } from 'vue'
