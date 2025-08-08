@@ -2,9 +2,10 @@
 
   <div id="app" @mousemove="moverConRaton">
     <AppNavbar />
-    <RouterView @accionUsuario="moverPersonaje" />
-
-    
+<RouterView 
+  @accionUsuario="moverPersonaje"
+  @cambiarEstadoPersonaje="cambiarImagenPersonaje"
+/>
     <img
       src="./assets/personaje.png"
       alt="Personaje"
@@ -15,7 +16,7 @@
 <div class="personaje" :class="estadoPersonaje">
   <img
     v-if="estadoPersonaje === 'feliz'"
-    src="./assets/personaje.png"
+    src="./assets/personaje-feliz.png"
     alt="feliz"
   />
   <img
@@ -34,26 +35,26 @@
     </div>
   </div>
 </template>
-
 <script setup>
-import { ref,onMounted, watch, onBeforeUnmount  } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 import Personaje from './components/Personaje.vue'
 import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
-const estado = ref('feliz')
-const srcImagen = ref(imagenFeliz)
-const inactivo = ref(false)
 
+const srcImagen = ref(imagenFeliz)
+const estado = ref('feliz') // ahora sí, ref interno
+
+const inactivo = ref(false)
 let timeout
 
+// Reinicia temporizador de inactividad
 const reiniciarTemporizador = () => {
   clearTimeout(timeout)
   inactivo.value = false
   estado.value = 'feliz'
   srcImagen.value = imagenFeliz
 
- 
   timeout = setTimeout(() => {
     inactivo.value = true
     estado.value = 'triste'
@@ -61,6 +62,7 @@ const reiniciarTemporizador = () => {
   }, 7000)
 }
 
+// Movimiento del personaje
 const x = ref(100)
 const y = ref(100)
 
@@ -68,12 +70,30 @@ function moverConRaton(event) {
   x.value = event.clientX
   y.value = event.clientY
 }
-const estadoPersonaje = ref("normal","feliz","triste");
-const posX = ref(100)
-const posY = ref(100)
- "feliz", "triste", "sorprendido"
+
+const estadoPersonaje = ref('feliz')
+const emit = defineEmits(['cambiarEstadoPersonaje'])
+
+// Validación de respuesta
+function verificarRespuesta(correcta) {
+  if (correcta) {
+    cambiarImagenPersonaje('feliz')
+  } else {
+    cambiarImagenPersonaje('triste')
+  }
+}
+
+// Cambiar imagen del personaje
+function cambiarImagenPersonaje(nuevoEstado) {
+  estadoPersonaje.value = nuevoEstado
+  if (nuevoEstado === 'triste') {
+    setTimeout(() => {
+      estadoPersonaje.value = 'feliz'
+    }, 2000)
+  }
+}
+
 onMounted(() => {
- 
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
   reiniciarTemporizador()
@@ -84,37 +104,13 @@ onBeforeUnmount(() => {
   window.removeEventListener('touchstart', reiniciarTemporizador)
   clearTimeout(timeout)
 })
-function moverPersonaje(x, y) {
-  const personaje = document.querySelector('.personaje')
-  if (personaje) {
-    personaje.style.left = `${x}px`
-    personaje.style.top = `${y}px`
-  }
-}
-function reaccionar(segunResultado) {
-  if (segunResultado === "correcto") {
-    estadoPersonaje.value = "feliz";
-  } else if (segunResultado === "incorrecto") {
-    estadoPersonaje.value = "triste";
-  }
-function respuestaCorrecta() {
-  estadoPersonaje.value = 'feliz'
-}
-
-function respuestaIncorrecta() {
-  estadoPersonaje.value = 'triste'
-}
-  
-  setTimeout(() => {
-    estadoPersonaje.value = "normal";
-  }, 2000);
-}
-
-
-
-  
-
 </script>
+
+
+
+  
+
+
 
 <style>
 #app {

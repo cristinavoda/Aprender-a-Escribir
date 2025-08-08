@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import imagenFeliz from '../assets/personaje.png'
+import imagenFeliz from '../assets/personaje-feliz.png'
 import imagenTriste from '../assets/personaje-triste.png'
 
 const srcImagen = ref(imagenFeliz)

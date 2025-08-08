@@ -15,6 +15,7 @@
       <p>Jugador {{ turno }}, escribe una palabra que empiece por "{{ currentLetter }}":</p>
       <input v-model="respuesta" placeholder="Ej: Barco" />
       <button @click="validarRespuesta">Comprobar</button>
+      
     </div>
 <button @click="escucharVoz">🎤 Decir palabra en voz alta</button>
 
@@ -50,7 +51,15 @@ const respuesta = ref('')
 
 const totalVagones = 10
 const vagonesActivos = computed(() => Math.max(puntos1.value, puntos2.value))
+const emit = defineEmits(['cambiarEstadoPersonaje'])
 
+function verificarRespuesta(esCorrecta) {
+  if (esCorrecta) {
+    emit('cambiarEstadoPersonaje', 'feliz')
+  } else {
+    emit('cambiarEstadoPersonaje', 'triste')
+  }
+}
 function nuevaRonda() {
   const randomIndex = Math.floor(Math.random() * letras.length)
   currentLetter.value = letras[randomIndex]
@@ -72,8 +81,12 @@ function validarRespuesta() {
     if (turno.value === 1) puntos1.value++
     if (turno.value === 2) puntos2.value++
     mensaje.value = `✅ ¡Jugador ${turno.value} acierta con "${palabra}"!`
+    emit('accionUsuario', { tipo: 'correcta' })
+     emit('cambiarEstadoPersonaje', 'feliz')
   } else {
     mensaje.value = `❌ "${palabra}" no empieza por "${currentLetter.value}"`
+     emit('accionUsuario', { tipo: 'incorrecta' })
+     emit('cambiarEstadoPersonaje', 'triste')
   }
 
   turno.value = 0
