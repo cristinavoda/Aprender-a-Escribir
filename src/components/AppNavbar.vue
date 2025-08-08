@@ -1,6 +1,8 @@
 <template>
-  <nav class="navbar">
-    <nav class="train-navbar">
+  <nav class="navbar ref=navbarRef" >
+    <nav class="train-navbar v-show=isOpen || isDesktop">
+       <button class="toggle-btn" @click="toggleNavbar">☰</button>
+      
     <button class="locomotive" @click="$router.push('/Inicio')">
       🚂Inicio
     </button>
@@ -22,10 +24,40 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+
+const isOpen = ref(false);
+const navbarRef = ref(null);
+
+function toggleMenu() {
+  isOpen.value = !isOpen.value;
+}
+
+function closeMenu() {
+  isOpen.value = false;
+}
+
+function handleClickOutside(event) {
+  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
+    isOpen.value = false;
+  }
+}
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
+
 
 </script>
 
 <style scoped>
+nav {
+  position: relative;
+}
 .navbar {
  
   display: flex;

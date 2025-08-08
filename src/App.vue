@@ -1,6 +1,17 @@
 <template>
-
+<div class="app-container">
   <div id="app" @mousemove="moverConRaton">
+    
+
+    
+    <div class="robi-container">
+      <img
+        :src="robiImagen"
+        alt="Robi"
+        class="robi"
+      />
+    </div>
+
     <AppNavbar />
 <RouterView 
   @accionUsuario="moverPersonaje"
@@ -34,21 +45,40 @@
       </div>
     </div>
   </div>
+</div>
 </template>
+
+
+
 <script setup>
+
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 import Personaje from './components/Personaje.vue'
 import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
+import { RouterLink, RouterView } from 'vue-router'
+const navbarOpen = ref(false)
+const navbarRef = ref(null)
 
+function toggleNavbar() {
+  navbarOpen.value = !navbarOpen.value
+  
+  
+}
+
+function handleClickOutside(event) {
+  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
+    navbarOpen.value = false
+  }
+}
 const srcImagen = ref(imagenFeliz)
-const estado = ref('feliz') // ahora sí, ref interno
+const estado = ref('feliz') 
 
 const inactivo = ref(false)
 let timeout
 
-// Reinicia temporizador de inactividad
+
 const reiniciarTemporizador = () => {
   clearTimeout(timeout)
   inactivo.value = false
@@ -59,10 +89,10 @@ const reiniciarTemporizador = () => {
     inactivo.value = true
     estado.value = 'triste'
     srcImagen.value = imagenTriste
-  }, 7000)
+  }, 9000)
 }
 
-// Movimiento del personaje
+
 const x = ref(100)
 const y = ref(100)
 
@@ -74,7 +104,6 @@ function moverConRaton(event) {
 const estadoPersonaje = ref('feliz')
 const emit = defineEmits(['cambiarEstadoPersonaje'])
 
-// Validación de respuesta
 function verificarRespuesta(correcta) {
   if (correcta) {
     cambiarImagenPersonaje('feliz')
@@ -83,13 +112,13 @@ function verificarRespuesta(correcta) {
   }
 }
 
-// Cambiar imagen del personaje
+
 function cambiarImagenPersonaje(nuevoEstado) {
   estadoPersonaje.value = nuevoEstado
   if (nuevoEstado === 'triste') {
     setTimeout(() => {
       estadoPersonaje.value = 'feliz'
-    }, 2000)
+    }, 9000)
   }
 }
 
@@ -97,12 +126,15 @@ onMounted(() => {
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
   reiniciarTemporizador()
+   document.addEventListener('click', handleClickOutside)
+   
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('click', reiniciarTemporizador)
   window.removeEventListener('touchstart', reiniciarTemporizador)
   clearTimeout(timeout)
+  document.removeEventListener("click", handleClickOutside);
 })
 </script>
 
@@ -113,6 +145,84 @@ onBeforeUnmount(() => {
 
 
 <style>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.toggle-btn {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+nav {
+   position: relative;
+  display: none;
+  flex-direction: column;
+  background: white;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 200px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+nav a {
+  padding: 1rem;
+  text-decoration: none;
+  color: #004d4d;
+  border-bottom: 1px solid #ccc;
+}
+
+nav a:hover {
+  background: #e0f0f0;
+}
+
+nav.is-open {
+  display: flex;
+}
+.hamburger {
+  font-size: 24px;
+  background: none;
+  border: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav.open ul {
+  display: block;
+}
+
+
+@media (min-width: 768px) {
+  .toggle-btn {
+    display: none;
+  }
+  ul {
+    display: none;
+  }
+}
+
+
+.robi-container {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.robi {
+  max-width: 150px;
+  transition: transform 0.3s;
+}
 #app {
   max-width: 100%;
   margin: 0;

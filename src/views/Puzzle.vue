@@ -45,6 +45,8 @@ const userSelection = ref([])
 const resultMessage = ref('')
 const isCorrect = ref(false)
 const selected = ref([])  
+const respuesta = ref('')
+const emit = defineEmits(['cambiarEstadoPersonaje'])
 
 let positions = []
 
@@ -97,12 +99,15 @@ function checkAnswer() {
     isCorrect.value = true
     triggerConfetti() 
      speakWord(targetWord.value);
+      emit('cambiarEstadoPersonaje', 'feliz')
   } else {
     resultMessage.value = 'Incorrecto, inténtalo de nuevo.'
     isCorrect.value = false
 
     userSelection.value = Array(targetWord.value.length).fill('')
     selected.value = [] 
+    emit('cambiarEstadoPersonaje', 'triste')
+
   }
 }
 
