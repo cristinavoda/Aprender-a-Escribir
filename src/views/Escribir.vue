@@ -141,7 +141,7 @@ h2 {
   margin: 2rem 0;
   font-size: 3rem;
   font-weight: bold;
-  text-shadow: #0e008b;
+  
   text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
 }
 .correct {
@@ -163,11 +163,15 @@ h2 {
     grid-template-columns: repeat(7, 1fr);
   }}
 .teclado button {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   padding: 0.4rem;
   color: blue;
-  width: 95px;
-  height: 65px;
+  font-weight: bold;
+  text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
+ width: 12vw;   
+  height: 8vw;   
+  max-width: 95px;
+  max-height: 65px;
   border-color:#87cbe2;
   background-color: #d9d8f065;
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
@@ -185,13 +189,28 @@ h2 {
   margin: 1rem 0.5rem;
   padding: 0.6rem 1.5rem;
   background: #008b8b;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 .mensaje {
-  font-size: 1.2rem;
+  font-size: 2.2rem;
   font-weight: bold;
 }
+@media (max-width: 768px) {
+  .tecla {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tecla {
+    width: 50px;
+    height: 40px;
+  }
+}
+
 </style>

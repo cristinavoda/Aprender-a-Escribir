@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar ref=train-navbarRef" >
+  <nav class="navbar" ref="trainNavbarRef" >
     <nav class="train-navbar v-show=isOpen || isDesktop">
        <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
       
@@ -41,7 +41,7 @@ const closeMenu = () => {
 
 
 function handleClickOutside(event) {
-  if (trainNavbarRef.value && !navbarRef.value.contains(event.target)) {
+  if (trainNavbarRef.value && !trainNavbarRef.value.contains(event.target)) {
     closeMenu()
   }
 }

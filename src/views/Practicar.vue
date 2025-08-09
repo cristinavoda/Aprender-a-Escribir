@@ -199,4 +199,18 @@ function onCorrect(correctSelection) {
     padding-bottom: 1rem;
   }
 }
+@media (max-width: 768px) {
+  .tecla {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tecla {
+    width: 50px;
+    height: 40px;
+  }
+}
+
 </style>

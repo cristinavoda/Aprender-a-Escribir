@@ -54,16 +54,6 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 
-const isOpen = ref(false)
-const trainNavbarRef = ref(null)
-
-const toggleMenu = () => {
-  isOpen.value = !isOpen.value
-}
-
-const closeMenu = () => { 
-  isOpen.value = false
-}
 
 const srcImagen = ref(imagenFeliz)
 const estado = ref('feliz') 
@@ -120,18 +110,14 @@ const moverPersonaje = () => {
   
   console.log("Moviendo personaje…")
 }
-function handleClickOutside(event) {
-  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    (navbarOpen.value = false)
-  }
-}
+
 
 
 onMounted(() => {
   window.addEventListener('click', reiniciarTemporizador)
   window.addEventListener('touchstart', reiniciarTemporizador)
   reiniciarTemporizador()
-   document.addEventListener('click', handleClickOutside)
+   
    
 })
 console.log("App montada")
@@ -140,7 +126,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('click', reiniciarTemporizador)
   window.removeEventListener('touchstart', reiniciarTemporizador)
   clearTimeout(timeout)
-  document.removeEventListener("click", handleClickOutside);
+  
 })
 </script>
 
@@ -151,18 +137,7 @@ onBeforeUnmount(() => {
 
 
 <style scoped>
-.hamburger {
-  margin-top: 10px;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+
 .personaje.feliz img {
   animation: saltar 1s ease-in-out;
   margin-top: 90px;
@@ -266,6 +241,7 @@ nav.open ul {
 }
 
 .personaje {
+  pointer-events: none;
   position: absolute;
   width: 80px;
   height: auto;
