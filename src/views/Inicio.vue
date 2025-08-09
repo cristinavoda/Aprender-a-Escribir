@@ -76,6 +76,10 @@ const niveles = [
   { nombre: 'Dibujar letras', emoji: '✏️', ruta: '/nivel-dibujar' },
   { nombre: 'Escribir palabras', emoji: '📚', ruta: '/nivel-escribir' },
   { nombre: 'Puzzle', emoji: '🧩', ruta: '/nivel-puzzle' },
+  { nombre: 'Juego', emoji: '🧩', ruta: '/nivel-juego' },
+  { nombre: 'Desafio', emoji: '🧩', ruta: '/nivel-desafio' },
+  
+
   { nombre: 'Practicar y recompensas', emoji: '🎁', ruta: '/nivel-practicar' }
 ]
 

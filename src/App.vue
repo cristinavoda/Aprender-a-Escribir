@@ -9,27 +9,25 @@
   @accionUsuario="moverPersonaje"
   @cambiarEstadoPersonaje="cambiarImagenPersonaje"
 />
-    <img
-      src="./assets/personaje.png"
-      alt="Personaje"
-      class="personaje"
-      :style="{ left: `${x}px`, top: `${y}px` }"
-    />
+  <img
+  :src="personaje"
+  alt="Personaje"
+  class="personaje"
+  :style="{ left: `${x}px`, top: `${y}px` }"
+/>
 
-<div class="personaje-feliz" >
+<div class="personaje-feliz">
   <img
     v-if="estadoPersonaje === 'feliz'"
-    src="./assets/personaje-feliz.png"
+    :src="personajeFeliz"
     alt="feliz"
   />
   <img
     v-else-if="estadoPersonaje === 'triste'"
-    src="./assets/personaje-triste.png"
+    :src="personajeTriste"
     alt="triste"
   />
- 
-</div>
-
+</div> 
     
     <div class="train-container">
       <div class="train" @animationend="onTrainStop">
@@ -47,16 +45,20 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 import Personaje from './components/Personaje.vue'
-import imagenFeliz from './assets/personaje-feliz.png'
-import imagenTriste from './assets/personaje-triste.png'
+import personaje from './assets/personaje.png'
+import personajeFeliz from './assets/personaje-feliz.png'
+import personajeTriste from './assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
+
+import imagenFeliz from './assets/personaje-feliz.png'
+import imagenTriste from './assets/personaje-feliz.png'
 
 
 
 
 
 const srcImagen = ref(imagenFeliz)
-const estado = ref('feliz') 
+const estado= ref('feliz') 
 
 const inactivo = ref(false)
 let timeout
@@ -129,11 +131,6 @@ onBeforeUnmount(() => {
   
 })
 </script>
-
-
-
-  
-
 
 
 <style scoped>

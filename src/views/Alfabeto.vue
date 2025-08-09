@@ -54,16 +54,16 @@ onMounted(() => {
         {{ ltr }}
       </button>
     </div>
-    <div class="tren-progreso">
-  <span class="locomotora">🚂🚃🚃🚃🚃🚃</span>
-  <span 
-    v-for="n in vagonesActivos" 
-    :key="n" 
-    class="vagon activo"
-  >🚃</span>
+      </div>
+<div class="train-container">
+  <div class="train-track">
+    <div class="train">
+      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+    </div>
+  </div>
 </div>
 
-  </div>
+  
 </template>
 
 <style scoped>
@@ -152,7 +152,7 @@ h2 {
     height: 40px;
   }
 }
-.tren-progreso {
+.tren{
   margin-top: 2rem;
   font-size: 3rem;
   display: flex;

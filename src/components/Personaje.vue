@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
 <template>
   <img
     v-if="visible"
-    src="./personaje-feliz.png"
+     src="../assets/personaje-feliz.png"
     alt="Personaje"
     class="personaje"
     :class="[esquina]"

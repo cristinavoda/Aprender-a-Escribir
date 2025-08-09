@@ -102,6 +102,23 @@ onMounted(() => {
     </div>
   </div>
   
+    <div class="train">
+      <div class="locomotive">🚂</div>
+      <div class="smoke"></div>
+      <div class="smoke"></div>
+       <div class="smoke"></div>
+       <div class="traffic-light">
+  <div class="light red"></div>
+  <div class="light yellow"></div>
+  <div class="light green"></div>
+  <div class="vagons"><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+        
+      </div>
+    
+</div>
+</div>
+
+    
 </template>
 
 <style scoped>
@@ -173,6 +190,120 @@ button {
   border-radius: 8px;
   cursor: pointer;
   box-shadow: 4px 4px 8px rgba(40, 14, 184, 0.842);
+}
+.train {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.locomotive {
+  font-size: 3rem;
+  margin-right: 10px;
+}
+
+.vagons {
+  display: flex;
+}
+
+.vagon {
+  font-size: 2.5rem;
+  margin: 0 5px;
+}
+.train {
+  position: absolute;
+  bottom: -30px;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  animation: moveTrain 10s linear infinite;
+}
+.smoke {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #b10a34, transparent);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: puff 1.5s ease-in-out infinite;
+}
+.traffic-light {
+  position: absolute;
+  left: -70px;
+  bottom: 0px;
+  width: 30px;
+  background: #222;
+  border: 2px solid #444;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.light {
+  width: 20px;
+  height: 20px;
+  margin: 5px auto;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.red {
+  background: red;
+  animation: redLight 6s infinite;
+}
+.yellow {
+  background: yellow;
+  animation: yellowLight 6s infinite;
+}
+.green {
+  background: limegreen;
+  animation: greenLight 6s infinite;
+}
+
+@keyframes redLight {
+  0%, 100% { opacity: 1; }
+  33%, 66% { opacity: 0.3; }
+}
+@keyframes yellowLight {
+  0%, 33% { opacity: 0.3; }
+  34%, 66% { opacity: 1; }
+  67%, 100% { opacity: 0.3; }
+}
+@keyframes greenLight {
+  0%, 66% { opacity: 0.3; }
+  67%, 100% { opacity: 1; }
+}
+
+
+@keyframes puff {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-10px, -30px) scale(1.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-20px, -60px) scale(2);
+    opacity: 0;
+  }
+}
+
+
+.wagon {
+  margin-left: 5px;
+}
+
+@keyframes moveTrain {
+  0% {
+    right: -90%;
+  }
+  100% {
+    right: 100%;
+  }
 }
 
 </style>
