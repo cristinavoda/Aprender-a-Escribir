@@ -96,8 +96,8 @@ onBeforeUnmount(() => {
 .personaje {
   pointer-events: none;
   position: absolute;
-  bottom: 50px;
-  left: 60px;
+  top: 10px;
+  right: 10px;
   width: 120px;
   transition: all 0.3s ease;
   animation: flotar 1s infinite alternate;

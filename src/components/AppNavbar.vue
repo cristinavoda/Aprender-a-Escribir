@@ -136,4 +136,13 @@ nav {
 .router-link-hover {
   color: aqua;
 }
+.personaje-feliz {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px; 
+  z-index: 1000;
+  pointer-events: none; 
+}
+
 </style>

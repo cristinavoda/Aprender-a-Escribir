@@ -16,7 +16,7 @@
       :style="{ left: `${x}px`, top: `${y}px` }"
     />
 
-<div class="personaje" :class="estadoPersonaje">
+<div class="personaje-feliz" >
   <img
     v-if="estadoPersonaje === 'feliz'"
     src="./assets/personaje-feliz.png"
@@ -138,15 +138,19 @@ onBeforeUnmount(() => {
 
 <style scoped>
 
-.personaje.feliz img {
+.personaje-feliz img {
+   position: fixed;
   animation: saltar 1s ease-in-out;
-  margin-top: 90px;
-  
+  top: 10px;
+  right: 10px;
+  width: 100px; 
+  z-index: 1000;
+  pointer-events: none; 
   
 }
-.personaje.triste img {
+.personaje-triste img {
   
-   margin-top: 90px;
+   top: 0px;
   animation: encoger 1s ease-in-out;
 }
 .app-container {

@@ -125,8 +125,15 @@ h2 {
   text-align: center;
   font-family: sans-serif;
 }
+.palabras-sugeridas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 100px;
+}
 .palabras-sugeridas button {
-  margin: 0.5rem;
+  
   padding: 0.5rem 1rem;
   background-color: #eaeaf3cb;
   color: blue;
@@ -212,5 +219,7 @@ h2 {
     height: 40px;
   }
 }
-
+@media (max-width: 600px) {
+  .palabras-sugeridas {
+    grid-template-columns: repeat(auto-fit)}}
 </style>

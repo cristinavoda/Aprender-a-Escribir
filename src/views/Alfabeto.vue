@@ -1,5 +1,9 @@
 <script setup>
 import { ref, onMounted,computed } from 'vue'
+import Personaje from '../components/Personaje.vue'
+import imagenFeliz from '../assets/personaje-feliz.png'
+import imagenTriste from '../assets/personaje-triste.png'
+import { RouterLink, RouterView } from 'vue-router'
 
 const letter = ref('')
 const inputRef = ref(null)
@@ -97,10 +101,11 @@ h2 {
   width: 150px;
   height: 150px;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
+  margin: 20px;
   pointer-events: none; 
   background-color: #d9d8f065;
-  border: transparent;
+  border-color:#aa87e2;
   border-radius: 0.5rem;
   user-select: none; 
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
@@ -113,7 +118,7 @@ h2 {
   grid-column-gap: 4px;
   max-width: 600px; 
   padding: 1px;
-  margin: -20px;
+  margin: 20px;
 }
  @media (min-width: 768px) {
   .teclado {
@@ -124,13 +129,28 @@ h2 {
   font-size: 3.2rem;
   padding: 0.4rem;
   color: blue;
-  width: 95px;
-  height: 65px;
-  border-color:#87cbe2;
+  width: 12vw;  
+  height: 8vw;   
+  max-width: 95px; 
+  max-height: 65px;
+  border-color:#aa87e2;
   background-color: #d9d8f065;
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  box-shadow: 9px 9px 9px rgba(118, 99, 231, 0.678);
   border-radius: 8px;
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .tecla {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tecla {
+    width: 50px;
+    height: 40px;
+  }
 }
 .tren-progreso {
   margin-top: 2rem;
@@ -144,8 +164,19 @@ h2 {
 .locomotora {
   animation: chuff 1s ease infinite;
 }
+.personaje.triste img {
+  
+   margin-top: 10px;
+  animation: encoger 1s ease-in-out;
+}
 .personaje-feliz{
-  margin-top: -1rem;
+  animation: saltar 1s ease-in-out;
+   position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 100px; 
+  z-index: 1000;
+  pointer-events: none;
 }
 
 @keyframes chuff {
