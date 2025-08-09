@@ -19,7 +19,7 @@ const cambiarEsquina = () => {
   const esquinas = ['top-left', 'top-right', 'bottom-left', 'bottom-right']
   esquina.value = esquinas[Math.floor(Math.random() * esquinas.length)]
   visible.value = true
-  setTimeout(() => { visible.value = false }, 3000) // se esconde después de 3s
+  setTimeout(() => { visible.value = false }, 3000) 
 }
 
 let timer
@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
 <template>
   <img
     v-if="visible"
-    src="./personaje.png"
+    src="./personaje-feliz.png"
     alt="Personaje"
     class="personaje"
     :class="[esquina]"
