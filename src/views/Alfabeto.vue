@@ -144,6 +144,9 @@ h2 {
 .locomotora {
   animation: chuff 1s ease infinite;
 }
+.personaje-feliz{
+  margin-top: -1rem;
+}
 
 @keyframes chuff {
   0%, 100% { transform: translateY(0); }

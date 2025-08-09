@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar ref=navbarRef" >
+  <nav class="navbar ref=train-navbarRef" >
     <nav class="train-navbar v-show=isOpen || isDesktop">
        <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
       
@@ -29,7 +29,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isOpen = ref(false);
-const navbarRef = ref(null);
+const trainNavbarRef = ref(null);
 const toggleNavbar = () => {
   isOpen.value = !isOpen.value
 }
@@ -41,7 +41,7 @@ const closeMenu = () => {
 
 
 function handleClickOutside(event) {
-  if (navbarRef.value && !navbarRef.value.contains(event.target)) {
+  if (trainNavbarRef.value && !navbarRef.value.contains(event.target)) {
     closeMenu()
   }
 }
@@ -72,7 +72,7 @@ nav {
  
   display: flex;
  position: fixed;      
-  top: -72px;               
+  top: -2px;               
   left: 0;
   right: 0;
   margin: 0;             

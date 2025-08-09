@@ -17,7 +17,7 @@ function reiniciarTemporizador() {
 
   timeout = setTimeout(() => {
     cambiarAImagenTriste()
-  }, 5000) // 5 segundos sin interacción
+  }, 5000) 
 }
 function moverPersonaje(x, y) {
   const personaje = document.querySelector('.personaje')
@@ -53,8 +53,8 @@ onBeforeUnmount(() => {
 <style scoped>
 .personaje {
   position: absolute;
-  bottom: 20px;
-  left: 20px;
+  bottom: 50px;
+  left: 60px;
   width: 120px;
   transition: all 0.3s ease;
   animation: flotar 1s infinite alternate;
@@ -62,10 +62,10 @@ onBeforeUnmount(() => {
 
 @keyframes flotar {
   from {
-    transform: translateY(0px);
+    transform: translateY(29px);
   }
   to {
-    transform: translateY(-8px);
+    transform: translateY(19px);
   }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
 <div class="app-container">
+
   <div id="app" @mousemove="moverConRaton">
     
     
@@ -54,13 +55,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 
 const isOpen = ref(false)
-const navbarRef = ref(null)
+const trainNavbarRef = ref(null)
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
 }
 
-const closeMenu = () => {
+const closeMenu = () => { 
   isOpen.value = false
 }
 
@@ -85,8 +86,8 @@ const reiniciarTemporizador = () => {
 }
 
 
-const x = ref(100)
-const y = ref(100)
+const x = ref(2000)
+const y = ref(2000)
 
 function moverConRaton(event) {
   x.value = event.clientX
@@ -121,7 +122,7 @@ const moverPersonaje = () => {
 }
 function handleClickOutside(event) {
   if (navbarRef.value && !navbarRef.value.contains(event.target)) {
-    closeMenu()
+    (navbarOpen.value = false)
   }
 }
 
@@ -149,9 +150,9 @@ onBeforeUnmount(() => {
 
 
 
-<style>
+<style scoped>
 .hamburger {
-  margin-top: -10px;
+  margin-top: 10px;
   font-size: 2rem;
   background: none;
   border: none;
@@ -162,15 +163,31 @@ nav ul {
   margin: 0;
   padding: 0;
 }
+.personaje.feliz img {
+  animation: saltar 1s ease-in-out;
+  margin-top: 90px;
+  
+  
+}
+.personaje.triste img {
+  
+   margin-top: 90px;
+  animation: encoger 1s ease-in-out;
+}
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-
+header {
+  position: relative;
+  padding: 0.5rem;
+  background: #004d4d;
+  color: white;
+}
 .toggle-btn {
-  margin-top: -10px;
+  margin-top: 10px;
   font-size: 2rem;
   background: none;
   border: none;
@@ -252,7 +269,7 @@ nav.open ul {
   position: absolute;
   width: 80px;
   height: auto;
-  transition: left 0.1s ease, top 0.1s ease;
+  transition: left 0.20s ease, top 0.20s ease;
   
   z-index: 999;
 }
@@ -286,16 +303,7 @@ nav.open ul {
     transform: translateX(-10px);
   }
 }
-.personaje.feliz img {
-  animation: saltar 1s ease-in-out;
-  margin-top: -500px;
-  margin-bottom: 1000px;
-}
-.personaje.triste img {
-  margin-bottom: 100px;
-   margin-top: -500px;
-  animation: encoger 1s ease-in-out;
-}
+
 
 @keyframes saltar {
   0% { transform: translateY(0); }
