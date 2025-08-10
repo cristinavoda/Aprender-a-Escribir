@@ -167,7 +167,7 @@ button {
 
 .teclado-letras {
   display: grid;
-  grid-template-columns: repeat(7, 1fr); 
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px; 
   width: fit-content; 
   margin: 0 auto; 
@@ -176,7 +176,7 @@ button {
 }
 @media (min-width: 768px) {
   .teclado {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
   }
 }
 .teclado-letra {

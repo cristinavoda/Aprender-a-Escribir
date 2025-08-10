@@ -4,9 +4,8 @@
        <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
       
     <div v-if="isOpen" class="train-navbar">
-    <button class="locomotive" @click="$router.push('/Inicio')">
-🚂Inicio
-    </button>
+    <button class="locomotive" @click="$router.push('/')">
+🚂Inicio</button>
     <button @click="$router.push('/alfabeto')">🔤Alfabeto</button>
     <button @click="$router.push('/dibujar')">✏️Dibujar</button>
     <button @click="$router.push('/escribir')">Escribir</button>

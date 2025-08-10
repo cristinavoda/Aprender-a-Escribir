@@ -52,7 +52,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-feliz.png'
-
+ 
 
 
 

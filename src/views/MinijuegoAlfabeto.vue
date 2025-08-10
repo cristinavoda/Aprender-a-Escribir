@@ -36,43 +36,52 @@ const letters = [
     correct: { name: 'Árbol', src: './arbol.jpg' },
     wrong: [
       { name: 'Perro', src: './perro.jpg' },
-      { name: 'Coche', src: './coche.jpg' }
+      { name: 'Coche', src: './coche.png' }
     ],
     
   },
    {
     letter: 'B',
-    correct: { name: 'Banco', src: '/img/banco.png' },
+    correct: { name: 'Banco', src: './banco.jpg' },
     wrong: [
-      { name: 'Gato', src: '/img/gato.png' },
-      { name: 'Agua', src: '/img/agua.png' }
+      { name: 'Gato', src: './gato.jpg' },
+      { name: 'Agua', src: './agua.jpg' }
     ],
     
   },
   {
     letter: 'C',
-    correct: { name: 'Casa', src: '/img/casa.png' },
+    correct: { name: 'Casa', src: './casa.jpg' },
     wrong: [
-      { name: 'Manzana', src: '/img/manzana.png' },
-      { name: 'Tren', src: '/img/tren.png' }
+      { name: 'Manzana', src: './manzana.jpg' },
+      { name: 'Tren', src: './tren.jpg' }
     ],
     
   },
   {
     letter: 'D',
-    correct: { name: 'Dedo', src: '/img/dedo.png' },
+    correct: { name: 'Dedo', src: './dedo.jpg' },
     wrong: [
-      { name: 'Manzana', src: '/img/manzana.png' },
-      { name: 'Tren', src: '/img/tren.png' }
+      { name: 'Manzana', src: './manzana.jpg' },
+      { name: 'Tren', src: './tren.jpg' }
     ],
     
   },
   {
     letter: 'E',
-    correct: { name: 'Elefante', src: '/img/elefante.png' },
+    correct: { name: 'Elefante', src: './elefante.jpg' },
     wrong: [
-      { name: 'Manzana', src: '/img/manzana.png' },
-      { name: 'Tren', src: '/img/tren.png' }
+      { name: 'Manzana', src: './manzana.jpg' },
+      { name: 'Tren', src: './tren.jpg' }
+    ],
+    
+  },
+   {
+    letter: 'F',
+    correct: { name: 'Flor', src: './flores.jpg' },
+    wrong: [
+      { name: 'Coche', src: './coche.png' },
+      { name: 'Tren', src: './tren.jpg' }
     ],
     
   },
@@ -162,25 +171,27 @@ h1{background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 1rem 0; background: #ffffff;
+  margin: 1rem 0; 
+  background: #ffffff;
   border: transparent;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 .imagen {
+  flex: 1 1 100px; 
+  max-width: 250px;
+  height: 170px;
   border: 2px solid #c8bbf5;
-  box-shadow: #285175;
   padding: 1rem;
   border-radius: 1rem;
+  background: #fff;
   cursor: pointer;
-  transition: 0.3s;
-   box-shadow: 5px 5px 5px rgba(88, 8, 153, 0.2);
-   
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 5px 5px 5px rgba(88, 8, 153, 0.2);
+  text-align: center;
 }
 .imagen:hover {
   background-color: #f0f8ff;

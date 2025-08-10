@@ -13,7 +13,8 @@ import NivelAlfabeto from '../views/NivelAlfabeto.vue'
 import MinijuegoAlfabeto from '../views/MinijuegoAlfabeto.vue'
 import Desafio from '../views/Desafio.vue'
 const routes = [
- { path: '/inicio', name: 'Inicio', component: Inicio},
+   { path: '/', name: 'Inicio', component: Inicio },
+  { path: '/Inicio', name: 'InicioMayuscula', component: Inicio },
   { path: '/alfabeto', name: 'Alfabeto', component: Alfabeto },
   { path: '/seleccionar', name: 'Seleccionar', component: Seleccionar },
   { path: '/escribir', name: 'Escribir', component: Escribir },
