@@ -141,16 +141,26 @@ h2 {
 }
 @media (max-width: 768px) {
   .tecla {
-    width: 60px;
-    height: 45px;
+   width: 12vw;   
+    height: 8vw;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .tecla {
-    width: 50px;
-    height: 40px;
+  width: 14vw;
+    height: 10vw;
+    font-size: 0.9rem;
   }
+}
+.train-container {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 .tren{
   margin-top: 2rem;

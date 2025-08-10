@@ -305,12 +305,12 @@ const irAVistaEscribir = () => {
    box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
 }
 
-.limpiar-btn {
+.borrar-btn {
   margin-top: 10px;
-  background-color: #ff6666;
-  color: white;
+  background-color: #eedfdf;
+  color: rgb(255, 255, 255);
   padding: 0.5rem 1rem;
-  border: none;
+   border: transparent;
   border-radius: 10px;
   cursor: pointer;
 }
@@ -336,8 +336,9 @@ const irAVistaEscribir = () => {
   font-size: 1.2rem;
   padding: 0.6rem 1.2rem;
   background-color: #edeff0;
-  border: none;
+  border:#6752e2;
   border-radius: 10px;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   cursor: pointer;
 }
 .teclado {
@@ -354,13 +355,13 @@ display: grid;
   }
 }
 .tecla {
-  font-size: 4.2rem;
+  font-size: 1.2rem;
   padding: 0.4rem;
   color: blue;
   width: 95px;
   height: 65px;
-  border: 2px solid #87cbe2;
-  background-color: #d9d8f065;
+  border: 2px solid #6752e2;
+  background-color: #dadae665;
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;

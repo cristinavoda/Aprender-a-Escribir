@@ -33,11 +33,13 @@ function borrar() {
   margin-top: 20px;
 }
 .teclado button {
-  font-size: 3rem;
+  font-size: 2,5vw;
   padding: 0.4rem;
   color: blue;
-  width: 95px;
-  height: 65px;
+  width: 12vw;
+  height: 8vw;
+  min-width: 40px; 
+  min-height: 35px;
   border-color:#87cbe2;
   background-color: #d9d8f065;
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
@@ -46,16 +48,19 @@ function borrar() {
   
 }
 @media (max-width: 768px) {
-  .tecla {
-    width: 60px;
-    height: 45px;
+  .teclado button {
+    width: 12vw;
+    height: 8vw;
+    font-size: 1rem;
+    
   }
 }
 
 @media (max-width: 480px) {
-  .tecla {
-    width: 50px;
-    height: 40px;
+  .teclado button {
+    width: 14vw;
+    height: 10vw;
+    font-size: 0.9rem; 
   }
 }
 

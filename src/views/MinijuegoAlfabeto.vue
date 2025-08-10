@@ -33,16 +33,16 @@ import { ref, onMounted } from 'vue'
 const letters = [
   {
     letter: 'A',
-    correct: { name: 'Árbol', src: '/img/arbol.png' },
+    correct: { name: 'Árbol', src: './arbol.jpg' },
     wrong: [
-      { name: 'Perro', src: '/img/perro.png' },
-      { name: 'Coche', src: '/img/coche.png' }
+      { name: 'Perro', src: './perro.jpg' },
+      { name: 'Coche', src: './coche.jpg' }
     ],
     
   },
    {
     letter: 'B',
-    correct: { name: 'Baño', src: '/img/baño.png' },
+    correct: { name: 'Banco', src: '/img/banco.png' },
     wrong: [
       { name: 'Gato', src: '/img/gato.png' },
       { name: 'Agua', src: '/img/agua.png' }
@@ -52,6 +52,24 @@ const letters = [
   {
     letter: 'C',
     correct: { name: 'Casa', src: '/img/casa.png' },
+    wrong: [
+      { name: 'Manzana', src: '/img/manzana.png' },
+      { name: 'Tren', src: '/img/tren.png' }
+    ],
+    
+  },
+  {
+    letter: 'D',
+    correct: { name: 'Dedo', src: '/img/dedo.png' },
+    wrong: [
+      { name: 'Manzana', src: '/img/manzana.png' },
+      { name: 'Tren', src: '/img/tren.png' }
+    ],
+    
+  },
+  {
+    letter: 'E',
+    correct: { name: 'Elefante', src: '/img/elefante.png' },
     wrong: [
       { name: 'Manzana', src: '/img/manzana.png' },
       { name: 'Tren', src: '/img/tren.png' }
@@ -82,6 +100,8 @@ function checkAnswer(img) {
     synth.speak(utter)
     confetti()
     showNext.value = true
+    addVagon()
+    console.log("✅ Respuesta correcta, vagón añadido")
     emit('cambiarEstadoPersonaje', 'feliz')
   } else {
     const utter = new SpeechSynthesisUtterance('no, inténtalo de nuevo')
@@ -89,7 +109,13 @@ function checkAnswer(img) {
      emit('cambiarEstadoPersonaje', 'triste')
   }
 }
-
+const vagonesActivos = ref(0)
+function acertarRespuesta() {
+  vagonesActivos.value++
+}
+function addVagon() {
+  vagonesActivos.value++
+}
 function nextRound() {
   round.value++
   if (round.value < letters.length) {
@@ -107,7 +133,7 @@ function nextRound() {
 </script>
 
 <style scoped>
-.h1 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
+h1{background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -115,23 +141,36 @@ function nextRound() {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);}
+  text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
+}
+
+
 .minijuego {
     margin-top: -60px;
   text-align: center;
   padding: 2rem;
+  
 }
 .letra {
   margin-top: -40px;
   font-size: 4rem;
   color: darkcyan;
-}
+  text-shadow: 6px 2px 2px rgba(18, 35, 82, 0.459);}
+
 .imagenes {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin: 1rem 0; background: #ffffff;
+  border: transparent;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 .imagen {
   border: 2px solid #c8bbf5;
@@ -140,6 +179,8 @@ function nextRound() {
   border-radius: 1rem;
   cursor: pointer;
   transition: 0.3s;
+   box-shadow: 5px 5px 5px rgba(88, 8, 153, 0.2);
+   
 }
 .imagen:hover {
   background-color: #f0f8ff;
@@ -151,7 +192,12 @@ img {
 button {
   padding: 1rem 2rem;
   font-size: 1rem;
-  background-color: darkcyan;
+   background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 5px 2px 5px rgba(88, 8, 153, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: white;
   border: none;
   border-radius: 1rem;
