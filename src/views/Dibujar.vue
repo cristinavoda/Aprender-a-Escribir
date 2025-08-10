@@ -101,22 +101,26 @@ onMounted(() => {
       </button>
     </div>
   </div>
-  
-    <div class="train">
-      <div class="locomotive">🚂</div>
-      <div class="smoke"></div>
-      <div class="smoke"></div>
-       <div class="smoke"></div>
-       <div class="traffic-light">
+
+
+  <div class="train-container">
+    
+     <div class="traffic-light">
   <div class="light red"></div>
   <div class="light yellow"></div>
   <div class="light green"></div>
-  <div class="vagons"><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+  </div>
+
+  <div class="train">
+  <div class="locomotive">🚂</div>
+   <div class="smoke"></div>
+  <div class="vagons"><span class="vagon">🚃</span><span class="vagon">🚃</span><span class="vagon">🚃</span><span class="vagon">🚃</span>
         
       </div>
-    
+    </div>
 </div>
-</div>
+
+
 
     
 </template>
@@ -127,7 +131,7 @@ onMounted(() => {
 .trazar-container {
   text-align: center;
   padding: 1rem;
-  margin-top: 40px;
+  margin-top: 70px;
   margin-left: -40px;
   
 }
@@ -167,7 +171,7 @@ button {
 }
 .teclado-letras {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 columnas por defecto */
+  grid-template-columns: repeat(5, 1fr); 
   gap: 8px; 
   width: fit-content; 
   margin: 0 auto; 
@@ -211,12 +215,19 @@ button {
   cursor: pointer;
   box-shadow: 4px 4px 8px rgba(40, 14, 184, 0.842);
 }
-.train {
-  display: flex;
+.train-container {
+  position: relative;
+  
+  position: relative;
+  display:flex;
+  flex-direction:row;
   justify-content: center;
-  align-items: center;
-  margin: 2rem 0;
+  align-items:flex-end;
+  margin: 3rem 1rem;
+  height: 120px; 
 }
+
+
 
 .locomotive {
   font-size: 3rem;
@@ -229,7 +240,7 @@ button {
 
 .vagon {
   font-size: 2.5rem;
-  margin: 0 5px;
+  margin: 10px 15px;
 }
 .train {
   position: absolute;
@@ -252,8 +263,8 @@ button {
 }
 .traffic-light {
   position: absolute;
-  left: -70px;
-  bottom: 0px;
+  left: 30px;
+  bottom: 50px;
   width: 30px;
   background: #222;
   border: 2px solid #444;

@@ -149,7 +149,8 @@ function triggerConfetti() {
 
 <style scoped>
 
-h2 {background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
+h2 {
+  background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

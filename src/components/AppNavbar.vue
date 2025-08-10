@@ -1,27 +1,19 @@
 <template>
-  <nav class="navbar" ref="trainNavbarRef" >
-    <nav class="train-navbar v-show=isOpen || isDesktop">
-       <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
-      
-    <div v-if="isOpen" class="train-navbar">
-    <button class="locomotive" @click="$router.push('/')">
-🚂Inicio</button>
-    <button @click="$router.push('/alfabeto')">🔤Alfabeto</button>
-    <button @click="$router.push('/dibujar')">✏️Dibujar</button>
-    <button @click="$router.push('/escribir')">Escribir</button>
-    <button @click="$router.push('/puzzle')">🧩Puzzle</button>
-    <button @click="$router.push('/miniJuegoAlfabeto')">🎮Juego</button>
-    <button @click="$router.push('/desafio')">⭐Desafio</button>
-    <button @click="$router.push('/seleccionar')">📚Seleccionar</button>
-    <button @click="$router.push('/practicar')">🎁Practicar</button>
-    </div>  
+  <nav class="navbar" ref="trainNavbarRef">
+    <button class="toggle-btn" @click="toggleNavbar">🚂menu🚃🚃🚃</button>
+
+    <div class="train-navbar" v-show="isOpen || isDesktop">
+      <button class="locomotive" @click="$router.push('/')">🚂Inicio</button>
+      <button @click="$router.push('/alfabeto')">🔤Alfabeto</button>
+      <button @click="$router.push('/dibujar')">✏️Dibujar</button>
+      <button @click="$router.push('/escribir')">Escribir</button>
+      <button @click="$router.push('/puzzle')">🧩Puzzle</button>
+      <button @click="$router.push('/miniJuegoAlfabeto')">🎮Juego</button>
+      <button @click="$router.push('/desafio')">⭐Desafío</button>
+      <button @click="$router.push('/seleccionar')">📚Seleccionar</button>
+      <button @click="$router.push('/practicar')">🎁Practicar</button>
+    </div>
   </nav>
-   
-    
-    
-     
-  </nav>
-  
 </template>
 
 <script setup>
@@ -60,6 +52,18 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .toggle-btn {
+    border: none;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 5px 2px 5px rgba(88, 8, 153, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
   margin-top: 10px;
   
 

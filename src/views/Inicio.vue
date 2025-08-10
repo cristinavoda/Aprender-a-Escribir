@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <h1>🚂 Tren del Aprendizaje</h1>
-
+ <div class="tren-container">
     <div class="train">
       <div class="locomotive">🚂</div>
       <div class="smoke"></div>
@@ -12,14 +12,16 @@
   <div class="light yellow"></div>
   <div class="light green"></div>
 </div>
-
-
-      <div class="vagons">
+ <div class="vagons">
         <div v-for="(vagon, index) in niveles" :key="index" class="vagon">
           {{ vagon.emoji }}
         </div>
       </div>
     </div>
+    </div>
+
+
+
 <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -47,12 +49,78 @@
     </div>
     
   </div>
+
+
+  <div class="inicio">
+    <!-- Mapa del tren -->
+    <div class="mapa-tren">
+      <div
+        v-for="(parada, index) in paradas"
+        :key="index"
+        class="parada"
+        :class="{ activa: index === paradaActual }"
+      >
+         {{ parada }}
+      </div>
+    </div>
+
+    <!-- Próxima parada -->
+    <div class="proxima-parada">
+      <p>Próxima parada: <strong>{{ paradas[paradaActual] }}</strong></p>
+    </div>
+
+   
+
+    <!-- Botones -->
+    <div class="controles">
+      <button @click="anteriorParada" :disabled="paradaActual === 0">⬅️ Anterior</button>
+      <button @click="siguienteParada" :disabled="paradaActual === paradas.length - 1">➡️ Siguiente</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+
+const paradas = ref([
+'ESTACION CENTRAL',
+  'LETRAS',
+  'DIBUJAR LETRAS',
+  'ESCRIBIR PALABRAS',
+  'PUZZLE',
+  'ENCUENTRA LA LETRA',
+  'DESAFIO',
+'COPIA LA PALABRA',
+'PRACTICAR',
+'SU DESTINO'])
+
+// Estado de parada actual
+const paradaActual = ref(0)
+
+// Función siguiente
+const siguienteParada = () => {
+  if (paradaActual.value < paradas.value.length - 1) {
+    paradaActual.value++
+  }
+}
+
+// Función anterior
+const anteriorParada = () => {
+  if (paradaActual.value > 0) {
+    paradaActual.value--
+  }
+}
+
+// Avance automático cada 5 segundos
+onMounted(() => {
+  setInterval(() => {
+    if (paradaActual.value < paradas.value.length - 1) {
+      paradaActual.value++
+    }
+  }, 5000)
+})
 
 onMounted(() => {
   const utterance = new SpeechSynthesisUtterance("¡sube en el tren de las letras!");
@@ -102,6 +170,17 @@ function irAlNivelActual() {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   
 }
+.p {
+    background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 2px rgba(35, 160, 218, 0.459);
+}
 
 .train {
   display: flex;
@@ -128,7 +207,7 @@ function irAlNivelActual() {
   width: 100%;
   height: 120px;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 30px;
   margin-left: 10px;
 }
 
@@ -143,10 +222,12 @@ function irAlNivelActual() {
     #eee 5px 10px
   );
 }
-
+.tren-container{
+  top: 40px;
+}
 .train {
   position: absolute;
-  bottom: -30px;
+  bottom: 0px;
   font-size: 2rem;
   display: flex;
   align-items: center;
@@ -267,5 +348,61 @@ function irAlNivelActual() {
 .progreso {
   margin-top: 1rem;
   font-size: 1.2rem;
+}
+.inicio {
+  text-align: center;
+  font-family: sans-serif;
+  padding: 20px;
+}
+
+.mapa-tren {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.parada {
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  transition: background 0.3s;
+}
+
+.parada.activa {
+  background: darkcyan;
+  color: white;
+  font-weight: bold;
+}
+
+.proxima-parada {
+  background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 0 2px 2px rgba(35, 160, 218, 0.459);
+
+  margin-bottom: 10px;
+}
+
+
+
+.controles button {
+  padding: 8px 14px;
+  margin: 5px;
+  border: none;
+  border-radius: 8px;
+  background: darkcyan;
+  color: white;
+  cursor: pointer;
+}
+
+.controles button:disabled {
+  background: #e08d3fe5;
+  cursor: not-allowed;
 }
 </style>

@@ -44,6 +44,7 @@
 
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
+
 import Personaje from './components/Personaje.vue'
 import personaje from './assets/personaje.png'
 import personajeFeliz from './assets/personaje-feliz.png'

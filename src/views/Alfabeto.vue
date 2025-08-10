@@ -58,7 +58,8 @@ onMounted(() => {
 <div class="train-container">
   <div class="train-track">
     <div class="train">
-      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+       <div class="smoke"></div>
+      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
     </div>
   </div>
 </div>
@@ -156,23 +157,48 @@ h2 {
 }
 .train-container {
   position: relative;
+  display:flex;
+  flex-direction:row;
   width: 100%;
   height: 120px;
   overflow: hidden;
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 30px;
+  margin-left: 30px;
 }
-.tren{
-  margin-top: 2rem;
-  font-size: 3rem;
+.train-track {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  background: repeating-linear-gradient(
+    to right,
+    #333 0 5px,
+    #eee 5px 10px
+  );
+  margin-left: 0px;
+}
+.train {
+  position: absolute;
+  bottom: 30px;
+  font-size: 2rem;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 0.3rem;
+  animation: moveTrain 10s linear infinite;
 }
 
 .locomotora {
   animation: chuff 1s ease infinite;
+}
+.smoke {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #b10a34, transparent);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: puff 1.5s ease-in-out infinite;
 }
 .personaje.triste img {
   
@@ -192,6 +218,20 @@ h2 {
 @keyframes chuff {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-3px); }
+}
+@keyframes puff {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-10px, -30px) scale(1.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-20px, -60px) scale(2);
+    opacity: 0;
+  }
 }
 
 .vagon {
