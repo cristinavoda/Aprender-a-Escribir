@@ -155,51 +155,69 @@ h2 {
     font-size: 0.9rem;
   }
 }
-.train-container {
-  position: relative;
-  display:flex;
-  flex-direction:row;
-  width: 100%;
-  height: 120px;
-  overflow: hidden;
-  margin-top: 30px;
-  margin-left: 30px;
-}
-.train-track {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  background: repeating-linear-gradient(
-    to right,
-    #333 0 5px,
-    #eee 5px 10px
-  );
-  margin-left: 0px;
-}
-.train {
-  position: absolute;
-  bottom: 30px;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  animation: moveTrain 10s linear infinite;
-}
+ .train-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 30px;
+    border: 1px solid #ccc; /* para visualizar */
+  }
+  .train-track {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: repeating-linear-gradient(
+      to right,
+      #333 0 5px,
+      #eee 5px 10px
+    );
+  }
+  .train {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    animation: moveTrain 10s linear infinite;
+  }
+  .smoke {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #b10a34, transparent);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: puff 1.5s ease-in-out infinite;
+  }
 
-.locomotora {
-  animation: chuff 1s ease infinite;
-}
-.smoke {
-  position: absolute;
-  top: -30px;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  background: radial-gradient(circle, #b10a34, transparent);
-  border-radius: 50%;
-  opacity: 0.7;
-  animation: puff 1.5s ease-in-out infinite;
-}
+  @keyframes moveTrain {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-200px);
+    }
+  }
+
+  @keyframes puff {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-20px) scale(1);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-40px) scale(0.5);
+      opacity: 0;
+    }
+  }
 .personaje.triste img {
   
    margin-top: 10px;

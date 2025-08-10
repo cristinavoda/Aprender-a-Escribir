@@ -21,6 +21,7 @@
   <div class="tren-progreso">
   <span>🚂</span>
  <span v-for="n in vagonesActivos" :key="n" class="vagon activo">🚃</span>
+ 
 
 </div>
 </template>

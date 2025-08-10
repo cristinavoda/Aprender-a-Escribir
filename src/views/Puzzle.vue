@@ -28,6 +28,15 @@
       👉 Siguiente
     </button>
     </div>
+    <div class="train-container">
+  <div class="train-track">
+    <div class="train">
+       <div class="smoke"></div>
+      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script setup>
@@ -211,7 +220,7 @@ h2 {
   font-size: 1.2rem;
   width :150px;
   padding: 0.6rem 1.5rem;
-  background-color: #008b8b;
+  background-color: #146e6e;
   color: white;
   border: none;
   border-radius: 8px;
@@ -222,7 +231,7 @@ h2 {
 }
 
 .check-btn:disabled {
-  background-color: #ccc;
+  background-color: linear-gradient(145deg, #0f8aa8, #d4d4d4);
 }
 
 .correct {
@@ -246,7 +255,113 @@ h2 {
    margin-left: 180px;
 
 }
+
+.train-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 30px;
+    border: 1px solid #ccc; /* para visualizar */
+  }
+  .train-track {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: repeating-linear-gradient(
+      to right,
+      #333 0 5px,
+      #eee 5px 10px
+    );
+  }
+  .train {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    animation: moveTrain 10s linear infinite;
+  }
+  .smoke {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #b10a34, transparent);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: puff 1.5s ease-in-out infinite;
+  }
+
+  @keyframes moveTrain {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-200px);
+    }
+  }
+
+  
+
+.smoke {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #b10a34, transparent);
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: puff 1.5s ease-in-out infinite;
+}
+
+
+
 .personaje-feliz{
   margin-top: 100px;
+}
+
+.personaje.triste img {
+  
+   margin-top: 10px;
+  animation: encoger 1s ease-in-out;
+}
+
+
+
+
+  
+
+@keyframes chuff {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes puff {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(-10px, -30px) scale(1.5);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-20px, -60px) scale(2);
+    opacity: 0;
+  }
+}
+
+.vagon {
+  transform: scale(0.7);
+  transition: transform 0.3s ease, opacity 0.3s;
+}
+
+.vagon.activo {
+  transform: scale(1.1);
+  opacity: 1;
 }
 </style>
