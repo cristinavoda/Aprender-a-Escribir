@@ -128,6 +128,7 @@ onMounted(() => {
   text-align: center;
   padding: 1rem;
   margin-top: 40px;
+  margin-left: -40px;
   
 }
 
@@ -162,19 +163,38 @@ button {
   border: none;
   border-radius: 8px;
   
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  box-shadow: 6px 6px 9px rgba(44, 16, 201, 0.678);
 }
-
 .teclado-letras {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas por defecto */
   gap: 8px; 
   width: fit-content; 
   margin: 0 auto; 
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
-
+  box-shadow: 4px 7px 9px rgba(44, 16, 201, 0.678);
 }
-@media (min-width: 768px) {
+
+
+@media (min-width: 480px) {
+  .teclado-letras {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+button {
+  margin: 0.25rem;
+  background-color: #0097A7;
+  color: white;
+  font-size: 3rem;
+  height: 75px;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 6px 6px 9px rgba(44, 16, 201, 0.678);
+}
+
+
+@media (min-width: 480px) {
   .teclado {
     grid-template-columns: repeat(7, 1fr);
   }
