@@ -159,33 +159,64 @@ h2 {
 }
 .teclado {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
-  gap: 3px 1px; 
-  max-width: 600px; 
-  margin: 0 auto; 
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 10px;
 }
- @media (min-width: 768px) {
-  .teclado {
-    grid-template-columns: repeat(7, 1fr);
-  }}
+
 .teclado button {
   font-size: 2.2rem;
   padding: 0.4rem;
   color: blue;
   font-weight: bold;
   text-shadow: 2px 2px #80deea, 4px 4px rgba(0, 0, 0, 0.2);
- width: 12vw;   
-  height: 8vw;   
+  width: 12vw;
+  height: 8vw;
   max-width: 95px;
   max-height: 65px;
-  border-color:#87cbe2;
+  border: 2px solid #87cbe2;
   background-color: #d9d8f065;
   box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .teclado button {
+    width: 60px;
+    height: 45px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .teclado {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .teclado button {
+    width: 55px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
   
 }
+
+
+@media (max-width: 480px) {
+  .teclado button {
+    width: 50px;
+    height: 38px;
+    font-size: 1.6rem;
+  }
+}
+
+ @media (min-width: 768px) {
+  .teclado {
+    grid-template-columns: repeat(7, 1fr);
+  }}
 
 .delete {
   background-color: #f0d8d8;
@@ -206,19 +237,7 @@ h2 {
   font-size: 2.2rem;
   font-weight: bold;
 }
-@media (max-width: 768px) {
-  .tecla {
-    width: 60px;
-    height: 45px;
-  }
-}
 
-@media (max-width: 480px) {
-  .tecla {
-    width: 50px;
-    height: 40px;
-  }
-}
 @media (max-width: 600px) {
   .palabras-sugeridas {
     grid-template-columns: repeat(auto-fit)}}
