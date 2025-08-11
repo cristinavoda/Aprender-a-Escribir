@@ -43,6 +43,15 @@
 
     <p class="mensaje">{{ mensaje }}</p>
   </div>
+  <div class="train-container">
+  <div class="train-track">
+    <div class="train">
+       <div class="smoke"></div>
+      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
+    </div>
+  </div>
+</div>
+
 </template>
 
 <script setup>
@@ -183,7 +192,69 @@ h2 {
   cursor: pointer;
 }
 
+ .train-container {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    margin-top: 30px;
+    margin-left: 10px;
+    border: 1px solid #ccc; 
+  }
+  .train-track {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background: repeating-linear-gradient(
+      to right,
+      #c2e20a 0 5px,
+      #eee 5px 10px
+    );
+  }
+  .train {
+    position: absolute;
+    bottom: 30px;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    animation: moveTrain 10s linear infinite;
+  }
+  .smoke {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #b10a34, transparent);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: puff 1.5s ease-in-out infinite;
+  }
 
+  @keyframes moveTrain {
+    0% {
+      transform: translateX(100vw);
+    }
+    100% {
+      transform: translateX(-200px);
+    }
+  }
+
+  @keyframes puff {
+    0% {
+      transform: translateY(0) scale(0.5);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateY(-20px) scale(1);
+      opacity: 0.3;
+    }
+    100% {
+      transform: translateY(-40px) scale(0.5);
+      opacity: 0;
+    }
+  }
 @media (max-width: 768px) {
   .teclado button {
     width: 60px;

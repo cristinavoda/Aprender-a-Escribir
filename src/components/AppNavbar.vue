@@ -6,7 +6,7 @@
       <button class="locomotive" @click="$router.push('/')">🚂Inicio</button>
       <button @click="$router.push('/alfabeto')">🔤Alfabeto</button>
       <button @click="$router.push('/dibujar')">✏️Dibujar</button>
-      <button @click="$router.push('/escribir')">Escribir</button>
+      <button @click="$router.push('/escribir')">🖍️Escribir</button>
       <button @click="$router.push('/puzzle')">🧩Puzzle</button>
       <button @click="$router.push('/miniJuegoAlfabeto')">🎮Juego</button>
       <button @click="$router.push('/desafio')">⭐Desafío</button>
@@ -21,13 +21,23 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const isOpen = ref(false);
 const trainNavbarRef = ref(null);
+let closeTimer = null; 
 const toggleNavbar = () => {
-  isOpen.value = !isOpen.value
-}
+  isOpen.value = !isOpen.value;
+
+  
+  if (isOpen.value) {
+    clearTimeout(closeTimer); 
+    closeTimer = setTimeout(() => {
+      isOpen.value = false;
+    }, 5000); 
+  }
+};
 
 const closeMenu = () => {
-  isOpen.value = false
-}
+  isOpen.value = false;
+  clearTimeout(closeTimer); 
+};
 
 
 
@@ -55,7 +65,7 @@ onBeforeUnmount(() => {
     border: none;
   padding: 0.75rem 1rem;
   margin: 0;
-  background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  background: linear-gradient(145deg,#176fd4, #d4d4d4);
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
@@ -65,7 +75,7 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 0.3rem;
   margin-top: 10px;
-  
+  color:#ffffff;
 
 }
 nav {
@@ -101,7 +111,8 @@ nav {
   border: none;
   padding: 0.75rem 1rem;
   margin: 0;
-  background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  background: linear-gradient(145deg, #f6f9fa, #176fd4);
+  color: #ffffff;
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
@@ -114,7 +125,7 @@ nav {
 
 .train-navbar button.locomotive {
   font-weight: bold;
-  background: linear-gradient(145deg, #44cde6, #c0c0c0);
+  background: linear-gradient(145deg, #176fd4, #c0c0c0);
 }
 
 .train-navbar button:hover {
@@ -129,7 +140,7 @@ nav {
 
 .navbar a {
   display: inline;
-  color: #2b08f1;
+  color: #3913d3;
   text-decoration: none;
 }
 .router-link-exact-active {

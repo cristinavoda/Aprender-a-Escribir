@@ -76,7 +76,8 @@ onMounted(() => {
   max-width: 600px;
   margin-top: 60px;           
   padding: 1px;       
-  text-align: left;    
+  text-align: left;  
+  margin-left: -10px;;  
 }
 
 h2 {
@@ -161,17 +162,17 @@ h2 {
     height: 120px;
     overflow: hidden;
     margin-top: 30px;
-    margin-left: 30px;
-    border: 1px solid #ccc; /* para visualizar */
+    margin-left: 10px;
+    border: 1px solid #ccc; 
   }
   .train-track {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 30px;
     background: repeating-linear-gradient(
       to right,
-      #333 0 5px,
+      #c2e20a 0 5px,
       #eee 5px 10px
     );
   }

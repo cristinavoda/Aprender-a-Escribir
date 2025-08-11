@@ -52,7 +52,7 @@
 
 
   <div class="inicio">
-    <!-- Mapa del tren -->
+    
     <div class="mapa-tren">
       <div
         v-for="(parada, index) in paradas"
@@ -64,14 +64,14 @@
       </div>
     </div>
 
-    <!-- Próxima parada -->
+  
     <div class="proxima-parada">
       <p>Próxima parada: <strong>{{ paradas[paradaActual] }}</strong></p>
     </div>
 
    
 
-    <!-- Botones -->
+    
     <div class="controles">
       <button @click="anteriorParada" :disabled="paradaActual === 0">⬅️ Anterior</button>
       <button @click="siguienteParada" :disabled="paradaActual === paradas.length - 1">➡️ Siguiente</button>
@@ -96,24 +96,22 @@ const paradas = ref([
 'PRACTICAR',
 'SU DESTINO'])
 
-// Estado de parada actual
-const paradaActual = ref(0)
 
-// Función siguiente
+const paradaActual = ref(0)
 const siguienteParada = () => {
   if (paradaActual.value < paradas.value.length - 1) {
     paradaActual.value++
   }
 }
 
-// Función anterior
+
 const anteriorParada = () => {
   if (paradaActual.value > 0) {
     paradaActual.value--
   }
 }
 
-// Avance automático cada 5 segundos
+
 onMounted(() => {
   setInterval(() => {
     if (paradaActual.value < paradas.value.length - 1) {
@@ -215,10 +213,10 @@ function irAlNivelActual() {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 100px;
+  height: 30px;
   background: repeating-linear-gradient(
     to right,
-    #333 0 5px,
+    #da920c86 0 5px,
     #eee 5px 10px
   );
 }

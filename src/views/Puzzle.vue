@@ -269,10 +269,10 @@ h2 {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 30px;
     background: repeating-linear-gradient(
       to right,
-      #333 0 5px,
+      #44bebe 0 5px,
       #eee 5px 10px
     );
   }
