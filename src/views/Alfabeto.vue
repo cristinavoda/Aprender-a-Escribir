@@ -163,11 +163,11 @@ h2 {
     overflow: hidden;
     margin-top: 30px;
     margin-left: 10px;
-    border: 1px solid #ccc; 
+    border: none; 
   }
   .train-track {
     position: absolute;
-    bottom: 0;
+    bottom: -10px;
     width: 100%;
     height: 30px;
     background: repeating-linear-gradient(
@@ -178,8 +178,8 @@ h2 {
   }
   .train {
     position: absolute;
-    bottom: 30px;
-    font-size: 2rem;
+    bottom: 10px;
+    font-size: 3rem;
     display: flex;
     align-items: center;
     animation: moveTrain 10s linear infinite;

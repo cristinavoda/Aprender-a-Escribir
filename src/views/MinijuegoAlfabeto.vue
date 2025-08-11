@@ -191,7 +191,7 @@ h1{background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
   background: #fff;
   cursor: pointer;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 5px 5px 5px rgba(88, 8, 153, 0.2);
+  box-shadow: 8px 8px 8px rgba(88, 8, 153, 0.2);
   text-align: center;
 }
 .imagen:hover {

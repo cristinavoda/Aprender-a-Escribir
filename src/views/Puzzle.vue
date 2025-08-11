@@ -176,7 +176,8 @@ h2 {
   gap: 1rem; 
   text-align: center;
   max-width: 600px;
-  margin:auto;
+  margin-top:50px;
+  margin-left:10 px;
   padding: 1.5rem;
   text-align: center;
 }
@@ -259,17 +260,17 @@ h2 {
 .train-container {
     position: relative;
     width: 100%;
-    height: 120px;
+    height: 170px;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-left: 30px;
-    border: 1px solid #ccc; /* para visualizar */
+    border:transparent;
   }
   .train-track {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 30px;
+    height: 20px;
     background: repeating-linear-gradient(
       to right,
       #44bebe 0 5px,
@@ -279,17 +280,17 @@ h2 {
   .train {
     position: absolute;
     bottom: 30px;
-    font-size: 2rem;
+    font-size: 3rem;
     display: flex;
     align-items: center;
     animation: moveTrain 10s linear infinite;
   }
   .smoke {
     position: absolute;
-    top: -30px;
-    left: 0;
-    width: 20px;
-    height: 20px;
+    top: -190px;
+    left: -150px;
+    width: 40px;
+    height: 40px;
     background: radial-gradient(circle, #b10a34, transparent);
     border-radius: 50%;
     opacity: 0.7;
@@ -328,7 +329,9 @@ h2 {
 .personaje.triste img {
   
    margin-top: 10px;
-  animation: encoger 1s ease-in-out;
+  animation: encoger 2s ease-in-out;
+  
+
 }
 
 

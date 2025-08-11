@@ -138,8 +138,8 @@ const router = useRouter()
 
 
 const niveles = [
-  { nombre: 'Alfabeto', emoji: '🔤', ruta: '/nivel-alfabeto' },
-  { nombre: 'Dibujar letras', emoji: '✏️', ruta: '/nivel-dibujar' },
+  { nombre: 'Alfabeto', emoji: '🔤', ruta: './alfabeto' },
+  { nombre: 'Dibujar letras', emoji: '✏️', ruta: './dibujar' },
   { nombre: 'Escribir palabras', emoji: '📚', ruta: '/nivel-escribir' },
   { nombre: 'Puzzle', emoji: '🧩', ruta: '/nivel-puzzle' },
   { nombre: 'Juego', emoji: '🧩', ruta: '/nivel-juego' },
@@ -188,7 +188,7 @@ function irAlNivelActual() {
 }
 
 .locomotive {
-  font-size: 3rem;
+  font-size: 4rem;
   margin-right: 10px;
 }
 
@@ -197,7 +197,7 @@ function irAlNivelActual() {
 }
 
 .vagon {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin: 0 5px;
 }
 .train-container {
@@ -226,7 +226,7 @@ function irAlNivelActual() {
 .train {
   position: absolute;
   bottom: 0px;
-  font-size: 2rem;
+  font-size: 3rem;
   display: flex;
   align-items: center;
   animation: moveTrain 10s linear infinite;
