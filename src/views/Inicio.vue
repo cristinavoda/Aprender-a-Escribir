@@ -33,12 +33,12 @@
     <p class="nivel-text">Nivel actual: {{ niveles[nivelActual].nombre }}</p>
 
     <button class="start-button" @click="irAlNivelActual">
-      👉 Entrar al Nivel Actual
+      👉 Primera parada Alfabeto
     </button>
  <div>
     
     <router-link to="/alfabeto">
-      <button>🚂 Empezar Nivel Alfabeto</button>
+     
     </router-link>
   </div>
     <div class="progreso">
@@ -85,16 +85,16 @@ import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
 
 const paradas = ref([
-'ESTACION CENTRAL',
-  'LETRAS',
-  'DIBUJAR LETRAS',
-  'ESCRIBIR PALABRAS',
-  'PUZZLE',
-  'ENCUENTRA LA LETRA',
-  'DESAFIO',
-'COPIA LA PALABRA',
-'PRACTICAR',
-'SU DESTINO'])
+'🏢Estacion Central',
+  '🔤Letras',
+  '✏️Dibujar letras',
+  '🖍️Escribir palabras',
+  '🧩Puzzle',
+  '🎮Encuentra la letra',
+  '⭐Desafio',
+'📚Copia la palabra',
+'🎁Practicar',
+'🏅Su destino'])
 
 
 const paradaActual = ref(0)
@@ -121,7 +121,7 @@ onMounted(() => {
 })
 
 onMounted(() => {
-  const utterance = new SpeechSynthesisUtterance("¡sube en el tren de las letras!");
+  const utterance = new SpeechSynthesisUtterance("¡sube en el tren de las letras con tus amigos Robi y Leo y vamos a divertirnos y aprender el alfabeto!");
   utterance.lang = 'es-ES';
   utterance.pitch = 1;
   utterance.rate = 0.9;
@@ -363,8 +363,9 @@ function irAlNivelActual() {
 .parada {
   padding: 8px 12px;
   border-radius: 8px;
-  background: linear-gradient(145deg, #0f8aa8, #d4d4d4);
+  background: linear-gradient(145deg, #f8f9fa, #f1f7f8);
   transition: background 0.3s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.432);
 }
 
 .parada.activa {

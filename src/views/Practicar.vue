@@ -65,6 +65,7 @@
       <button @click="deleteLetter" class="key delete">⌫</button>
     </div>
   </div>
+  <BotonProximaParada nombre="Su destino" ruta="/practicar" />
   <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -82,6 +83,8 @@ import Referencia from './Referencia.vue'
 import Escribir from './Escribir.vue'
 import { defineEmits } from 'vue'
 import Teclado from '../components/Teclado.vue'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
+
 
 const emit = defineEmits(['input'])
 

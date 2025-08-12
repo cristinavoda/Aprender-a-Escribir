@@ -14,7 +14,7 @@
         <p>{{ img.name }}</p>
       </div>
     </div>
-
+ <BotonProximaParada nombre="Desafio" ruta="/desafio" />
     <button @click="nextRound" v-if="showNext">Siguiente</button>
   </div>
    
@@ -30,6 +30,8 @@
 <script setup>
 import confetti from 'canvas-confetti'
 import { ref, onMounted } from 'vue'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
+
 
 const letters = [
   {
@@ -156,7 +158,7 @@ h1{background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
 
 
 .minijuego {
-    margin-top: -60px;
+    margin-top: 0px;
   text-align: center;
   padding: 2rem;
   

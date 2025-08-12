@@ -28,6 +28,9 @@
       👉 Siguiente
     </button>
     </div>
+
+    <BotonProximaParada nombre="Encuentra la letra" ruta="/miniJuegoAlfabeto" />
+    
     <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -42,6 +45,7 @@
 <script setup>
 import { ref,computed, onMounted } from 'vue'
 import confetti from 'canvas-confetti'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
 
 
 const words = ref(['TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']); 

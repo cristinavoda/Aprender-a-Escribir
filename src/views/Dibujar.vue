@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import BotonProximaParada from '../components/BotonProximaParada.vue'
 const letras = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
   'I', 'J', 'K', 'L', 'M', 'N', 'Ñ', 'O',
@@ -102,7 +102,7 @@ onMounted(() => {
     </div>
   </div>
 
-
+ <BotonProximaParada nombre="Escribir Palabras" ruta="/escribir" />
   <div class="train-container">
     
      <div class="traffic-light">
@@ -118,6 +118,7 @@ onMounted(() => {
         
       </div>
     </div>
+    
 </div>
 
 
@@ -335,6 +336,16 @@ button {
   100% {
     right: 100%;
   }
+}
+.proxima-parada button {
+  padding: 0.8rem 1.2rem;
+  background: #4caf50;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+
 }
 
 </style>

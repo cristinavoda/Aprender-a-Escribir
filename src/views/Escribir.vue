@@ -43,6 +43,8 @@
 
     <p class="mensaje">{{ mensaje }}</p>
   </div>
+
+   <BotonProximaParada nombre="Puzzle" ruta="/puzzle" /> 
   <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -57,7 +59,7 @@
 <script setup>
 import { ref, watch, onMounted } from 'vue'
 import confetti from 'canvas-confetti'
-
+import BotonProximaParada from '../components/BotonProximaParada.vue'
 const palabras = ['SI','NO','QUIERO','ALFABETO','MUSICA','COMER','ENFERMO','ENFADADO','GATO', 'PERRO', 'CASA', 'NUBE','TREN','ROBERT','MOVIL','KINDER','CASA','AGUA','COMER','CANSADO','PASEO','CAMA','MOVIL','AURICULARES', 'AVION', 'BARCO', 'GATO', 'PERRO','LECHE','MANZANA']
 
 

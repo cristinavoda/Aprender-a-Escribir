@@ -8,9 +8,9 @@
       <button @click="$router.push('/dibujar')">✏️Dibujar</button>
       <button @click="$router.push('/escribir')">🖍️Escribir</button>
       <button @click="$router.push('/puzzle')">🧩Puzzle</button>
-      <button @click="$router.push('/miniJuegoAlfabeto')">🎮Juego</button>
+      <button @click="$router.push('/miniJuegoAlfabeto')">🎮Encuentra la letra</button>
       <button @click="$router.push('/desafio')">⭐Desafío</button>
-      <button @click="$router.push('/seleccionar')">📚Seleccionar</button>
+      <button @click="$router.push('/seleccionar')">📚Copia la letra</button>
       <button @click="$router.push('/practicar')">🎁Practicar</button>
     </div>
   </nav>
@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
     border: none;
   padding: 0.75rem 1rem;
   margin: 0;
-  background: linear-gradient(145deg,#176fd4, #d4d4d4);
+  background: linear-gradient(145deg,#0268dd, #d4d4d4);
   border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;

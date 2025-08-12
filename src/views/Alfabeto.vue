@@ -4,7 +4,7 @@ import Personaje from '../components/Personaje.vue'
 import imagenFeliz from '../assets/personaje-feliz.png'
 import imagenTriste from '../assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
-
+import BotonProximaParada from '../components/BotonProximaParada.vue'
 const letter = ref('')
 const inputRef = ref(null)
 
@@ -54,6 +54,7 @@ onMounted(() => {
         {{ ltr }}
       </button>
     </div>
+    <BotonProximaParada nombre="Dibujar letras" ruta="/dibujar" />
       </div>
 <div class="train-container">
   <div class="train-track">
@@ -62,19 +63,21 @@ onMounted(() => {
       🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
     </div>
   </div>
+  
 </div>
 
   
 </template>
 
 <style scoped>
-.alfabeto-container {
+
+alfabeto-container {
   display: flex;
   flex-direction: column;
   gap: 1rem; 
   text-align: center;
   max-width: 600px;
-  margin-top: 60px;           
+  margin-top: 120px;           
   padding: 1px;       
   text-align: left;  
   margin-left: -10px;;  
@@ -103,7 +106,7 @@ h2 {
   width: 150px;
   height: 150px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin: 20px;
   pointer-events: none; 
   background-color: #d9d8f065;
@@ -161,7 +164,7 @@ h2 {
     width: 100%;
     height: 120px;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 60px;
     margin-left: 10px;
     border: none; 
   }
@@ -271,6 +274,18 @@ h2 {
     margin-top: 50px;
   }
 }
+.proxima-parada button {
+  padding: 0.8rem 1.2rem;
+   background-color: #0a78ace1;
+ 
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  
+}
+
 
 
 </style>

@@ -27,7 +27,7 @@
     </div>
 
     <button class="nueva-letra" @click="nuevaRonda">Siguiente Letra 🔁</button>
-    
+   <BotonProximaParada nombre="Copia la palabra" ruta="/seleccionar" />  
   </div>
   <div class="tren-progreso">
   <span>🚂</span>
@@ -40,6 +40,8 @@
 <script setup>
 import { ref,computed } from 'vue'
 import confetti from 'canvas-confetti'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
+
 
 const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const currentLetter = ref('A')

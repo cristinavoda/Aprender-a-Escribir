@@ -90,6 +90,7 @@
     >
       Siguiente ➡️
     </button>
+    <BotonProximaParada nombre="Practicar" ruta="/practicar" />
   <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -107,6 +108,8 @@ import { useRouter } from 'vue-router'
 import { useSelectionStore } from '../stores/useSelectionStore'
 import Teclado from '../components/Teclado.vue'
 import { watch } from 'vue'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
+
 
  function agregarLetra(letra) {
   if (letra === 'BORRAR') {
@@ -313,15 +316,7 @@ const irAVistaEscribir = () => {
    box-shadow: 5px 4px 5px rgba(63, 44, 173, 0.678);
 }
 
-.borrar-btn {
-  margin-top: 10px;
-  background-color: #eedfdf;
-  color: rgb(255, 255, 255);
-  padding: 0.5rem 1rem;
-   border: transparent;
-  border-radius: 10px;
-  cursor: pointer;
-}
+
 
 .word-input {
    width: fit-content;
@@ -339,7 +334,14 @@ const irAVistaEscribir = () => {
 
   
 }
-
+.acciones-button
+{font-size: 1.2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #edeff0;
+  border:#6752e2;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  cursor: pointer;}
 .next-button {
   font-size: 1.2rem;
   padding: 0.6rem 1.2rem;
@@ -352,6 +354,7 @@ const irAVistaEscribir = () => {
 .teclado {
 display: grid;
   grid-template-columns: repeat(5, 1fr); 
+  font-size: 2rem;
   gap: 8px; 
   max-width: 600px; 
   margin: 0 auto; 
@@ -363,7 +366,7 @@ display: grid;
   }
 }
 .tecla {
-  font-size: 1.2rem;
+  font-size: 2rem;
   padding: 0.4rem;
   color: blue;
   width: 95px;
