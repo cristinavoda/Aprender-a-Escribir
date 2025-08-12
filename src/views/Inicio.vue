@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <h1>🚂 Tren del Aprendizaje</h1>
+    <h1> Tren del Aprendizaje🚂🚃🚃🚃</h1>
  <div class="tren-container">
     <div class="train">
       <div class="locomotive">🚂</div>
@@ -22,13 +22,6 @@
 
 
 
-<div class="train-container">
-  <div class="train-track">
-    <div class="train">
-      🚂 <span class="wagon">🚃</span><span class="wagon">🚃</span><span class="wagon">🚃</span>
-    </div>
-  </div>
-</div>
 
     <p class="nivel-text">Nivel actual: {{ niveles[nivelActual].nombre }}</p>
 
