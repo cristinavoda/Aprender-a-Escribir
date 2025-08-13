@@ -47,15 +47,16 @@
   <div class="inicio">
     
     <div class="mapa-tren">
-      <div
-        v-for="(parada, index) in paradas"
-        :key="index"
-        class="parada"
-        :class="{ activa: index === paradaActual }"
-         @click="irAParada(parada)"
-      >
-         {{ parada }}
-      </div>
+    <div
+  v-for="(parada, index) in paradas"
+  :key="index"
+  class="parada"
+  :class="{ activa: index === paradaActual }"
+  @click="irAParada(parada)"
+>
+  {{ parada.nombre }}
+</div>
+
     </div>
 
   
@@ -155,6 +156,7 @@ function irAlNivelActual() {
   const ruta = niveles[nivelActual.value].ruta
   router.push(ruta)
 }
+
 </script>
 
 <style scoped>
