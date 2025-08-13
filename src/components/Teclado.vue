@@ -19,6 +19,12 @@ function escribir(letra) {
   emit('input', letra)
 }
 
+function presionar(letra) {
+  emit('input', letra)
+  
+  const audio = new Audio('/click-sound.mp3') 
+  audio.play()
+}
 function borrar() {
   emit('input', 'BORRAR')
 }
@@ -32,6 +38,11 @@ function borrar() {
   gap: 10px;
   margin-top: 20px;
 }
+.teclado ::v-deep button {
+  font-size: 4vw;
+  min-width: 40px;
+  min-height: 35px;
+}
 .teclado button {
   font-size: 2,5vw;
   padding: 0.4rem;
@@ -40,9 +51,9 @@ function borrar() {
   height: 8vw;
   min-width: 40px; 
   min-height: 35px;
-  border-color:#87cbe2;
+  border-color:#33add6;
   background-color: #d9d8f065;
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  box-shadow: 6px 6px 6px rgba(44, 16, 201, 0.678);
   border-radius: 8px;
   cursor: pointer;
   

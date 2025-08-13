@@ -19,8 +19,7 @@
 
      <div class="acciones"> 
   <input v-model="word" type="text" class="word-input" placeholder="Escribe la palabra" />
-  <button class="btn" @click="deleteLetter">Borrar ⌫</button>
-  <button class="btn" @click="checkInput">Comprobar ✔️</button>
+ <button class="btn" @click="checkInput">Comprobar ✔️</button>
   <button class="btn" @click="speak(palabraActual)">🔊 Escuchar palabra</button>
 </div>
 
@@ -225,7 +224,42 @@ if (nivel.value === palabras.length - 1 && respuesta === correcta) {
 
 }
 .mensaje { font-weight: bold; margin-top: 1rem; font-size: 1.2rem; }
-.teclado { margin-top: 1rem; font-size: 2.2rem;}
+.teclado {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.teclado-button {
+  font-size: 2.5vw;
+  padding: 0.4rem;
+  color: blue;
+  width: 12vw;
+  height: 8vw;
+  min-width: 40px; 
+  min-height: 35px;
+  border: 2px solid #093d8a;
+  background-color: #d9d8f065;
+  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media (max-width: 480px) {
+  .teclado-button {
+    font-size: 4vw;
+    width: 18vw;
+    height: 12vw;
+  }
+}
+
 .confetti-container {
   position: absolute;
   top: 0;
