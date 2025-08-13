@@ -23,7 +23,7 @@
 
 
 
-    <p class="nivel-text">Nivel actual: {{ niveles[nivelActual].nombre }}</p>
+<!--  <p class="nivel-text">Nivel actual: {{ niveles[nivelActual].nombre }}</p>
 
     <button class="start-button" @click="irAlNivelActual">
       👉 Primera parada Alfabeto
@@ -33,7 +33,7 @@
     <router-link to="/alfabeto">
      
     </router-link>
-  </div>
+  </div>-->
     <div class="progreso">
       Progreso:
       <span v-for="n in 5" :key="n">
@@ -52,13 +52,14 @@
         :key="index"
         class="parada"
         :class="{ activa: index === paradaActual }"
+         @click="irAParada(parada)"
       >
          {{ parada }}
       </div>
     </div>
 
   
-    <div class="proxima-parada">
+   <!--  <div class="proxima-parada">
       <p>Próxima parada: <strong>{{ paradas[paradaActual] }}</strong></p>
     </div>
 
@@ -68,7 +69,8 @@
     <div class="controles">
       <button @click="anteriorParada" :disabled="paradaActual === 0">⬅️ Anterior</button>
       <button @click="siguienteParada" :disabled="paradaActual === paradas.length - 1">➡️ Siguiente</button>
-    </div>
+    </div>-->
+
   </div>
 </template>
 
@@ -76,18 +78,22 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+import BotonProximaParada from '../components/BotonProximaParada.vue'
+
+function irAParada(parada) {
+  router.push(parada.ruta)
+}
 
 const paradas = ref([
-'🏢Estacion Central',
-  '🔤Letras',
-  '✏️Dibujar letras',
-  '🖍️Escribir palabras',
-  '🧩Puzzle',
-  '🎮Encuentra la letra',
-  '⭐Desafio',
-'📚Copia la palabra',
-'🎁Practicar',
-'🏅Su destino'])
+  { nombre: '🏢 Estación Central', ruta: '/' },
+  { nombre: '🔤 Alfabeto', ruta: '/alfabeto' },
+  { nombre: '✏️ Dibujar letras', ruta: '/dibujar' },
+  { nombre: '🖍️ Escribir palabras', ruta: '/escribir' },
+  { nombre: '🧩 Puzzle', ruta: '/puzzle' },
+  { nombre: '🎮 Juego', ruta: '/juego' },
+  { nombre: '⭐ Desafío', ruta: '/desafio' },
+  { nombre: '🎁 Practicar y recompensas', ruta: '/practicar' }
+])
 
 
 const paradaActual = ref(0)
@@ -103,7 +109,6 @@ const anteriorParada = () => {
     paradaActual.value--
   }
 }
-
 
 onMounted(() => {
   setInterval(() => {
@@ -312,7 +317,7 @@ function irAlNivelActual() {
 }
 
 .start-button {
-  margin-top: 1.5rem;
+  margin-top: 0,5rem;
   padding: 12px 24px;
   font-size: 1.2rem;
   background-color: #ffa726;
@@ -327,7 +332,7 @@ function irAlNivelActual() {
   background-color: #fb8c00;
 }
 .home-container
-.buton {margin-top: 1.5rem;
+.buton {margin-top: 1rem;
   padding: 12px 24px;
   font-size: 1.2rem;
   background-color: #ffa726;

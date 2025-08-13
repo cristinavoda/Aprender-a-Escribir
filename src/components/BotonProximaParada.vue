@@ -2,8 +2,8 @@
 import { useRouter } from 'vue-router'
 
 const props = defineProps({
-  nombre: String, // Nombre de la parada
-  ruta: String // Ruta a la que va
+  nombre: String, 
+  ruta: String 
 })
 
 const router = useRouter()
@@ -18,7 +18,7 @@ function irALaParada() {
   speak(`Próxima parada: ${props.nombre}`)
   setTimeout(() => {
     router.push(props.ruta)
-  }, 1500) // Espera a que suene un poco la voz
+  }, 1500) 
 }
 </script>
 
