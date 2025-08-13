@@ -91,10 +91,13 @@ const paradas = ref([
   { nombre: '✏️ Dibujar letras', ruta: '/dibujar' },
   { nombre: '🖍️ Escribir palabras', ruta: '/escribir' },
   { nombre: '🧩 Puzzle', ruta: '/puzzle' },
-  { nombre: '🎮 Juego', ruta: '/juego' },
+  { nombre: '🎮 Encuentra la palabra', ruta: '/miniJuegoAlfabeto' },
   { nombre: '⭐ Desafío', ruta: '/desafio' },
-  { nombre: '🎁 Practicar y recompensas', ruta: '/practicar' }
+  { nombre: '🎮 Copia la palabra', ruta: '/seleccionar' },
+  { nombre: '🎁 Practicar y recompensas', ruta: '/practicar' },
+  { nombre: '🏆Tu destino', ruta: '/practicar' }
 ])
+
 
 
 const paradaActual = ref(0)
@@ -139,10 +142,11 @@ const router = useRouter()
 const niveles = [
   { nombre: 'Alfabeto', emoji: '🔤', ruta: './alfabeto' },
   { nombre: 'Dibujar letras', emoji: '✏️', ruta: './dibujar' },
-  { nombre: 'Escribir palabras', emoji: '📚', ruta: '/nivel-escribir' },
-  { nombre: 'Puzzle', emoji: '🧩', ruta: '/nivel-puzzle' },
-  { nombre: 'Juego', emoji: '🧩', ruta: '/nivel-juego' },
+  { nombre: 'Escribir palabras', emoji: '📚', ruta: './escribir' },
+  { nombre: 'Puzzle', emoji: '🧩', ruta: './puzzle' },
+  { nombre: 'Encuentra la letra', emoji: '🧩', ruta: './miniJuegoAlfabeto' },
   { nombre: 'Desafio', emoji: '🧩', ruta: '/nivel-desafio' },
+   { nombre: 'Copia la palabra', emoji: '🧩', ruta: './seleccionar' },
   
 
   { nombre: 'Practicar y recompensas', emoji: '🎁', ruta: '/nivel-practicar' }
@@ -352,10 +356,10 @@ function irAlNivelActual() {
   font-family: sans-serif;
   padding: 20px;
 }
-
 .mapa-tren {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; 
   gap: 10px;
   margin-bottom: 15px;
 }
@@ -364,8 +368,16 @@ function irAlNivelActual() {
   padding: 8px 12px;
   border-radius: 8px;
   background: linear-gradient(145deg, #f8f9fa, #f1f7f8);
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.432);
+  min-width: 120px; 
+  height: auto;
+  text-align: center;
+  cursor: pointer;
+}
+
+.parada:hover {
+  transform: scale(1.05); 
 }
 
 .parada.activa {
@@ -373,6 +385,25 @@ function irAlNivelActual() {
   color: white;
   font-weight: bold;
 }
+
+
+@media (max-width: 768px) {
+  .parada {
+    padding: 6px 10px;
+    min-width: 100px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .parada {
+    padding: 4px 8px;
+    min-width: 80px;
+    font-size: 0.8rem;
+  }
+}
+
+
 
 .proxima-parada {
   background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
