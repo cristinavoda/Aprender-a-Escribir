@@ -9,6 +9,7 @@ import Letras from '../views/Letras.vue'
 import Referencia from '../views/Referencia.vue'
 import Practicar from '../views/Practicar.vue'
 import Teclado from '../components/Teclado.vue'
+import diploma from '../components/diploma.vue'
 import NivelAlfabeto from '../views/NivelAlfabeto.vue'
 import MinijuegoAlfabeto from '../views/MinijuegoAlfabeto.vue'
 import Desafio from '../views/Desafio.vue'
@@ -24,6 +25,7 @@ const routes = [
   { path: '/practicar', name: 'Practicar', component: Practicar },
   { path: '/referencia', name: 'Referencia', component: Referencia },
   { path: '/teclado', name: 'Teclado', component: Teclado },
+    { path: '/diploma', name: 'diploma', component: diploma },
   {path: '/nivel-alfabeto',name: 'NivelAlfabeto', component: NivelAlfabeto},
   { path: '/minijuegoalfabeto', component: MinijuegoAlfabeto },
   { path: '/desafio',  name: 'Desafio',component: Desafio }

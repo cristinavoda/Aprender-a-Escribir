@@ -79,7 +79,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+
 import BotonProximaParada from '../components/BotonProximaParada.vue'
+
+
 
 function irAParada(parada) {
   router.push(parada.ruta)
@@ -95,7 +98,7 @@ const paradas = ref([
   { nombre: '⭐ Desafío', ruta: '/desafio' },
   { nombre: '🎮 Copia la palabra', ruta: '/seleccionar' },
   { nombre: '🎁 Practicar y recompensas', ruta: '/practicar' },
-  { nombre: '🏆Tu destino', ruta: '/practicar' }
+  { nombre: '🏆Diploma', ruta: '/Diploma' }
 ])
 
 
