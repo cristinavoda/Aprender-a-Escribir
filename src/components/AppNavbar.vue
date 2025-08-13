@@ -11,7 +11,8 @@
       <button @click="$router.push('/miniJuegoAlfabeto')">🎮Encuentra la letra</button>
       <button @click="$router.push('/desafio')">⭐Desafío</button>
       <button @click="$router.push('/seleccionar')">📚Copia la letra</button>
-      <button @click="$router.push('/practicar')">🎁Practicar</button>
+      
+      <button @click="$router.push('/diploma')">🎁Diploma</button>
     </div>
   </nav>
 </template>
