@@ -172,12 +172,8 @@ function irAlNivelActual() {
   font-family: 'Comic Sans MS', cursive, sans-serif;
   
 }
-.p {
-    background: linear-gradient(45deg, #2703f3f6, #e8e8ec);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
+.h1 {
+color: darkcyan;
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
@@ -374,6 +370,7 @@ function irAlNivelActual() {
   height: auto;
   text-align: center;
   cursor: pointer;
+  color: darkcyan;
 }
 
 .parada:hover {
