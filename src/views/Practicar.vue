@@ -313,5 +313,36 @@ if (nivel.value === palabras.length - 1 && respuesta === correcta) {
       transform: translateY(-40px) scale(0.5);
       opacity: 0;
     }
+  }@media (max-width: 768px) {
+  .practicar-container {
+    flex-direction: column;
+    gap: 1rem;
   }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #333;
+    padding: 0.5rem 0;
+  }
+
+  .main {
+    width: 100%;
+  }
+
+  .acciones {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .word-input {
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 </style>
