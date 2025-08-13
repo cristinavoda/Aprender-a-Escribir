@@ -1,4 +1,15 @@
 <template>
+   <div class="sidebar">
+      <h3>Historial de aciertos</h3>
+      <ul>
+        <li v-for="(item, idx) in history" :key="idx">
+          {{ item.word }} ✅
+        </li>
+      </ul>
+      <div class="rewards">
+        <h4>⭐ Estrellas ganadas: {{ estrellas }}</h4>
+      </div>
+    </div>
   <div class="select-view">
     <input
       type="file"
@@ -83,13 +94,7 @@
 
  <button @click="speakWord" class="speak-button">📢 Escuchar palabra</button>
    
-    <button
-      :disabled="!word || !imageUrl"
-      @click="irAVistaEscribir"
-      class="next-button"
-    >
-      Siguiente ➡️
-    </button>
+    
     <BotonProximaParada nombre="Practicar" ruta="/practicar" />
   <div class="train-container">
   <div class="train-track">
@@ -135,6 +140,8 @@ const texto = ref('')
 const fileName = ref('')
 const mensaje = ref('')  
 const word = ref('')
+const history = ref([])
+const estrellas = ref(0)
 watch(word, (nuevoValor) => {
   if (nuevoValor.length >= 3) {
     searchImages()
@@ -195,28 +202,68 @@ const onImageChange = (event) => {
      fileName.value = file.name
   }
 }
-function checkInput() {
-  if (userInput.value === word.value) {
-    mensaje.value = '¡Correcto! 🎉'
-    speak('¡Correcto!')
-  } else {
-    mensaje.value = 'Intenta de nuevo.'
-    speak('Intenta de nuevo')
-  }
+function normalize(str) {
+  return str.toUpperCase().trim()
 }
 
-const irAVistaEscribir = () => {
-  router.push({
-    name: 'Escribir',
-    query: {
-      word: word.value.toUpperCase(),
-      imageUrl: imageUrl.value
-    }
-  })
+
+
+function deleteLetter() {
+  word.value = word.value.slice(0, -1)
 }
+
+function checkInput() {
+  const respuestaNormalizada = normalize(word.value)
+  const palabraCorrecta = normalize(palabraSugerida.value)
+
+  if (respuestaNormalizada === palabraCorrecta) {
+    mensaje.value = '¡Correcto! 🎉'
+    speak('¡Correcto!')
+
+    if (!history.value.some(item => normalize(item.word) === palabraCorrecta)) {
+      history.value.push({ word: palabraSugerida.value })
+      estrellas.value++
+    }
+
+    
+    word.value = ''
+    userInput.value = ''
+
+  } else {
+    mensaje.value = 'Intenta de nuevo ❌'
+    speak('Intenta de nuevo')
+  }
+
+  setTimeout(() => {
+    mensaje.value = ''
+  }, 2000)
+}
+
+function speak(text = word.value) {
+  if (text.trim() === '') return
+  const utterance = new SpeechSynthesisUtterance(text)
+  utterance.lang = 'es-ES'
+  speechSynthesis.speak(utterance)
+}
+
+
 </script>
 
 <style scoped>
+.sidebar {
+  width: 200px;
+  border-right: 2px solid var(--color-text);
+  padding-right: 1rem;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  color: darkcyan;
+}
+.rewards {
+  margin-top: 1rem;
+  text-align: center;
+}
 .select-view {
   margin-top: 100px;
 }
@@ -421,7 +468,7 @@ display: grid;
   }
   .train {
     position: absolute;
-    bottom: 30px;
+    bottom: 2px;
     font-size: 2rem;
     display: flex;
     align-items: center;

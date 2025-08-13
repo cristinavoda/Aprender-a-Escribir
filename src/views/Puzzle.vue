@@ -283,7 +283,7 @@ h2 {
   }
   .train {
     position: absolute;
-    bottom: 30px;
+    bottom: 1px;
     font-size: 3rem;
     display: flex;
     align-items: center;

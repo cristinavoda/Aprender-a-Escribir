@@ -1,6 +1,19 @@
 <template>
   <div class="escribir-view">
+   
     
+    <!--<div class="sidebar">
+      <h3>Historial de aciertos</h3>
+      <ul>
+        <li v-for="(item, idx) in history" :key="idx">
+          {{ item.word }} ✅
+        </li>
+      </ul>
+      <div class="rewards">
+        <h4>⭐ Estrellas ganadas: {{ estrellas }}</h4>
+      </div>
+    </div> -->
+
 
     
     <div class="palabras-sugeridas">
@@ -68,11 +81,11 @@ const word = ref('gato')
 const mensaje = ref('')
 const palabraSugerida = ref('AGUA') 
 const userInput = ref('') 
-
-
-
 const letras = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
 const emit = defineEmits(['cambiarEstadoPersonaje'])
+const history = ref([])
+const estrellas = ref(0)
+
 
 function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text)
@@ -108,12 +121,30 @@ function checkInput() {
     mensaje.value = '¡Correcto! 🎉'
     speak('¡Correcto!')
      emit('cambiarEstadoPersonaje', 'feliz')
+      if (!history.value.some(item => normalize(item.word) === palabraCorrecta)) {
+      history.value.push({ word: selection.value.word })
+      estrellas.value++
+    }
   } else {
     mensaje.value = 'Intenta de nuevo.'
     speak('Intenta de nuevo')
     emit('cambiarEstadoPersonaje', 'triste')
   }
 }
+onMounted(() => {
+  const savedHist = localStorage.getItem('history')
+  const savedStars = localStorage.getItem('estrellas')
+  if (savedHist) history.value = JSON.parse(savedHist)
+  if (savedStars) estrellas.value = parseInt(savedStars)
+})
+
+watch(history, (val) => {
+  localStorage.setItem('history', JSON.stringify(val))
+}, { deep: true })
+
+watch(estrellas, (val) => {
+  localStorage.setItem('estrellas', val)
+})
 </script>
 
 <style scoped>
@@ -128,6 +159,20 @@ h2 {
   text-align: center;
   text-shadow: 0 2px 2px rgba(55, 131, 218, 0.459);
   margin-top: 100px;
+}
+.sidebar {
+  width: 200px;
+  border-right: 2px solid var(--color-text);
+  padding-right: 1rem;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  color: darkcyan;
+}
+.rewards {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 .escribir-view {
@@ -199,13 +244,13 @@ h2 {
     width: 100%;
     height: 120px;
     overflow: hidden;
-    margin-top: 30px;
+    margin-top: 35px;
     margin-left: 10px;
     border: 1px solid #ccc; 
   }
   .train-track {
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     width: 100%;
     height: 30px;
     background: repeating-linear-gradient(
@@ -216,7 +261,7 @@ h2 {
   }
   .train {
     position: absolute;
-    bottom: 30px;
+    bottom: 15px;
     font-size: 2rem;
     display: flex;
     align-items: center;
