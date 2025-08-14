@@ -13,29 +13,46 @@
   :src="personaje"
   alt="Personaje"
   class="personaje"
-  :style="{ left: `${x}px`, top: `${y}px` }"
+  
+  :style="{ left: `${x}px`, top: `${y}px`  }"
+  
 />
+<div class="personaje-root">
+ <div 
+      v-if="estadoPersonaje === 'feliz'" 
+      ref="personajeRef" 
+      class="leo-container"
+    >
+      <img :src="personajeFeliz" alt="Leo" class="leo-img" />
+      <button 
+        class="globo-btn" 
+        @mouseover="personajeEscapa"
+      > 🎈</button>
+       <p>Leo</p>
+    </div>
 
-<div class="personaje-feliz">
-  <img
-    v-if="estadoPersonaje === 'feliz'"
-    :src="personajeFeliz"
-    alt="feliz"
-  />
-  <img
-    v-else-if="estadoPersonaje === 'triste'"
-    :src="personajeTriste"
-    alt="triste"
-  />
-</div> 
     
+    <div v-else-if="estadoPersonaje === 'triste'" class="triste-container">
+      <img 
+        :src="personajeTriste"
+        alt="triste"
+        class="triste-img"
+      />
+      
+    </div>
+    </div>
+  </div>
+
+
     <div class="train-container">
       <div class="train" @animationend="onTrainStop">
         🚂
       </div>
     </div>
+    
   </div>
-</div>
+
+
 </template>
 
 
@@ -52,8 +69,25 @@ import personajeTriste from './assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
 
 import imagenFeliz from './assets/personaje-feliz.png'
-import imagenTriste from './assets/personaje-feliz.png'
- 
+import imagenTriste from './assets/personaje-triste.png'
+import gsap from 'gsap'
+import BotonProximaParada from './components/BotonProximaParada.vue';
+
+const nivelActual = ref(0); 
+
+function siguienteParada() {
+  if (nivelActual.value < 9) { 
+    nivelActual.value++;
+  }
+}
+
+gsap.to(personajeFeliz.value, {
+    y: -30,
+    duration: 0.8,
+    repeat: -1,
+    yoyo: true,
+    ease: "power1.inOut"
+  })
 
 
 
@@ -97,23 +131,56 @@ function verificarRespuesta(correcta) {
     cambiarImagenPersonaje('triste')
   }
 }
-
-
 function cambiarImagenPersonaje(nuevoEstado) {
   estadoPersonaje.value = nuevoEstado
+  emit('cambiarEstadoPersonaje', nuevoEstado) 
   if (nuevoEstado === 'triste') {
     setTimeout(() => {
       estadoPersonaje.value = 'feliz'
+      emit('cambiarEstadoPersonaje', 'feliz')
     }, 9000)
   }
 }
+
+
+
 const robiImagen = ref('personaje.png')
 
 const moverPersonaje = () => {
   
   console.log("Moviendo personaje…")
 }
+const personajeRef = ref(null)
 
+onMounted(() => {
+  
+  gsap.to(personajeRef.value, {
+    y: -10,
+    duration: 1.5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut'
+  })
+})
+
+function personajeEscapa() {
+  gsap.to(personajeRef.value, {
+    x: '-70vw',
+    y: '680vh',
+    duration: 1,
+    ease: 'bounce.out',
+    onComplete: () => {
+      setTimeout(() => {
+        gsap.to(personajeRef.value, {
+          x: 0,
+          y: 0,
+          duration: 1,
+          ease: 'power2.inOut'
+        })
+      }, 2000)
+    }
+  })
+}
 
 
 onMounted(() => {
@@ -124,7 +191,15 @@ onMounted(() => {
    
 })
 console.log("App montada")
-
+onMounted(() => {
+  gsap.to(personajeFeliz.value, {
+    y: -90,
+    duration: 0.8,
+    repeat: -1,
+    yoyo: true,
+    ease: "power1.inOut"
+  })
+})
 onBeforeUnmount(() => {
   window.removeEventListener('click', reiniciarTemporizador)
   window.removeEventListener('touchstart', reiniciarTemporizador)
@@ -136,27 +211,69 @@ onBeforeUnmount(() => {
 
 <style scoped>
 
-.personaje-feliz img {
-   position: fixed;
-  animation: saltar 1s ease-in-out;
-  top: 10px;
-  right: 10px;
-  width: 100px; 
+.leo-container {
+  position: fixed;
+  top: 40px;
+  right: 15px;
   z-index: 1000;
-  pointer-events: none; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 22px;
+  color: #e0f0f0;
+}
+
+.leo-img {
+  width: 100px;
+}
+.globo-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: -145px;
+  margin-left: 120px;
+  font-size: 84px;
+  
+  color: white;
+  font-weight: bold;
+  width: 40px;
+  height: 60px;
+  border-radius: 50% / 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  
+  position: relative;
+}
+.triste-container {
+  position: absolute;
+  top: 0;       
+  margin-left: 200px;
+  width: 100%;
   
 }
-.personaje-triste img {
-  
-   top: 0px;
-  animation: encoger 1s ease-in-out;
+
+
+@keyframes escapar {
+  to {
+    transform: translateY(-200px) rotate(-20deg);
+    opacity: 0;
+  }
 }
+
+
+
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
-
+.personaje-triste img{
+   position: absolute;
+   top: 0px;
+  animation: encoger 1s ease-in-out;
+}
 header {
   position: relative;
   padding: 0.5rem;

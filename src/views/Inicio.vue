@@ -1,24 +1,6 @@
 <template>
   <div class="home-container">
     <h1> Tren del Aprendizaje🚂🚃🚃🚃</h1>
- <div class="tren-container">
-    <div class="train">
-      <div class="locomotive">🚂</div>
-      <div class="smoke"></div>
-      <div class="smoke"></div>
-       <div class="smoke"></div>
-       <div class="traffic-light">
-  <div class="light red"></div>
-  <div class="light yellow"></div>
-  <div class="light green"></div>
-</div>
- <div class="vagons">
-        <div v-for="(vagon, index) in niveles" :key="index" class="vagon">
-          {{ vagon.emoji }}
-        </div>
-      </div>
-    </div>
-    </div>
 
 
 
@@ -73,6 +55,25 @@
     </div>-->
 
   </div>
+   <div class="tren-container">
+    <div class="train">
+      <div class="locomotive">🚂</div>
+      <div class="smoke"></div>
+      <div class="smoke"></div>
+       <div class="smoke"></div>
+       <div class="traffic-light">
+  <div class="light red"></div>
+  <div class="light yellow"></div>
+  <div class="light green"></div>
+</div>
+ <div class="vagons">
+        <div v-for="(vagon, index) in niveles" :key="index" class="vagon">
+          {{ vagon.emoji }}
+        </div>
+      </div>
+    </div>
+    </div>
+
 </template>
 
 <script setup>
@@ -187,7 +188,7 @@ color: darkcyan;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
+  margin-bottom: 0px;
 }
 
 .locomotive {
@@ -203,29 +204,7 @@ color: darkcyan;
   font-size: 3.5rem;
   margin: 0 5px;
 }
-.train-container {
-  position: relative;
-  width: 100%;
-  height: 120px;
-  overflow: hidden;
-  margin-top: 30px;
-  margin-left: 10px;
-}
 
-.train-track {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 30px;
-  background: repeating-linear-gradient(
-    to right,
-    #da920c86 0 5px,
-    #eee 5px 10px
-  );
-}
-.tren-container{
-  top: 40px;
-}
 .train {
   position: absolute;
   bottom: 0px;
