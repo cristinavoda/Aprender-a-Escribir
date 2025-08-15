@@ -58,7 +58,7 @@
 
 <script setup>
 
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref,watch, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 
 import Personaje from './components/Personaje.vue'
@@ -131,9 +131,14 @@ function verificarRespuesta(correcta) {
     cambiarImagenPersonaje('triste')
   }
 }
+
+
+const leoRef = ref(null)
+
 function cambiarImagenPersonaje(nuevoEstado) {
   estadoPersonaje.value = nuevoEstado
-  emit('cambiarEstadoPersonaje', nuevoEstado) 
+  emit('cambiarEstadoPersonaje', nuevoEstado)
+
   if (nuevoEstado === 'triste') {
     setTimeout(() => {
       estadoPersonaje.value = 'feliz'
@@ -142,6 +147,14 @@ function cambiarImagenPersonaje(nuevoEstado) {
   }
 }
 
+// 🎨 Animación cuando el estado cambia
+watch(estadoPersonaje, (nuevoEstado) => {
+  gsap.to(leoRef.value.querySelector('img'), {
+    filter: nuevoEstado === 'triste' ? 'grayscale(100%)' : 'grayscale(0%)',
+    duration: 1.5,
+    ease: 'power2.inOut'
+  })
+})
 
 
 const robiImagen = ref('personaje.png')
@@ -287,14 +300,15 @@ onBeforeUnmount(() => {
 .personaje-triste img {
   position: absolute;
    top: 0px;
+   right:10px;
   animation: encoger 1s ease-in-out;
 }
 .triste-container {
   position: absolute;
   top: 0;       
-  margin-left: 200px;
+  margin-left: 100px;
   width: 100%;
-  
+    animation: encoger 3s ease-in-out;
 }
 
 
