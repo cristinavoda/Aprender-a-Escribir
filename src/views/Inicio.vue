@@ -1,7 +1,23 @@
 <template>
   <div class="home-container">
-    <h1> Tren del Aprendizaje🚂🚃🚃🚃</h1>
-
+    <h1> Tren del Aprendizaje</h1>
+ <div class="tren-container">
+    <div class="train">
+      <div class="locomotive">🚂</div>
+      <div class="smoke"></div>
+      <div class="smoke"></div>
+       <div class="smoke"></div>
+       <div class="traffic-light">
+  <div class="light red"></div>
+  <div class="light yellow"></div>
+  <div class="light green"></div>
+</div>
+ <div class="vagons">
+        <div v-for="(vagon, index) in niveles" :key="index" class="vagon">
+          {{ vagon.emoji }}
+        </div>
+      </div>
+    </div>
 
 
 
@@ -55,25 +71,9 @@
     </div>-->
 
   </div>
-   <div class="tren-container">
-    <div class="train">
-      <div class="locomotive">🚂</div>
-      <div class="smoke"></div>
-      <div class="smoke"></div>
-       <div class="smoke"></div>
-       <div class="traffic-light">
-  <div class="light red"></div>
-  <div class="light yellow"></div>
-  <div class="light green"></div>
-</div>
- <div class="vagons">
-        <div v-for="(vagon, index) in niveles" :key="index" class="vagon">
-          {{ vagon.emoji }}
-        </div>
-      </div>
-    </div>
-    </div>
 
+  
+</div>
 </template>
 
 <script setup>
@@ -169,28 +169,21 @@ function irAlNivelActual() {
 
 <style scoped>
 .home-container {
-  margin-top: 60px;
+  margin-top: 40px;
   text-align: center;
-  background: linear-gradient(to bottom, #ccefff, #ffffff);
+  background: linear-gradient(to bottom, #ffffff, #ceefff);
   padding: 1rem;
-  font-family: 'Comic Sans MS', cursive, sans-serif;margin-bottom: 170px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;margin-bottom: 10px;color: rgb(9, 107, 107);
   
 }
 .h1 {
 color: darkcyan;
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
   text-align: center;
   text-shadow: 0 2px 2px rgba(35, 160, 218, 0.459);
 }
 
-.train {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: -20px;
-  
-}
 
 .locomotive {
   font-size: 4rem;
@@ -208,7 +201,7 @@ color: darkcyan;
 
 .train {
   position: absolute;
-  bottom: 0px;
+  top: 16rem;
   font-size: 3rem;
   display: flex;
   align-items: center;
@@ -324,7 +317,7 @@ color: darkcyan;
   cursor: pointer;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.2);}
 .progreso {
-  margin-top: 1rem;
+  margin-top: 15rem;
   font-size: 1.2rem;
 }
 .inicio {
@@ -337,20 +330,22 @@ color: darkcyan;
   justify-content: center;
   flex-wrap: wrap; 
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 1px;
 }
 
 .parada {
   padding: 8px 12px;
   border-radius: 8px;
-  background: linear-gradient(145deg, #f8f9fa, #f1f7f8);
+  background: linear-gradient(145deg, #ffffffff, #ffffff);
   transition: background 0.3s, transform 0.3s;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.432);
+  box-shadow: 5px 7px 5px rgba(2, 38, 85, 0.5);
   min-width: 120px; 
   height: auto;
   text-align: center;
   cursor: pointer;
   color: darkcyan;
+  font-weight: bold;
+  text-shadow:#051f4e;
 }
 
 .parada:hover {
