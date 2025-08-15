@@ -17,7 +17,7 @@
   :style="{ left: `${x}px`, top: `${y}px`  }"
   
 />
-<div class="personaje-root">
+<div class="personaje-root"></div>
  <div 
       v-if="estadoPersonaje === 'feliz'" 
       ref="personajeRef" 
@@ -40,7 +40,7 @@
       />
       
     </div>
-    </div>
+    
   </div>
 
 
@@ -49,7 +49,6 @@
         🚂
       </div>
     </div>
-    
   </div>
 
 
@@ -210,7 +209,6 @@ onBeforeUnmount(() => {
 
 
 <style scoped>
-
 .leo-container {
   position: fixed;
   top: 40px;
@@ -225,6 +223,7 @@ onBeforeUnmount(() => {
 
 .leo-img {
   width: 100px;
+   transition: transform 0.3s;
 }
 .globo-btn {
   background: transparent;
@@ -246,6 +245,36 @@ onBeforeUnmount(() => {
   
   position: relative;
 }
+
+
+@keyframes escapar {
+  to {
+    transform: translateY(-200px) rotate(-20deg);
+    opacity: 0;
+  }
+}
+.personaje-feliz img {
+   position: fixed;
+  animation: saltar 1s ease-in-out;
+  top: 40px;
+  right: 42px;
+  width: 100px; 
+  z-index: 1000;
+  pointer-events: none; 
+  
+}
+@media (max-width: 768px) {
+  .personaje-feliz {
+    top: 5px;    
+    right: 5px;  
+    transform: scale(0.8); 
+  }
+}
+.personaje-triste img {
+  position: absolute;
+   top: 0px;
+  animation: encoger 1s ease-in-out;
+}
 .triste-container {
   position: absolute;
   top: 0;       
@@ -255,25 +284,6 @@ onBeforeUnmount(() => {
 }
 
 
-@keyframes escapar {
-  to {
-    transform: translateY(-200px) rotate(-20deg);
-    opacity: 0;
-  }
-}
-
-
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-.personaje-triste img{
-   position: absolute;
-   top: 0px;
-  animation: encoger 1s ease-in-out;
-}
 header {
   position: relative;
   padding: 0.5rem;

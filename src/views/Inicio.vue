@@ -90,7 +90,7 @@ function irAParada(parada) {
 }
 
 const paradas = ref([
-  { nombre: '🏢 Estación Central', ruta: '/' },
+  
   { nombre: '🔤 Alfabeto', ruta: '/alfabeto' },
   { nombre: '✏️ Dibujar letras', ruta: '/dibujar' },
   { nombre: '🖍️ Escribir palabras', ruta: '/escribir' },
@@ -188,7 +188,7 @@ color: darkcyan;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0px;
+  margin-bottom: -20px;
 }
 
 .locomotive {
