@@ -169,11 +169,11 @@ function irAlNivelActual() {
 
 <style scoped>
 .home-container {
-  margin-top: 20px;
+  margin-top: 60px;
   text-align: center;
   background: linear-gradient(to bottom, #ccefff, #ffffff);
   padding: 1rem;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', cursive, sans-serif;margin-bottom: 170px;
   
 }
 .h1 {
@@ -189,6 +189,7 @@ color: darkcyan;
   justify-content: center;
   align-items: center;
   margin-bottom: -20px;
+  
 }
 
 .locomotive {
@@ -287,9 +288,6 @@ color: darkcyan;
 }
 
 
-.wagon {
-  margin-left: 5px;
-}
 
 @keyframes moveTrain {
   0% {

@@ -81,6 +81,7 @@ function siguienteParada() {
 }
 
 gsap.to(personajeFeliz.value, {
+  x: -30,
     y: -30,
     duration: 0.8,
     repeat: -1,
@@ -246,6 +247,19 @@ onBeforeUnmount(() => {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .leo-container {
+    top: 10px;
+    right: 10px;
+    transform: scale(0.75);
+  }
+
+  .globo-btn {
+    margin-top: -100px;
+    margin-left: 80px;
+    font-size: 60px;
+  }
+}
 
 @keyframes escapar {
   to {
@@ -379,15 +393,6 @@ nav.open ul {
   z-index: 999;
 }
 
-.train-container {
-  width: 100%;
-  height: 190px;
-  overflow: hidden;
-  position: relative;
-  background-color: transparent;
-  border-bottom: 1px solid #3d3fc0;
-  margin-left: 550px;
-}
 
 .train {
   margin-top: 30px;
@@ -395,6 +400,7 @@ nav.open ul {
   font-size: 5rem;
   left: -20%;
   animation: moveTrain 5s ease-in-out forwards;
+  
 }
 
 @keyframes moveTrain {
