@@ -180,18 +180,19 @@ function irAlNivelActual() {
 <style scoped>
 .home-container {
   margin-top: 40px;
+
   text-align: center;
   background: linear-gradient(to bottom, #ffffff, #ceefff);
   padding: 1rem;
   font-family: 'Comic Sans MS', cursive, sans-serif;margin-bottom: 10px;color: rgb(9, 107, 107);
-  
+  margin-bottom: 40px;
 }
-.h1 {
+h1 {
 color: darkcyan;
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0 2px 2px rgba(35, 160, 218, 0.459);
+  text-shadow: 0 2px 2px rgba(80, 73, 177, 0.459);
 }
 
 
@@ -211,7 +212,7 @@ color: darkcyan;
 
 .train {
   position: absolute;
-  top: 35rem;
+  bottom: 5rem;
   font-size: 3rem;
   display: flex;
   align-items: center;
@@ -302,21 +303,14 @@ color: darkcyan;
 }
 
 
-.progreso {
-  margin-top: 16rem;
-  font-size: 1.2rem;
-}
-.inicio {
-  text-align: center;
-  font-family: sans-serif;
-  padding: 20px;
-}
+
+
 .mapa-tren {
   display: flex;
   justify-content: center;
   flex-wrap: wrap; 
   gap: 10px;
-  top:5rem;
+  top:6rem;
   margin-bottom: 500px;
 }
 
@@ -348,49 +342,31 @@ color: darkcyan;
 
 @media (max-width: 768px) {
   .train {
-    top: 18rem;  
+bottom: 1rem;  
     font-size: 2.2rem;
   }
 
-  .progreso {
-    margin-top: 8rem; 
-    font-size: 1rem;
-  }
 
   .mapa-tren {
-    margin-bottom: 200px; 
+    margin-bottom: 100px; 
     gap: 6px;
   }
 }
 
-@media (max-width: 480px) {
-  .train {
-    top: 14rem;  
-    font-size: 2rem;
-  }
 
-  .progreso {
-    margin-top: 6rem;
-  }
-
-  .mapa-tren {
-    margin-bottom: 120px;
-  }
-}
-@media (max-width: 768px) {
-  .parada {
-    padding: 6px 10px;
-    min-width: 100px;
-    font-size: 0.9rem;
-  }
-}
 
 @media (max-width: 480px) {
+  h1 {  font-size: 0.8rem;}
   .parada {
     padding: 4px 8px;
     min-width: 80px;
     font-size: 0.8rem;
   }
+    .train {
+bottom: 0,5rem;  
+    font-size: 2.2rem;
+  }
+
 }
 
 
@@ -430,13 +406,13 @@ color: darkcyan;
 }
 @media (max-width: 768px) {
   .parada { padding: 0.4rem 0.8rem; min-width: 5rem; font-size: 0.9rem; }
-  .train { bottom: 20%; font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .train { bottom: 10%; font-size: clamp(1.5rem, 5vw, 2.5rem); }
   .traffic-light { left: -7%; bottom: 7%; }
 }
 
 @media (max-width: 480px) {
   .parada { padding: 0.3rem 0.6rem; min-width: 4rem; font-size: 0.8rem; }
-  .train { bottom: 25%; font-size: clamp(1.2rem, 4vw, 2rem); }
+  .train { bottom: 15%; font-size: clamp(1.2rem, 4vw, 2rem); }
   .traffic-light { left: -10%; bottom: 10%; width: 25px; }
 }
 </style>

@@ -52,18 +52,7 @@
     </div>
   </div>
 
-<div class="progreso">
-      Progreso:
-      <span
-        v-for="n in totalParadas"
-        :key="n"
-        class="estrella"
-        :ref="el => estrellaRefs[n - 1] = el"
-      >
-        {{ n <= progreso ? '⭐' : '☆' }}
-      </span>
-    </div>
-  
+
 </template>
 
 
@@ -283,6 +272,7 @@ function animarEstrellas() {
 
 
 <style scoped>
+
 .estrella-cayendo {
   pointer-events: none;
    position: fixed;
@@ -379,12 +369,7 @@ function animarEstrellas() {
 }
 
 
-header {
-  position: relative;
-  padding: 0.5rem;
-  background: #004d4d;
-  color: white;
-}
+
 .toggle-btn {
   margin-top: 10px;
   font-size: 2rem;
@@ -455,6 +440,7 @@ nav.open ul {
 }
 #app {
   max-width: 100%;
+  height: 100%;
   margin: 0;
   padding: 2rem;
   text-align: center;
@@ -532,12 +518,25 @@ nav.open ul {
     width: 100%;
   }
 }
-.progreso {
-  position: fixed;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  color:darkcyan;
+
+@media (max-width: 768px) {
+  .train {
+    top: 18rem;  /* sube el tren en móviles */
+    font-size: 2.2rem;
+  }
+.mapa-tren {
+    margin-bottom: 200px;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .train {
+    top: 14rem;  
+    font-size: 2rem;
+  }
+.mapa-tren {
+    margin-bottom: 120px;
+  }
 }
 </style>
