@@ -8,6 +8,7 @@
 <RouterView 
   @accionUsuario="moverPersonaje"
   @cambiarEstadoPersonaje="cambiarImagenPersonaje"
+  @progresoActualizado="actualizarProgreso"
 />
   <img
   :src="personaje"
@@ -51,7 +52,18 @@
     </div>
   </div>
 
-
+<div class="progreso">
+      Progreso:
+      <span
+        v-for="n in totalParadas"
+        :key="n"
+        class="estrella"
+        :ref="el => estrellaRefs[n - 1] = el"
+      >
+        {{ n <= progreso ? '⭐' : '☆' }}
+      </span>
+    </div>
+  
 </template>
 
 
@@ -60,23 +72,43 @@
 
 import { ref,watch, onMounted, onBeforeUnmount } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
-
 import Personaje from './components/Personaje.vue'
 import personaje from './assets/personaje.png'
 import personajeFeliz from './assets/personaje-feliz.png'
 import personajeTriste from './assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
-
 import imagenFeliz from './assets/personaje-feliz.png'
 import imagenTriste from './assets/personaje-triste.png'
 import gsap from 'gsap'
 import BotonProximaParada from './components/BotonProximaParada.vue';
 
+const totalParadas = 9
+const progreso = ref(0)
+const estrellaRefs = []
+
+function actualizarProgreso() {
+  if (progreso.value < totalParadas) {
+    progreso.value++
+    animarEstrella(progreso.value - 1)
+  }
+}
+
+function animarEstrella(index) {
+  const estrella = estrellaRefs[index]
+  if (estrella) {
+    gsap.fromTo(
+      estrella,
+      { scale: 0, opacity: 0 },
+      { scale: 1.5, opacity: 1, duration: 0.5, ease: 'bounce.out' }
+    )
+  }
+}
 const nivelActual = ref(0); 
 
 function siguienteParada() {
-  if (nivelActual.value < 9) { 
+  if (nivelActual.value < 8) { 
     nivelActual.value++;
+    animarEstrellas()
   }
 }
 
@@ -147,7 +179,7 @@ function cambiarImagenPersonaje(nuevoEstado) {
   }
 }
 
-// 🎨 Animación cuando el estado cambia
+
 watch(estadoPersonaje, (nuevoEstado) => {
   gsap.to(leoRef.value.querySelector('img'), {
     filter: nuevoEstado === 'triste' ? 'grayscale(100%)' : 'grayscale(0%)',
@@ -219,10 +251,45 @@ onBeforeUnmount(() => {
   clearTimeout(timeout)
   
 })
+function animarEstrellas() {
+  for (let i = 0; i < 105; i++) {
+    const estrella = document.createElement('span')
+    estrella.textContent = '⭐'
+    estrella.classList.add('estrella-cayendo')
+    document.body.appendChild(estrella)
+
+    gsap.set(estrella, {
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      xPercent: -50,
+      yPercent: -50,
+      fontSize: `${Math.random() * 20 + 20}px`,
+      opacity: 1
+    })
+
+    gsap.to(estrella, {
+      y: window.innerHeight,
+      x: (Math.random() - 0.5) * window.innerWidth,
+      rotation: Math.random() * 360,
+      duration: Math.random() * 1 + 1.5,
+      ease: 'power2.out',
+      onComplete: () => estrella.remove()
+    })
+  }
+}
+
 </script>
 
 
 <style scoped>
+.estrella-cayendo {
+  pointer-events: none;
+   position: fixed;
+  color: gold;
+  z-index: 9999;
+}
+
 .leo-container {
   position: fixed;
   top: 40px;
@@ -301,14 +368,14 @@ onBeforeUnmount(() => {
   position: absolute;
    top: 0px;
    right:10px;
-  animation: encoger 1s ease-in-out;
+  animation: encoger 5s ease-in-out;
 }
 .triste-container {
   position: absolute;
   top: 0;       
   margin-left: 100px;
   width: 100%;
-    animation: encoger 3s ease-in-out;
+    animation: encoger 5s ease-in-out;
 }
 
 
@@ -465,5 +532,12 @@ nav.open ul {
     width: 100%;
   }
 }
-
+.progreso {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color:darkcyan;
+}
 </style>

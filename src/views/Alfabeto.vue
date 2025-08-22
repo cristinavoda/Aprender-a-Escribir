@@ -5,8 +5,11 @@ import imagenFeliz from '../assets/personaje-feliz.png'
 import imagenTriste from '../assets/personaje-triste.png'
 import { RouterLink, RouterView } from 'vue-router'
 import BotonProximaParada from '../components/BotonProximaParada.vue'
+import gsap from 'gsap'
 const letter = ref('')
 const inputRef = ref(null)
+
+
 
 const letters = [
   'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
@@ -29,6 +32,66 @@ const vagonesActivos = computed(() => Math.max(puntos1.value, puntos2.value))
 
 onMounted(() => {
   inputRef.value?.focus()  
+})
+const progreso = ref(0)
+const totalParadas = 5
+const botonParada = ref(null)
+function actualizarProgreso() {
+  if (progreso.value < totalParadas) {
+    progreso.value++
+    lanzarEstrella(progreso.value - 1)
+    animarEstrellasDesdeBoton(progreso.value ++)
+  }
+}
+function animarEstrellas() {
+  for (let i = 0; i < 15; i++) {
+    const estrella = document.createElement('span')
+    estrella.textContent = '⭐'
+    estrella.classList.add('estrella-cayendo')
+    document.body.appendChild(estrella)
+
+    gsap.set(estrella, {
+      position: 'fixed',
+      top: '50%',
+      left: '50%',
+      xPercent: -50,
+      yPercent: -50,
+      fontSize: `${Math.random() * 20 + 20}px`,
+      opacity: 1
+    })
+
+    gsap.to(estrella, {
+      y: window.innerHeight,
+      x: (Math.random() - 0.5) * window.innerWidth,
+      rotation: Math.random() * 360,
+      duration: Math.random() * 1 + 1.5,
+      ease: 'power2.out',
+      onComplete: () => estrella.remove()
+    })
+  }
+}
+function lanzarEstrella() {
+  const estrella = document.createElement('div')
+  estrella.className = 'estrella-cayendo'
+  estrella.textContent = '⭐'
+  estrella.style.left = Math.random() * 100 + 'vw'
+  estrella.style.top = '-20px'
+  document.body.appendChild(estrella)
+
+  const duracion = 2000
+  estrella.animate(
+    [
+      { transform: 'translateY(0)', opacity: 1 },
+      { transform: 'translateY(100vh)', opacity: 0 }
+    ],
+    { duration: duracion, easing: 'ease-in' }
+  )
+
+  setTimeout(() => estrella.remove(), duracion)
+} 
+
+onMounted(() => {
+  window.addEventListener('proxima-parada', lanzarEstrella)
 })
 </script>
 
@@ -54,7 +117,7 @@ onMounted(() => {
         {{ ltr }}
       </button>
     </div>
-    <BotonProximaParada nombre="Dibujar letras" ruta="/dibujar" />
+    <BotonProximaParada   ref="botonParada"  @click="$emit('progresoActualizado')"  nombre="Dibujar letras" ruta="/dibujar" />
       </div>
 <div class="train-container">
   <div class="train-track">
@@ -286,6 +349,10 @@ h2 {
   
 }
 
+.estrella-cayendo {
+  pointer-events: none;
+   z-index: 9999;
+}
 
 
 </style>

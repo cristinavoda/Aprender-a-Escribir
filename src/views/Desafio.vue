@@ -27,7 +27,7 @@
     </div>
 
     <button class="nueva-letra" @click="nuevaRonda">Siguiente Letra 🔁</button>
-   <BotonProximaParada nombre="Copia la palabra" ruta="/seleccionar" />  
+   <BotonProximaParada @click="$emit('progresoActualizado')"  nombre="Copia la palabra" ruta="/seleccionar" />  
   </div>
   <div class="tren-progreso">
   <span>🚂</span>
@@ -41,7 +41,28 @@
 import { ref,computed } from 'vue'
 import confetti from 'canvas-confetti'
 import BotonProximaParada from '../components/BotonProximaParada.vue'
+import gsap from 'gsap'
+const totalParadas = 9
+const progreso = ref(0)
+const estrellaRefs = []
 
+function actualizarProgreso() {
+  if (progreso.value < totalParadas) {
+    progreso.value++
+    animarEstrella(progreso.value - 1)
+  }
+}
+
+function animarEstrella(index) {
+  const estrella = estrellaRefs[index]
+  if (estrella) {
+    gsap.fromTo(
+      estrella,
+      { scale: 0, opacity: 0 },
+      { scale: 1.5, opacity: 1, duration: 0.5, ease: 'bounce.out' }
+    )
+  }
+}
 
 const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 const currentLetter = ref('A')

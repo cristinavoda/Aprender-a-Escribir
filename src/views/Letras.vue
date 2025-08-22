@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref,watch } from 'vue'
-
+import gsap from 'gsap'
 
 const palabras = ['AVIÓN', 'TREN', 'PERRO','SOL', 'COMER','ROBERT', 'CASA', 'AGUA']
 const currentIndex = ref(0)
@@ -55,6 +55,27 @@ const selectedIndices = ref([])
 const resultMessage = ref('')
 const isCorrect = ref(false)
 
+const totalParadas = 9
+const progreso = ref(0)
+const estrellaRefs = []
+
+function actualizarProgreso() {
+  if (progreso.value < totalParadas) {
+    progreso.value++
+    animarEstrella(progreso.value - 1)
+  }
+}
+
+function animarEstrella(index) {
+  const estrella = estrellaRefs[index]
+  if (estrella) {
+    gsap.fromTo(
+      estrella,
+      { scale: 0, opacity: 0 },
+      { scale: 1.5, opacity: 1, duration: 0.5, ease: 'bounce.out' }
+    )
+  }
+}
 let positions = []
 
 function shuffle(array) {

@@ -32,12 +32,13 @@
      
     </router-link>
   </div>-->
-    <div class="progreso">
-      Progreso:
-      <span v-for="n in 5" :key="n">
-        {{ n <= nivelActual + 1 ? '⭐' : '☆' }}
-      </span>
-    </div>
+  <!--  <div class="progreso">
+  Progreso:
+  <span v-for="n in totalParadas" :key="n" class="estrella">
+    {{ n <= progreso ? '⭐' : '☆' }}
+  </span>
+</div>-->
+
     
   </div>
 
@@ -117,6 +118,17 @@ const anteriorParada = () => {
     paradaActual.value--
   }
 }
+const progreso = ref(0)
+const totalParadas = 9
+
+function proximaParada() {
+  if (progreso.value < totalParadas) {
+    progreso.value++
+    animarEstrellas()
+  }
+ 
+}
+
 
 onMounted(() => {
   setInterval(() => {
@@ -150,9 +162,7 @@ const niveles = [
   { nombre: 'Puzzle', emoji: '🧩', ruta: './puzzle' },
   { nombre: 'Encuentra la letra', emoji: '🧩', ruta: './miniJuegoAlfabeto' },
   { nombre: 'Desafio', emoji: '🧩', ruta: '/nivel-desafio' },
-   { nombre: 'Copia la palabra', emoji: '🧩', ruta: './seleccionar' },
-  
-
+  { nombre: 'Copia la palabra', emoji: '🧩', ruta: './seleccionar' },
   { nombre: 'Practicar y recompensas', emoji: '🎁', ruta: '/nivel-practicar' }
 ]
 
@@ -201,7 +211,7 @@ color: darkcyan;
 
 .train {
   position: absolute;
-  top: 16rem;
+  top: 35rem;
   font-size: 3rem;
   display: flex;
   align-items: center;
@@ -291,33 +301,9 @@ color: darkcyan;
   }
 }
 
-.start-button {
-  margin-top: 0,5rem;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #ffa726;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-}
 
-.start-button:hover {
-  background-color: #fb8c00;
-}
-.home-container
-.buton {margin-top: 1rem;
-  padding: 12px 24px;
-  font-size: 1.2rem;
-  background-color: #ffa726;
-  border: none;
-  border-radius: 12px;
-  color: white;
-  cursor: pointer;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);}
 .progreso {
-  margin-top: 15rem;
+  margin-top: 16rem;
   font-size: 1.2rem;
 }
 .inicio {
@@ -330,7 +316,8 @@ color: darkcyan;
   justify-content: center;
   flex-wrap: wrap; 
   gap: 10px;
-  margin-bottom: 1px;
+  top:5rem;
+  margin-bottom: 500px;
 }
 
 .parada {
@@ -346,6 +333,7 @@ color: darkcyan;
   color: darkcyan;
   font-weight: bold;
   text-shadow:#051f4e;
+  
 }
 
 .parada:hover {
@@ -358,7 +346,37 @@ color: darkcyan;
   font-weight: bold;
 }
 
+@media (max-width: 768px) {
+  .train {
+    top: 18rem;  
+    font-size: 2.2rem;
+  }
 
+  .progreso {
+    margin-top: 8rem; 
+    font-size: 1rem;
+  }
+
+  .mapa-tren {
+    margin-bottom: 200px; 
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .train {
+    top: 14rem;  
+    font-size: 2rem;
+  }
+
+  .progreso {
+    margin-top: 6rem;
+  }
+
+  .mapa-tren {
+    margin-bottom: 120px;
+  }
+}
 @media (max-width: 768px) {
   .parada {
     padding: 6px 10px;
@@ -406,5 +424,19 @@ color: darkcyan;
 .controles button:disabled {
   background: #e08d3fe5;
   cursor: not-allowed;
+}
+.estrella-cayendo {
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  .parada { padding: 0.4rem 0.8rem; min-width: 5rem; font-size: 0.9rem; }
+  .train { bottom: 20%; font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .traffic-light { left: -7%; bottom: 7%; }
+}
+
+@media (max-width: 480px) {
+  .parada { padding: 0.3rem 0.6rem; min-width: 4rem; font-size: 0.8rem; }
+  .train { bottom: 25%; font-size: clamp(1.2rem, 4vw, 2rem); }
+  .traffic-light { left: -10%; bottom: 10%; width: 25px; }
 }
 </style>

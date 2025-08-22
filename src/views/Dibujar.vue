@@ -102,7 +102,7 @@ onMounted(() => {
     </div>
   </div>
 
- <BotonProximaParada nombre="Escribir Palabras" ruta="/escribir" />
+ <BotonProximaParada @click="$emit('progresoActualizado')" nombre="Escribir Palabras" ruta="/escribir" />
   <div class="train-container">
     
      <div class="traffic-light">

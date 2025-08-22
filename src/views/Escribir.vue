@@ -41,14 +41,14 @@
       </span>
     </div>
 
-    <!-- Teclado -->
+    
     <div class="teclado">
       <button v-for="(l, i) in letras" :key="i" @click="addLetter(l)">
         {{ l }}
       </button>
     </div>
 
-    <!-- Acciones -->
+    
     <div class="acciones">
       <button @click="deleteLetter">Borrar</button>
       <button @click="checkInput">Comprobar</button>
@@ -57,7 +57,7 @@
     <p class="mensaje">{{ mensaje }}</p>
   </div>
 
-   <BotonProximaParada nombre="Puzzle" ruta="/puzzle" /> 
+   <BotonProximaParada @click="$emit('progresoActualizado')"  nombre="Puzzle" ruta="/puzzle" /> 
   <div class="train-container">
   <div class="train-track">
     <div class="train">
