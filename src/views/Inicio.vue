@@ -179,13 +179,19 @@ function irAlNivelActual() {
 
 <style scoped>
 .home-container {
+  min-height: 100vh;
   margin-top: 40px;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  margin: 0; 
+  padding: 1rem;
   text-align: center;
-  background: linear-gradient(to bottom, #ffffff, #ceefff);
+  background: linear-gradient(to bottom, #ffffff, #b5d9eb);
   padding: 1rem;
   font-family: 'Comic Sans MS', cursive, sans-serif;margin-bottom: 10px;color: rgb(9, 107, 107);
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 h1 {
 color: darkcyan;
@@ -356,11 +362,14 @@ bottom: 1rem;
 
 
 @media (max-width: 480px) {
-  h1 {  font-size: 0.8rem;}
+  .home.container {
+    margin-bottom: 2rem;
+  }
+  h1 {  font-size: 1,5rem;}
   .parada {
     padding: 4px 8px;
     min-width: 80px;
-    font-size: 0.8rem;
+    font-size: 1,5rem;
   }
     .train {
 bottom: 0,5rem;  
@@ -414,5 +423,8 @@ bottom: 0,5rem;
   .parada { padding: 0.3rem 0.6rem; min-width: 4rem; font-size: 0.8rem; }
   .train { bottom: 15%; font-size: clamp(1.2rem, 4vw, 2rem); }
   .traffic-light { left: -10%; bottom: 10%; width: 25px; }
+}
+footer {
+  margin-top: auto;
 }
 </style>
