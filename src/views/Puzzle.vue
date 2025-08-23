@@ -27,10 +27,10 @@
   <button v-if="isCorrect" class="next-btn" @click="nextWord">
       👉 Siguiente
     </button>
-    </div>
+    
 
     <BotonProximaParada nombre="Encuentra la letra" ruta="/miniJuegoAlfabeto" />
-    
+     </div>
     <div class="train-container">
   <div class="train-track">
     <div class="train">
@@ -181,7 +181,7 @@ h2 {
   text-align: center;
   max-width: 600px;
   margin-top:50px;
-  margin-left:10 px;
+  margin-left: 10px;
   padding: 1.5rem;
   text-align: center;
 }

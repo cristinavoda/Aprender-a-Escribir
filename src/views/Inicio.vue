@@ -96,10 +96,10 @@ const paradas = ref([
   { nombre: '✏️ Dibujar letras', ruta: '/dibujar' },
   { nombre: '🖍️ Escribir palabras', ruta: '/escribir' },
   { nombre: '🧩 Puzzle', ruta: '/puzzle' },
-  { nombre: '🎮 Encuentra la palabra', ruta: '/miniJuegoAlfabeto' },
-  { nombre: '⭐ Desafío', ruta: '/desafio' },
-  { nombre: '🎮 Copia la palabra', ruta: '/seleccionar' },
-  { nombre: '🎁 Practicar y recompensas', ruta: '/practicar' },
+  { nombre: '🔎 Encuentra la palabra', ruta: '/miniJuegoAlfabeto' },
+  { nombre: '🎮 Desafío', ruta: '/desafio' },
+  { nombre: ' 🔠Copia la palabra', ruta: '/seleccionar' },
+  { nombre: '📝 Practicar ', ruta: '/practicar' },
   { nombre: '🏆Diploma', ruta: '/Diploma' }
 ])
 
@@ -163,7 +163,7 @@ const niveles = [
   { nombre: 'Encuentra la letra', emoji: '🧩', ruta: './miniJuegoAlfabeto' },
   { nombre: 'Desafio', emoji: '🧩', ruta: '/nivel-desafio' },
   { nombre: 'Copia la palabra', emoji: '🧩', ruta: './seleccionar' },
-  { nombre: 'Practicar y recompensas', emoji: '🎁', ruta: '/nivel-practicar' }
+  { nombre: 'Practicar ', emoji: '🎁', ruta: '/nivel-practicar' }
 ]
 
 
@@ -194,11 +194,15 @@ function irAlNivelActual() {
   margin-bottom: 60px;
 }
 h1 {
-color: darkcyan;
+background: linear-gradient(45deg, darkcyan, #e8e8ec);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  text-shadow: 0 2px 2px rgba(80, 73, 177, 0.459);
+  margin-top: -10px;
 }
 
 
@@ -218,7 +222,7 @@ color: darkcyan;
 
 .train {
   position: absolute;
-  bottom: 5rem;
+  bottom: 19rem;
   font-size: 3rem;
   display: flex;
   align-items: center;
@@ -315,22 +319,23 @@ color: darkcyan;
   display: flex;
   justify-content: center;
   flex-wrap: wrap; 
-  gap: 10px;
-  top:6rem;
+  gap: 8px;
+  margin-top: 6rem;
   margin-bottom: 500px;
 }
 
 .parada {
   padding: 8px 12px;
   border-radius: 8px;
-  background: linear-gradient(145deg, #ffffffff, #ffffff);
+  background: linear-gradient(145deg, #ffffffff, #f6f8f8);
   transition: background 0.3s, transform 0.3s;
-  box-shadow: 5px 7px 5px rgba(2, 38, 85, 0.5);
+  box-shadow: 15px 7px 15px rgba(67, 163, 192, 0.5);
   min-width: 120px; 
   height: auto;
   text-align: center;
   cursor: pointer;
   color: darkcyan;
+  font-size: 3rem;
   font-weight: bold;
   text-shadow:#051f4e;
   
@@ -348,12 +353,10 @@ color: darkcyan;
 
 @media (max-width: 768px) {
   .train {
-bottom: 1rem;  
+bottom: 19rem;  
     font-size: 2.2rem;
   }
-
-
-  .mapa-tren {
+.mapa-tren {
     margin-bottom: 100px; 
     gap: 6px;
   }
@@ -365,14 +368,16 @@ bottom: 1rem;
   .home.container {
     margin-bottom: 2rem;
   }
-  h1 {  font-size: 1,5rem;}
+  h1 {  font-size: 2,5rem;
+  margin-bottom: -60px;}
   .parada {
-    padding: 4px 8px;
+     padding: 4px 2px;
     min-width: 80px;
-    font-size: 1,5rem;
+    font-size: 2,5rem;
+
   }
     .train {
-bottom: 0,5rem;  
+    margin-bottom: -2rem;  
     font-size: 2.2rem;
   }
 
@@ -415,16 +420,17 @@ bottom: 0,5rem;
 }
 @media (max-width: 768px) {
   .parada { padding: 0.4rem 0.8rem; min-width: 5rem; font-size: 0.9rem; }
-  .train { bottom: 10%; font-size: clamp(1.5rem, 5vw, 2.5rem); }
+  .train { bottom: 30%; font-size: clamp(1.5rem, 5vw, 2.5rem); }
   .traffic-light { left: -7%; bottom: 7%; }
 }
 
 @media (max-width: 480px) {
-  .parada { padding: 0.3rem 0.6rem; min-width: 4rem; font-size: 0.8rem; }
+  .parada { padding: 0.3rem 0.6rem; min-width: 4rem; font-size: 1rem; }
   .train { bottom: 15%; font-size: clamp(1.2rem, 4vw, 2rem); }
   .traffic-light { left: -10%; bottom: 10%; width: 25px; }
 }
 footer {
   margin-top: auto;
+  font-size: 2rem;
 }
 </style>

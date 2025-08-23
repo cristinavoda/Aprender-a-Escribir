@@ -521,7 +521,7 @@ nav.open ul {
 
 @media (max-width: 768px) {
   .train {
-    top: 18rem;  /* sube el tren en móviles */
+    top: 18rem;  
     font-size: 2.2rem;
   }
 .mapa-tren {
@@ -538,5 +538,9 @@ nav.open ul {
 .mapa-tren {
     margin-bottom: 120px;
   }
+}
+.footer {
+  margin-top: auto; 
+  font-size: 2rem;
 }
 </style>

@@ -140,7 +140,7 @@ alfabeto-container {
   gap: 1rem; 
   text-align: center;
   max-width: 600px;
-  margin-top: 120px;           
+  top: 3rem;           
   padding: 1px;       
   text-align: left;  
   margin-left: -10px;;  
@@ -169,14 +169,13 @@ h2 {
   width: 150px;
   height: 150px;
   text-align: center;
-  margin-top: 3rem;
-  margin: 20px;
+  margin: 50px;
   pointer-events: none; 
   background-color: #d9d8f065;
-  border-color:#aa87e2;
+  border-color:#f7f6f8;
   border-radius: 0.5rem;
   user-select: none; 
-  box-shadow: 4px 4px 5px rgba(44, 16, 201, 0.678);
+  box-shadow: 5px 5px 5px rgba(44, 16, 201, 0.678);
 
 }
 .teclado {
